@@ -1,5 +1,5 @@
-PHP Domain
-##########
+PHP Domain for Sphinx
+#####################
 
 :author: Mark Story <mark at mark-story.com>
 
@@ -119,7 +119,7 @@ You can modify a DateTime's date using :php:meth:`DateTime::setDate`.
 Install
 =======
 
-You can install the phpdomain using easy_install::
+You can install the phpdomain using pip::
 
-   easy_install -U sphinxcontrib-phpdomain
+   pip -U sphinxcontrib-phpdomain
 
