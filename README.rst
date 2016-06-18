@@ -121,5 +121,5 @@ Install
 
 You can install the phpdomain using pip::
 
-   pip -U sphinxcontrib-phpdomain
+   pip install -U sphinxcontrib-phpdomain
 
