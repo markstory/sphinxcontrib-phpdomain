@@ -9,11 +9,11 @@ This extension provides a PHP domain for sphinx
 
 '''
 
-requires = ['Sphinx>=1.0']
+requires = ['Sphinx>=1.3']
 
 setup(
     name='sphinxcontrib-phpdomain',
-    version='0.1.4',
+    version='0.2.0',
     url='http://bitbucket.org/markstory/sphinx-contrib',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
     license='BSD',
