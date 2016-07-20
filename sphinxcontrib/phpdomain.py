@@ -130,7 +130,7 @@ class PhpObject(ObjectDescription):
             fullname = name
         else:
             add_module = True
-            # name_prefix and a non-static method, means the classname was 
+            # name_prefix and a non-static method, means the classname was
             # repeated. Trim off the <class>::
             if name_prefix and self.objtype != 'staticmethod':
                 if name_prefix.startswith(classname):
@@ -254,7 +254,7 @@ class PhpObject(ObjectDescription):
         indextext = self.get_index_text(modname, name_cls)
         if indextext:
             self.indexnode['entries'].append(('single', indextext,
-                                              fullname, fullname))
+                                              fullname, fullname, None))
 
 
 
@@ -412,7 +412,7 @@ class PhpNamespace(Directive):
         if not noindex:
             indextext = _('%s (namespace)') % modname
             inode = addnodes.index(entries=[('single', indextext,
-                                             'namespace-' + modname, modname)])
+                                             'namespace-' + modname, modname, None)])
             ret.append(inode)
         return ret
 
