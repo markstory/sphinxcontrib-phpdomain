@@ -6,15 +6,12 @@ long_desc = '''
 This package contains the phpdomain Sphinx extension.
 
 This extension provides a PHP domain for sphinx
-
 '''
-
-requires = ['Sphinx>=1.3']
 
 setup(
     name='sphinxcontrib-phpdomain',
     version='0.2.0',
-    url='http://bitbucket.org/markstory/sphinx-contrib',
+    url='https://github.com/markstory/sphinxcontrib-phpdomain',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
     license='BSD',
     author='Mark Story',
@@ -36,6 +33,6 @@ setup(
     platforms='any',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=requires,
+    install_requires=['sphinx>=1.3'],
     namespace_packages=['sphinxcontrib'],
 )
