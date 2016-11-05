@@ -8,7 +8,8 @@ Contents:
 
    test_doc
    test_doc2
-   
+   test_nesting_regression
+
 Indices and tables
 ==================
 

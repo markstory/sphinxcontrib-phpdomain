@@ -123,6 +123,9 @@ class PhpObject(ObjectDescription):
         classname = self.env.temp_data.get('php:class')
         separator = separators[self.objtype]
 
+        # Method declared as Class::methodName
+        if not classname and '::' in name_prefix:
+            classname = name_prefix.rstrip('::')
         if self.objtype == 'global' or self.objtype == 'function':
             add_module = False
             modname = None
