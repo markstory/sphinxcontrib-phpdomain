@@ -10,7 +10,7 @@ This extension provides a PHP domain for sphinx
 
 setup(
     name='sphinxcontrib-phpdomain',
-    version='0.2.0',
+    version='0.2.1',
     url='https://github.com/markstory/sphinxcontrib-phpdomain',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
     license='BSD',
