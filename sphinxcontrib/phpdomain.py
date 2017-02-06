@@ -22,7 +22,7 @@ from sphinx.directives import ObjectDescription
 from sphinx.util.nodes import make_refnode
 from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
-
+from sphinx.domains.python import _pseudo_parse_arglist
 
 
 php_sig_re = re.compile(
@@ -33,8 +33,6 @@ php_sig_re = re.compile(
           )? $                   # and nothing more
           ''', re.VERBOSE)
 
-
-php_paramlist_re = re.compile(r'([\[\],])')  # split at '[', ']' and ','
 
 NS = '\\'
 
@@ -189,26 +187,8 @@ class PhpObject(ObjectDescription):
                 signode += addnodes.desc_returns(retann, retann)
             return fullname, name_prefix
 
-        signode += addnodes.desc_parameterlist()
+        _pseudo_parse_arglist(signode, arglist)
 
-        stack = [signode[-1]]
-        for token in php_paramlist_re.split(arglist):
-            if token == '[':
-                opt = addnodes.desc_optional()
-                stack[-1] += opt
-                stack.append(opt)
-            elif token == ']':
-                try:
-                    stack.pop()
-                except IndexError:
-                    raise ValueError
-            elif not token or token == ',' or token.isspace():
-                pass
-            else:
-                token = token.strip()
-                stack[-1] += addnodes.desc_parameter(token, token)
-        if len(stack) != 1:
-            raise ValueError
         if retann:
             signode += addnodes.desc_returns(retann, retann)
         return fullname, name_prefix
