@@ -24,6 +24,7 @@ from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
 
 
+
 php_sig_re = re.compile(
     r'''^ ([\w.]*\:\:)?          # class name(s)
           (\$?\w+)  \s*          # thing name
