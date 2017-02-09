@@ -15,7 +15,7 @@ setup(
     download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
     license='BSD',
     author='Mark Story',
-    author_email='mark at mark-story dot com',
+    author_email='mark@mark-story.com',
     description='Sphinx "phpdomain" extension',
     long_description=long_desc,
     zip_safe=False,
