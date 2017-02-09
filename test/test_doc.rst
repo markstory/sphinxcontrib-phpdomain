@@ -60,7 +60,7 @@ Classes
 
     Another class
 
-.. php:method:: update()
+.. php:method:: update($arg = '', $arg2 = [], $arg3 = [])
 
     Update something.
 
