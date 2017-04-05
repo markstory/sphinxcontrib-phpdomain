@@ -14,15 +14,14 @@ This extension provides a PHP domain for sphinx
 
 setup(
     name='sphinxcontrib-phpdomain',
-    version='0.2.4',
+    version='0.2.5',
     url='https://github.com/markstory/sphinxcontrib-phpdomain',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
     license='BSD',
     author='Mark Story',
     author_email='mark@mark-story.com',
-    description='Sphinx "phpdomain" extension',
+    description='Sphinx extension to enable documenting PHP code',
     long_description=long_desc,
-    zip_safe=False,
     classifiers=[
         'Environment :: Console',
         'Environment :: Web Environment',
@@ -34,8 +33,10 @@ setup(
         'Topic :: Utilities',
     ],
     platforms='any',
-    packages=find_packages(),
+    dependency_links=[],
+    namespace_packages=['sphinxcontrib'],
+    packages=find_packages(exclude=['test*']),
     include_package_data=True,
     install_requires=requirements,
-    namespace_packages=['sphinxcontrib'],
+    zip_safe=False,
 )
