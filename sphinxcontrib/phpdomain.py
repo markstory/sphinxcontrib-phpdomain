@@ -5,10 +5,9 @@
 
     The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
 
-    :copyright: Copyright 2011 by Mark Story
+    :copyright: Copyright 2017 by Mark Story
     :license: BSD, see LICENSE for details.
 """
-
 import re
 
 from docutils import nodes
@@ -22,7 +21,6 @@ from sphinx.directives import ObjectDescription
 from sphinx.util.nodes import make_refnode
 from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
-
 
 
 php_sig_re = re.compile(
@@ -249,7 +247,8 @@ class PhpObject(ObjectDescription):
         raise NotImplementedError('must be implemented in subclasses')
 
     def _is_class_member(self):
-        return self.objtype.startswith('method') or self.objtype.startswith('attr')
+        return (self.objtype.startswith('method') or
+                self.objtype.startswith('attr'))
 
     def add_target_and_index(self, name_cls, sig, signode):
         if self.objtype == 'global':
@@ -289,7 +288,6 @@ class PhpObject(ObjectDescription):
                                               fullname, fullname, None))
 
 
-
 class PhpGloballevel(PhpObject):
     """
     Description of an object on global level (global variables).
@@ -300,6 +298,7 @@ class PhpGloballevel(PhpObject):
             return _('%s (global variable)') % name_cls[0]
         else:
             return ''
+
 
 class PhpNamespacelevel(PhpObject):
     """
@@ -368,6 +367,7 @@ class PhpClasslike(PhpObject):
         if self.names:
             self.env.temp_data['php:class'] = self.names[0][0]
 
+
 class PhpClassmember(PhpObject):
     """
     Description of a class member (methods, attributes).
@@ -411,6 +411,7 @@ class PhpClassmember(PhpObject):
         else:
             return ''
 
+
 class PhpNamespace(Directive):
     """
     Directive to start a new PHP namespace, which are similar to modules.
@@ -435,7 +436,8 @@ class PhpNamespace(Directive):
             env.docname, self.options.get('synopsis', ''),
             'deprecated' in self.options)
 
-        targetnode = nodes.target('', '', ids=['namespace-' + modname], ismod=True)
+        targetnode = nodes.target('', '', ids=['namespace-' + modname],
+                                  ismod=True)
         self.state.document.note_explicit_target(targetnode)
         ret = [targetnode]
 
@@ -457,7 +459,7 @@ class PhpXRefRole(XRefRole):
         if not has_explicit_title:
             if title.startswith("::"):
                 title = title[2:]
-            target = target.lstrip('~') # only has a meaning for the title
+            target = target.lstrip('~')  # only has a meaning for the title
             # if the first character is a tilde, don't display the module/class
             # parts of the contents
             if title[0:1] == '~':
@@ -470,6 +472,7 @@ class PhpXRefRole(XRefRole):
             refnode['php:class'] = env.temp_data.get('php:class')
 
         return title, target
+
 
 class PhpNamespaceIndex(Index):
     """
@@ -539,6 +542,7 @@ class PhpNamespaceIndex(Index):
 
         return content, collapse
 
+
 class PhpDomain(Domain):
     """PHP language domain."""
     name = 'php'
@@ -603,16 +607,23 @@ class PhpDomain(Domain):
     def resolve_xref(self, env, fromdocname, builder,
                      typ, target, node, contnode):
         if (typ == 'ns' or
-            typ == 'obj' and target in self.data['namespaces']):
-            docname, synopsis, deprecated = \
-                self.data['namespaces'].get(target, ('','','', ''))
+                typ == 'obj' and target in self.data['namespaces']):
+            docname, synopsis, deprecated = self.data['namespaces'].get(
+                target,
+                ('', '', '', '')
+            )
             if not docname:
                 return None
             else:
                 title = '%s%s' % (synopsis,
-                                    (deprecated and ' (deprecated)' or ''))
-                return make_refnode(builder, fromdocname, docname,
-                                    'namespace-' + target, contnode, title)
+                                  (deprecated and ' (deprecated)' or ''))
+                return make_refnode(
+                    builder,
+                    fromdocname,
+                    docname,
+                    'namespace-' + target,
+                    contnode,
+                    title)
         else:
             modname = node.get('php:namespace')
             clsname = node.get('php:class')
@@ -664,14 +675,14 @@ class PhpDomain(Domain):
             elif modname and modname + NS + name in objects:
                 newname = modname + NS + name
             elif modname and classname and \
-                     modname + NS + classname + '::' + name in objects:
+                    modname + NS + classname + '::' + name in objects:
                 newname = modname + NS + classname + '::' + name
             elif modname and classname and \
-                     modname + NS + classname + '::$' + name in objects:
+                    modname + NS + classname + '::$' + name in objects:
                 newname = modname + NS + classname + '::$' + name
             # special case: object methods
             elif type in ('func', 'meth') and '::' not in name and \
-                 'object::' + name in objects:
+                    'object::' + name in objects:
                 newname = 'object::' + name
         if newname is None:
             return None, None
