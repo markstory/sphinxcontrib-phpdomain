@@ -2,6 +2,8 @@
 
 from setuptools import setup, find_packages
 
+requirements = open('./requirements.txt', 'r')
+
 long_desc = '''
 This package contains the phpdomain Sphinx extension.
 
@@ -15,7 +17,7 @@ setup(
     download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
     license='BSD',
     author='Mark Story',
-    author_email='mark at mark-story dot com',
+    author_email='mark@mark-story.com',
     description='Sphinx "phpdomain" extension',
     long_description=long_desc,
     zip_safe=False,
@@ -33,6 +35,6 @@ setup(
     platforms='any',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=['sphinx>=1.3'],
+    install_requires=requirements.readlines(),
     namespace_packages=['sphinxcontrib'],
 )
