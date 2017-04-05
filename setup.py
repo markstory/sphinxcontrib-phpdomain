@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-
+import os
 from setuptools import setup, find_packages
 
-requirements = open('./requirements.txt', 'r')
+with open(os.path.join(os.path.dirname(__file__),
+                       'requirements.txt'), 'r') as f:
+    requirements = f.read()
 
 long_desc = '''
 This package contains the phpdomain Sphinx extension.
@@ -34,6 +36,6 @@ setup(
     platforms='any',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=requirements.readlines(),
+    install_requires=requirements,
     namespace_packages=['sphinxcontrib'],
 )
