@@ -604,13 +604,22 @@ class PhpDomain(Domain):
             if fn == docname:
                 del self.data['namespaces'][ns]
 
+    def resolve_any_xref(self, env, fromdocname, builder,
+                         target, node, contnode):
+        for typ in self.roles:
+            resolve = self.resolve_xref(env, fromdocname, builder,
+                                        typ, target, node, contnode)
+            if resolve:
+                return [('php:%s' % typ, resolve)]
+        return []
+
     def resolve_xref(self, env, fromdocname, builder,
                      typ, target, node, contnode):
         if (typ == 'ns' or
                 typ == 'obj' and target in self.data['namespaces']):
             docname, synopsis, deprecated = self.data['namespaces'].get(
                 target,
-                ('', '', '', '')
+                ('', '', '')
             )
             if not docname:
                 return None
