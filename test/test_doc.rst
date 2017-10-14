@@ -334,6 +334,13 @@ Test Case - global access
 
 :php:func:`DateTimeInterface::setTime()`
 
+Any Cross Ref
+=============
+
+:any:`LibraryName\\NS_CONST`
+
+:any:`DateTimeInterface::setTime()`
+
 Nested namespaces
 =================
 
