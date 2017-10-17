@@ -280,7 +280,7 @@ Namespaced elements
 
     A static method.
 
-.. php:method:: protected final fivthMethod($one, $two)
+.. php:method:: protected final fifthMethod($one, $two)
 
     A protected final method.
 
@@ -344,7 +344,7 @@ Test Case - not including namespace
 
 :php:meth:`LibraryClassFinal::fourthMethod`
 
-:php:meth:`LibraryClassFinal::fivthMethod`
+:php:meth:`LibraryClassFinal::fifthMethod`
 
 :php:interface:`LibraryInterface`
 
