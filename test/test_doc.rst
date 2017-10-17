@@ -48,6 +48,12 @@ Classes
         :param int $minute: The minute
         :param int $second: The second
 
+    .. php:method:: public static getLastErrors()
+
+        Returns the warnings and errors
+
+        :returns: array Returns array containing info about warnings and errors.
+
     .. php:const:: ATOM
 
         Y-m-d\TH:i:sP
@@ -158,6 +164,8 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`DateTime::setTime()`
 
+:php:func:`DateTime::getLastErrors()`
+
 :php:func:`~DateTime::setDate()`
 
 :php:func:`DateTime::ATOM`
@@ -252,6 +260,33 @@ Namespaced elements
 
     A static method here.
 
+.. php:class:: final LibraryClassFinal
+
+    A final class
+
+.. php:method:: public firstMethod($one, $two)
+
+    A public instance method.
+
+.. php:method:: protected secondMethod($one, $two)
+
+    A protected instance method.
+
+.. php:method:: private thirdMethod($one, $two)
+
+    A private instance method.
+
+.. php:method:: static fourthMethod($one, $two)
+
+    A static method.
+
+.. php:method:: protected final fivthMethod($one, $two)
+
+    A protected final method.
+
+.. php:class:: abstract LibraryClassAbstract
+
+    An abstract class
 
 .. php:interface:: LibraryInterface
 
@@ -298,6 +333,18 @@ Test Case - not including namespace
 :php:attr:`NamespaceClass::$property`
 
 :php:const:`NamespaceClass::NAMESPACE_CONST`
+
+:php:class:`LibraryClassFinal`
+
+:php:meth:`LibraryClassFinal::firstMethod`
+
+:php:meth:`LibraryClassFinal::secondMethod`
+
+:php:meth:`LibraryClassFinal::thirdMethod`
+
+:php:meth:`LibraryClassFinal::fourthMethod`
+
+:php:meth:`LibraryClassFinal::fivthMethod`
 
 :php:interface:`LibraryInterface`
 

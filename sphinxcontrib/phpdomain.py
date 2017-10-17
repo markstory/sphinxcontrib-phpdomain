@@ -22,13 +22,14 @@ from sphinx.util.nodes import make_refnode
 from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
 
-
 php_sig_re = re.compile(
-    r'''^ ([\w.]*\:\:)?          # class name(s)
-          (\$?\w+)  \s*          # thing name
-          (?: \((.*)\)           # optional: arguments
-          (?:\s* -> \s* (.*))?   # return annotation
-          )? $                   # and nothing more
+    r'''^ (public\ |protected\ |private\ )? # visibility
+          (final\ |abstract\ |static\ )?    # modifiers
+          ([\w.]*\:\:)?                     # class name(s)
+          (\$?\w+)  \s*                     # thing name
+          (?: \((.*)\)                      # optional: arguments
+          (?:\s* -> \s* (.*))?              # return annotation
+          )? $                              # and nothing more
           ''', re.VERBOSE)
 
 
@@ -156,7 +157,7 @@ class PhpObject(ObjectDescription):
         if m is None:
             raise ValueError
 
-        name_prefix, name, arglist, retann = m.groups()
+        visibility, modifiers, name_prefix, name, arglist, retann = m.groups()
 
         if not name_prefix:
             name_prefix = ""
@@ -203,7 +204,13 @@ class PhpObject(ObjectDescription):
         signode['class'] = self.class_name = classname
         signode['fullname'] = fullname
 
+        if visibility:
+            signode += addnodes.desc_annotation(visibility, visibility)
+
         sig_prefix = self.get_signature_prefix(sig)
+
+        if modifiers and not (sig_prefix and 'static' in sig_prefix):
+                signode += addnodes.desc_annotation(modifiers, modifiers)
 
         if sig_prefix:
             signode += addnodes.desc_annotation(sig_prefix, sig_prefix)
