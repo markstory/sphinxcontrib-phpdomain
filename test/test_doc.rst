@@ -225,15 +225,15 @@ Namespaced elements
     A class in a namespace
 
     .. php:method:: LibraryClass::instanceMethod($foo)
-    
+
         An instance method
-    
+
     .. php:const:: TEST_CONST
-    
+
         Test constant
-    
+
     .. php:attr:: property
-    
+
         A property!
 
 .. php:staticmethod:: LibraryClass::staticMethod()
