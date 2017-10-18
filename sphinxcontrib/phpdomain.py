@@ -605,10 +605,10 @@ class PhpDomain(Domain):
     ]
 
     def clear_doc(self, docname):
-        for fullname, (fn, _) in list(self.data['objects'].items()):
+        for fullname, (fn, _l) in list(self.data['objects'].items()):
             if fn == docname:
                 del self.data['objects'][fullname]
-        for ns, (fn, _, _) in list(self.data['namespaces'].items()):
+        for ns, (fn, _x, _x) in list(self.data['namespaces'].items()):
             if fn == docname:
                 del self.data['namespaces'][ns]
 
