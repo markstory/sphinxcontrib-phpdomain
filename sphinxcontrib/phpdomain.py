@@ -21,6 +21,7 @@ from sphinx.directives import ObjectDescription
 from sphinx.util.nodes import make_refnode
 from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
+from sphinx import __version__ as sphinx_version
 
 php_sig_re = re.compile(
     r'''^ (public\ |protected\ |private\ )? # visibility
@@ -604,12 +605,20 @@ class PhpDomain(Domain):
     ]
 
     def clear_doc(self, docname):
-        for fullname, (fn, _) in self.data['objects'].items():
+        for fullname, (fn, _) in list(self.data['objects'].items()):
             if fn == docname:
                 del self.data['objects'][fullname]
-        for ns, (fn, _, _) in self.data['namespaces'].items():
+        for ns, (fn, _, _) in list(self.data['namespaces'].items()):
             if fn == docname:
                 del self.data['namespaces'][ns]
+
+    def merge_domaindata(self, docnames, otherdata):
+        for fullname, (fn, objtype) in otherdata['objects'].items():
+            if fn in docname:
+                self.data['objects'][fullname] = (fn, objtype)
+        for namespace, data in otherdata['namespaces'].items():
+            if data[0] in docnames:
+                self.data['namespaces'][namespace] = data
 
     def resolve_any_xref(self, env, fromdocname, builder,
                          target, node, contnode):
@@ -713,3 +722,5 @@ class PhpDomain(Domain):
 
 def setup(app):
     app.add_domain(PhpDomain)
+
+    return {'version': sphinx_version, 'parallel_read_safe': True}
