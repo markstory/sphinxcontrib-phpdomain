@@ -614,7 +614,7 @@ class PhpDomain(Domain):
 
     def merge_domaindata(self, docnames, otherdata):
         for fullname, (fn, objtype) in otherdata['objects'].items():
-            if fn in docname:
+            if fn in docnames:
                 self.data['objects'][fullname] = (fn, objtype)
         for namespace, data in otherdata['namespaces'].items():
             if data[0] in docnames:
