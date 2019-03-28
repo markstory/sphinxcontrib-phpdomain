@@ -116,18 +116,18 @@ class PhpObject(ObjectDescription):
     }
 
     doc_field_types = [
-        TypedField('parameter', label=l_('Parameters'),
+        TypedField('parameter', label=_('Parameters'),
                    names=('param', 'parameter', 'arg', 'argument'),
                    typerolename='obj', typenames=('paramtype', 'type')),
-        TypedField('variable', label=l_('Variables'), rolename='obj',
+        TypedField('variable', label=_('Variables'), rolename='obj',
                    names=('var', 'ivar', 'cvar'),
                    typerolename='obj', typenames=('vartype',)),
-        GroupedField('exceptions', label=l_('Throws'), rolename='exc',
+        GroupedField('exceptions', label=_('Throws'), rolename='exc',
                      names=('throws', 'throw', 'exception', 'except'),
                      can_collapse=True),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
+        Field('returnvalue', label=_('Returns'), has_arg=False,
               names=('returns', 'return')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
+        Field('returntype', label=_('Return type'), has_arg=False,
               names=('rtype', 'returntype')),
     ]
 
@@ -487,8 +487,8 @@ class PhpNamespaceIndex(Index):
     """
 
     name = 'modindex'
-    localname = l_('PHP Namespace Index')
-    shortname = l_('namespaces')
+    localname = _('PHP Namespace Index')
+    shortname = _('namespaces')
 
     def generate(self, docnames=None):
         content = {}
@@ -555,16 +555,16 @@ class PhpDomain(Domain):
     name = 'php'
     label = 'PHP'
     object_types = {
-        'function': ObjType(l_('function'), 'func', 'obj'),
-        'global': ObjType(l_('global variable'), 'global', 'obj'),
-        'const': ObjType(l_('const'), 'const', 'obj'),
-        'method': ObjType(l_('method'), 'meth', 'obj'),
-        'class': ObjType(l_('class'), 'class', 'obj'),
-        'attr': ObjType(l_('attribute'), 'attr', 'obj'),
-        'exception': ObjType(l_('exception'), 'exc', 'obj'),
-        'namespace': ObjType(l_('namespace'), 'ns', 'obj'),
-        'interface': ObjType(l_('interface'), 'interface', 'obj'),
-        'trait': ObjType(l_('trait'), 'trait', 'obj'),
+        'function': ObjType(_('function'), 'func', 'obj'),
+        'global': ObjType(_('global variable'), 'global', 'obj'),
+        'const': ObjType(_('const'), 'const', 'obj'),
+        'method': ObjType(_('method'), 'meth', 'obj'),
+        'class': ObjType(_('class'), 'class', 'obj'),
+        'attr': ObjType(_('attribute'), 'attr', 'obj'),
+        'exception': ObjType(_('exception'), 'exc', 'obj'),
+        'namespace': ObjType(_('namespace'), 'ns', 'obj'),
+        'interface': ObjType(_('interface'), 'interface', 'obj'),
+        'trait': ObjType(_('trait'), 'trait', 'obj'),
     }
 
     directives = {
