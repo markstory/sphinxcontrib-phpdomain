@@ -281,7 +281,7 @@ class PhpObject(ObjectDescription):
             self.state.document.note_explicit_target(signode)
             objects = self.env.domaindata['php']['objects']
             if fullname in objects:
-                self.env.warn(
+                self.env.warnings.warn(
                     self.env.docname,
                     'duplicate object description of %s, ' % fullname +
                     'other instance in ' +
