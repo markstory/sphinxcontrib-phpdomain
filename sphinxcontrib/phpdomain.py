@@ -281,12 +281,11 @@ class PhpObject(ObjectDescription):
             self.state.document.note_explicit_target(signode)
             objects = self.env.domaindata['php']['objects']
             if fullname in objects:
-                self.env.warnings.warn(
-                    self.env.docname,
+                self.state_machine.reporter.warning(
                     'duplicate object description of %s, ' % fullname +
                     'other instance in ' +
                     self.env.doc2path(objects[fullname][0]),
-                    self.lineno)
+                    line = self.lineno)
             objects[fullname] = (self.env.docname, self.objtype)
 
         indextext = self.get_index_text(modname, name_cls)
