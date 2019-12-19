@@ -457,6 +457,28 @@ class PhpNamespace(Directive):
         return ret
 
 
+class PhpCurrentNamespace(Directive):
+    """
+    This directive is just to tell Sphinx that we're documenting
+    stuff in namespace foo, but links to namespace foo won't lead here.
+    """
+
+    has_content = False
+    required_arguments = 1
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = {}
+
+    def run(self):
+        env = self.state.document.settings.env
+        modname = self.arguments[0].strip()
+        if modname == 'None':
+            env.temp_data['php:namespace'] = None
+        else:
+            env.temp_data['php:namespace'] = modname
+        return []
+
+
 class PhpXRefRole(XRefRole):
     """
     Provides cross reference links for PHP objects
@@ -578,6 +600,8 @@ class PhpDomain(Domain):
         'interface': PhpClasslike,
         'trait': PhpClasslike,
         'namespace': PhpNamespace,
+        'currentmodule': PhpCurrentNamespace,
+        'currentnamespace': PhpCurrentNamespace,
     }
 
     roles = {
