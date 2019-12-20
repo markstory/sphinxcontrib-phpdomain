@@ -23,3 +23,22 @@ Instance of this interface is returned by :php:meth:`Imagine\Image\ImageInterfac
 
     :returns: Imagine\Draw\DrawerInterface
 
+Re-used namespace
+=================
+
+.. php:currentmodule:: LibraryName
+
+No indexing errors or links should point to this namespace.
+
+.. php:class:: ThirdClass
+
+    Another class in a currentmodule block
+
+.. php:currentnamespace:: LibraryName
+
+No indexing errors or links should point to this namespace.
+
+.. php:class:: OtherClass
+
+    Another class in a reused namespace
+

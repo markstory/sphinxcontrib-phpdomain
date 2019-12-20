@@ -316,6 +316,7 @@ Test Case - not including namespace
 
 :php:class:`LibraryClass`
 
+
 :php:class:`~LibraryName\\LibraryClass`
 
 :php:func:`LibraryClass::instanceMethod`
@@ -325,6 +326,10 @@ Test Case - not including namespace
 :php:attr:`LibraryClass::$property`
 
 :php:const:`LibraryClass::TEST_CONST`
+
+:php:class:`LibraryName\\OtherClass`
+
+:php:class:`LibraryName\\ThirdClass`
 
 :php:class:`NamespaceClass`
 
