@@ -1,3 +1,78 @@
+0.7.0
+=====
+
+* Bumped compatible version of sphinx to 2.5
+* Added cross-ref linking to `returntype` fields in method annotations.
+
+0.6.3
+=====
+
+* Add `currentmodule` directive to allow namespaced elements to be defined across
+  multiple files without index warnings.
+
+0.6.2
+=====
+
+* Update version constraint to allow sphinx 2.3
+
+0.6.1
+=====
+
+* Updated sphinx version compatibility
+
+0.6.0
+=====
+
+* Bad release, avoid this one..
+
+0.5.0
+=====
+
+* Prepare for sphinx 2 support
+
+0.4.1
+=====
+
+* Improved compatibility with future versions of sphinx by not using
+  deprecated modules and implement read_safe mode.
+
+0.4.0
+=====
+
+* Added: Method and class definitions can now use php visibility keywords.
+  Which now show up as annotations in rendered documents.
+
+0.3.0
+======
+
+* Added: The `:any:` role now works with PHP objects.
+
+0.2.5
+=====
+
+* Fix requirements.txt not being included in packages
+
+0.2.4
+=====
+
+* Fix package installation in python3.
+
+0.2.3
+=====
+
+* Improve compatibility with python3.
+* Add travis.ci configuration to test documentation generation.
+
+0.2.2
+=====
+
+* Fix default array args with short arrays being improperly handled.
+
+0.2.1
+=====
+
+* Fix fatal error when `:php:function` is used with no class context.
+
 0.2.0
 =====
 
