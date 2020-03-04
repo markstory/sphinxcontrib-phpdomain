@@ -88,7 +88,8 @@ Each directive populates the index, and or the namespace index.
         
             :param string $one: The first parameter.
             :param string $two: The second parameter.
-            :returns: An array of stuff.
+            :returns: A description of what this returns.
+            :returntype: LibraryName\\LibraryClass
             :throws: InvalidArgumentException
         
            This is an instance method.

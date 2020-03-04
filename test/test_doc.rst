@@ -424,3 +424,51 @@ Test Case - Test subpackage links
 :php:class:`LibraryName\\SubPackage\\SubpackageInterface`
 
 :php:exc:`LibraryName\\SubPackage\\NestedNamespaceException`
+
+Return Types
+============
+
+.. php:namespace:: OtherLibrary
+
+.. php:class:: ReturningClass
+
+    A class to do some returning.
+
+    .. php:method:: returnClassFromSameNamespace()
+
+        :returns: An object instance of a class from the same namespace.
+        :returntype: OtherLibrary\\ReturnedClass
+
+    .. php:method:: returnClassFromOtherNamespace()
+
+        :returns: An object instance of a class from another namespace.
+        :returntype: LibraryName\\SubPackage\\SubpackageInterface
+
+    .. php:method:: returnClassConstant()
+
+        :returns: The value of a specific class constant.
+        :returntype: LibraryName\\NamespaceClass::NAMESPACE_CONST
+
+    .. php:method:: returnGlobalConstant()
+
+        :returns: The value of a specific global constant.
+        :returntype: SOME_CONSTANT
+
+    .. php:method:: returnExceptionInstance()
+
+        :returns: An instance of an exception.
+        :returntype: InvalidArgumentException
+
+    .. php:method:: returnScalarType()
+
+        :returns: A scalar string type.
+        :returntype: string
+
+    .. php:method:: returnUnionType()
+
+        :returns: Any of a whole bunch of things specified with a PHP 8 union type.
+        :returntype: int|string|OtherLibrary\\ReturnedClass|LibraryName\\SubPackage\\SubpackageInterface|null
+
+.. php:class:: ReturnedClass
+
+    A class to return.

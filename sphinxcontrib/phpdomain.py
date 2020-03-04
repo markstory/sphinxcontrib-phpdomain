@@ -128,7 +128,7 @@ class PhpObject(ObjectDescription):
         Field('returnvalue', label=_('Returns'), has_arg=False,
               names=('returns', 'return')),
         Field('returntype', label=_('Return type'), has_arg=False,
-              names=('rtype', 'returntype')),
+              names=('rtype', 'returntype'), bodyrolename='obj'),
     ]
 
     def get_signature_prefix(self, sig):
