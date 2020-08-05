@@ -6,7 +6,7 @@ PHP Domain for Sphinx
 About
 =====
 
-A domain for sphinx >= 1.0 that provides language support for PHP.
+A domain for sphinx >= 1.3 that provides language support for PHP.
 
 PHP Domain supports following objects:
 
