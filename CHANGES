@@ -1,3 +1,11 @@
+0.8.0
+=====
+
+*   Add github actions
+*   Run pip install on local project
+*   Stop testing with old python
+*   Bump sphinx support up to 4.3
+
 0.7.3
 =====
 
