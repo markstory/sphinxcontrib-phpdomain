@@ -1,3 +1,8 @@
+0.8.1
+=====
+
+* Only show the method name for `:php:doc:` links on namespaced classes.
+
 0.8.0
 =====
 
