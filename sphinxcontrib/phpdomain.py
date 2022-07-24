@@ -491,7 +491,7 @@ class PhpXRefRole(XRefRole):
             # if the first character is a tilde, don't display the module/class
             # parts of the contents
             if title[0:1] == '~':
-                m = re.search(r"(?:\\|[:]{2})(.*)\Z", title)
+                m = re.search(r"(?:.+[:]{2}|(?:.*?\\{2})+)?(.*)\Z", title)
                 if m:
                     title = m.group(1)
 
