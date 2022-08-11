@@ -1,5 +1,6 @@
 dist/
 build/
+doc/_build
 test/_build
 *.pyc
 *.egg-info

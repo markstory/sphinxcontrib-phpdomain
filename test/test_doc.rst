@@ -472,3 +472,129 @@ Return Types
 .. php:class:: ReturnedClass
 
     A class to return.
+
+Enums
+=====
+
+Basic Enumerations
+------------------
+
+.. php:namespace:: Example\Basic
+
+.. php:enum:: Suit
+
+    In playing cards, a suit is one of the categories into which the cards of a
+    deck are divided.
+
+    .. php:case:: Hearts
+    .. php:case:: Diamonds
+    .. php:case:: Clubs
+    .. php:case:: Spades
+
+Backed Enumerations
+-------------------
+
+.. php:namespace:: Example\Backed
+
+.. php:enum:: Suit : string
+
+    In playing cards, a suit is one of the categories into which the cards of a
+    deck are divided.
+
+    .. php:case:: Hearts : 'H'
+    .. php:case:: Diamonds : 'D'
+    .. php:case:: Clubs : 'C'
+    .. php:case:: Spades : 'S'
+
+Advanced Enumerations
+---------------------
+
+.. php:namespace:: Example\Advanced
+
+.. php:enum:: Suit : string
+
+    In playing cards, a suit is one of the categories into which the cards of a
+    deck are divided.
+
+    .. php:case:: Hearts : 'H'
+    .. php:case:: Diamonds : 'D'
+    .. php:case:: Clubs : 'C'
+    .. php:case:: Spades : 'S'
+
+    .. php:method:: color() -> string
+
+        Returns "red" for hearts and diamonds, "black" for clubs and spades.
+
+    .. php:staticmethod:: values() -> string[]
+
+        Returns an array of the values of all the cases on this enum.
+
+    .. php:const:: Roses() : Hearts
+
+        An alias for :php:case:`Example\\Advanced\\Suit::Hearts`.
+
+    .. php:const:: Bells : Diamonds
+
+        An alias for :php:case:`Example\\Advanced\\Suit::Diamonds`.
+
+    .. php:const:: Acorns : Clubs
+
+        An alias for :php:case:`Example\\Advanced\\Suit::Clubs`.
+
+    .. php:const:: Shields : Spades
+
+        An alias for :php:case:`Example\\Advanced\\Suit::Spades`.
+
+Enumeration Links
+-----------------
+
+Links to Basic Enumeration Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:php:enum:`Example\\Basic\\Suit`
+
+:php:case:`Example\\Basic\\Suit::Hearts`
+
+:php:case:`Example\\Basic\\Suit::Diamonds`
+
+:php:case:`Example\\Basic\\Suit::Clubs`
+
+:php:case:`Example\\Basic\\Suit::Spades`
+
+Links to Backed Enumeration Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:php:enum:`Example\\Backed\\Suit`
+
+:php:case:`Example\\Backed\\Suit::Hearts`
+
+:php:case:`Example\\Backed\\Suit::Diamonds`
+
+:php:case:`Example\\Backed\\Suit::Clubs`
+
+:php:case:`Example\\Backed\\Suit::Spades`
+
+Links to Advanced Enumeration Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:php:enum:`Example\\Advanced\\Suit`
+
+:php:case:`Example\\Advanced\\Suit::Hearts`
+
+:php:case:`Example\\Advanced\\Suit::Diamonds`
+
+:php:case:`Example\\Advanced\\Suit::Clubs`
+
+:php:case:`Example\\Advanced\\Suit::Spades`
+
+:php:meth:`Example\\Advanced\\Suit::color`
+
+:php:meth:`Example\\Advanced\\Suit::values`
+
+:php:const:`Example\\Advanced\\Suit::Roses`
+
+:php:const:`Example\\Advanced\\Suit::Bells`
+
+:php:const:`Example\\Advanced\\Suit::Acorns`
+
+:php:const:`Example\\Advanced\\Suit::Shields`

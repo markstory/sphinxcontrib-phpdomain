@@ -28,8 +28,9 @@ php_sig_re = re.compile(
           ([\w.]*\:\:)?                     # class name(s)
           (\$?\w+)  \s*                     # thing name
           (?: \((.*)\)                      # optional: arguments
-          (?:\s* -> \s* (.*))?              # return annotation
-          )? $                              # and nothing more
+          (?:\s* -> \s* (.*))?)?            # return annotation
+          (?:\s* : \s* (.*))?               # backed enum type / case value
+          $                                 # and nothing more
           ''', re.VERBOSE)
 
 
@@ -46,7 +47,9 @@ separators = {
   'exception': '',
   'staticmethod': '::',
   'interface': NS,
-  'trait': NS
+  'trait': NS,
+  'enum': NS,
+  'case': '::',
 }
 
 php_separator = re.compile(r"(\w+)?(?:[:]{2})?")
@@ -157,7 +160,7 @@ class PhpObject(ObjectDescription):
         if m is None:
             raise ValueError
 
-        visibility, modifiers, name_prefix, name, arglist, retann = m.groups()
+        visibility, modifiers, name_prefix, name, arglist, retann, enumtype = m.groups()
 
         if not name_prefix:
             name_prefix = ""
@@ -191,7 +194,7 @@ class PhpObject(ObjectDescription):
                 fullname = name_prefix + name
 
             # Currently in a class, but not creating another class,
-            elif classname and not self.objtype in ['class', 'exception', 'interface', 'trait']:
+            elif classname and not self.objtype in ['class', 'exception', 'interface', 'trait', 'enum']:
                 if not self.env.temp_data['php:in_class']:
                     name_prefix = classname + separator
 
@@ -239,12 +242,16 @@ class PhpObject(ObjectDescription):
                 signode += addnodes.desc_parameterlist()
             if retann:
                 signode += addnodes.desc_returns(retann, retann)
+            elif enumtype:
+                signode += addnodes.desc_returns(enumtype, enumtype)
             return fullname, name_prefix
 
         _pseudo_parse_arglist(signode, arglist)
 
         if retann:
             signode += addnodes.desc_returns(retann, retann)
+        elif enumtype:
+            signode += addnodes.desc_returns(enumtype, enumtype)
         return fullname, name_prefix
 
     def get_index_text(self, modname, name):
@@ -341,7 +348,7 @@ class PhpNamespacelevel(PhpObject):
 class PhpClasslike(PhpObject):
     """
     Description of a class-like object
-    (classes, exceptions, interfaces, traits).
+    (classes, exceptions, interfaces, traits, enums).
     """
 
     def get_signature_prefix(self, sig):
@@ -360,6 +367,10 @@ class PhpClasslike(PhpObject):
             if not modname:
                 return _('%s (trait)') % name_cls[0]
             return _('%s (trait in %s)') % (name_cls[0], modname)
+        elif self.objtype == 'enum':
+            if not modname:
+                return _('%s (enum)') % name_cls[0]
+            return _('%s (enum in %s)') % (name_cls[0], modname)
         elif self.objtype == 'exception':
             return name_cls[0]
         else:
@@ -384,6 +395,8 @@ class PhpClassmember(PhpObject):
             return _('property ')
         if self.objtype == 'staticmethod':
             return _('static ')
+        if self.objtype == 'case':
+            return _('case ')
         return ''
 
     def needs_arglist(self):
@@ -393,7 +406,7 @@ class PhpClassmember(PhpObject):
         name, cls = name_cls
         add_modules = self.env.config.add_module_names
 
-        if self.objtype.endswith('method') or self.objtype == 'attr':
+        if self.objtype.endswith('method') or self.objtype == 'attr' or self.objtype == 'case':
             try:
                 clsname, propname = php_rsplit(name)
             except ValueError:
@@ -414,6 +427,13 @@ class PhpClassmember(PhpObject):
                 return _('%s (%s\\%s property)') % (propname, modname, clsname)
             else:
                 return _('%s (%s property)') % (propname, clsname)
+        elif self.objtype == 'case':
+            if modname and clsname is None:
+                return _('%s enum case') % (name)
+            elif modname and add_modules:
+                return _('%s (%s\\%s enum case)') % (propname, modname, clsname)
+            else:
+                return _('%s (%s enum case)') % (propname, clsname)
         else:
             return ''
 
@@ -586,6 +606,8 @@ class PhpDomain(Domain):
         'namespace': ObjType(_('namespace'), 'ns', 'obj'),
         'interface': ObjType(_('interface'), 'interface', 'obj'),
         'trait': ObjType(_('trait'), 'trait', 'obj'),
+        'enum': ObjType(_('enum'), 'enum', 'obj'),
+        'case': ObjType(_('case'), 'case', 'obj'),
     }
 
     directives = {
@@ -596,9 +618,11 @@ class PhpDomain(Domain):
         'method': PhpClassmember,
         'staticmethod': PhpClassmember,
         'attr': PhpClassmember,
+        'case': PhpClassmember,
         'exception': PhpClasslike,
         'interface': PhpClasslike,
         'trait': PhpClasslike,
+        'enum': PhpClasslike,
         'namespace': PhpNamespace,
         'currentmodule': PhpCurrentNamespace,
         'currentnamespace': PhpCurrentNamespace,
@@ -616,6 +640,8 @@ class PhpDomain(Domain):
         'obj': PhpXRefRole(),
         'interface': PhpXRefRole(),
         'trait': PhpXRefRole(),
+        'enum': PhpXRefRole(),
+        'case': PhpXRefRole(),
     }
 
     initial_data = {

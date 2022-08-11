@@ -50,6 +50,62 @@ Each directive populates the index, and or the namespace index.
    Describe a trait.  Methods beloning to the trait should follow or be nested
    inside this directive.
 
+.. rst:directive:: .. php:enum:: name [ : type ]
+
+   Describes an enum. Cases, methods, and constants belonging to the enum
+   should be inside this directive's body::
+
+        .. php:enum:: Suit
+
+            In playing cards, a suit is one of the categories into which the
+            cards of a deck are divided.
+
+            .. php:case:: Hearts
+
+                Hearts is one of the four suits in playing cards.
+
+            .. php:case:: Diamonds
+
+                Diamonds is one of the four suits in playing cards.
+
+            .. php:case:: Clubs
+
+                Clubs is one of the four suits in playing cards.
+
+            .. php:case:: Spades
+
+                Spades is one of the four suits in playing cards.
+
+            .. php:method:: color() -> string
+
+                Returns "Red" for hearts and diamonds and "black" for clubs
+                and spades.
+
+            .. php:const:: Roses : Hearts
+
+                An alias for :php:case:`Suit::Hearts`.
+
+   You may describe a backed enum by specifying the optional enum type and
+   case values::
+
+        .. php:enum:: Suit : string
+
+            In playing cards, a suit is one of the categories into which the
+            cards of a deck are divided.
+
+            .. php:case:: Hearts : 'H'
+
+            .. php:case:: Diamonds : 'D'
+
+            .. php:case:: Clubs : 'C'
+
+            .. php:case:: Spades : 'S'
+
+.. rst:directive:: .. php:case:: name [ : value ]
+
+   Describes an enum case. If describing a backed enum case, you may also
+   provide the case value. See :rst:dir:`php:enum` for examples.
+
 .. rst:directive:: .. php:class:: name
 
    Describes a class.  Methods, attributes, and constants belonging to the class
@@ -166,3 +222,14 @@ matching directive is found:
 
    Reference a trait. A namespaced name may be used.
 
+.. rst:role:: php:enum
+
+   Reference an enum. A namespaced name may be used::
+
+     :php:enum:`Example\\Suit`
+
+.. rst:role:: php:case
+
+   Reference an enum case. A namespace name may be used::
+
+     :php:case:`Example\\Suit::Hearts`
