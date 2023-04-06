@@ -282,7 +282,7 @@ class PhpObject(ObjectDescription):
         if config.toc_object_entries_show_parents == 'hide':
             return name + parens
         if config.toc_object_entries_show_parents == 'all':
-            if objtype in {'method', 'const', 'attr', 'staticmethod', 'case'}:
+            if objtype in {'method', 'const', 'attr', 'staticmethod', 'case'} and len(parents) > 0:
                 name = parents.pop() + '::' + name
             return '\\'.join(parents + [name + parens])
         return ''
