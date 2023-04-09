@@ -39,6 +39,9 @@ setup(
     author_email='mark@mark-story.com',
     description='Sphinx extension to enable documenting PHP code',
     long_description=long_desc,
+    project_urls={
+        'Documentation': 'https://markstory.github.io/sphinxcontrib-phpdomain/',
+    },
     classifiers=[
         'Environment :: Console',
         'Environment :: Web Environment',
