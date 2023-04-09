@@ -115,6 +115,7 @@ class PhpObject(ObjectDescription):
     """
     option_spec = {
         'noindex': directives.flag,
+        'nocontentsentry': directives.flag,
         'module': directives.unchanged,
     }
 
@@ -253,6 +254,38 @@ class PhpObject(ObjectDescription):
         elif enumtype:
             signode += addnodes.desc_returns(enumtype, enumtype)
         return fullname, name_prefix
+
+    def _object_hierarchy_parts(self, sig_node: addnodes.desc_signature):
+        if 'fullname' not in sig_node:
+            return ()
+        namespace = sig_node.get('namespace')
+        fullname = sig_node['fullname']
+
+        if isinstance(namespace, str):
+            return (namespace, *fullname.split('::'))
+        else:
+            return tuple(fullname.split('::'))
+
+    def _toc_entry_name(self, sig_node: addnodes.desc_signature) -> str:
+        if not sig_node.get('_toc_parts'):
+            return ''
+
+        config = self.env.app.config
+        objtype = sig_node.parent.get('objtype')
+        if config.add_function_parentheses and objtype in {'function', 'method'}:
+            parens = '()'
+        else:
+            parens = ''
+        *parents, name = sig_node['_toc_parts']
+        if config.toc_object_entries_show_parents == 'domain':
+            return sig_node.get('fullname', name) + parens
+        if config.toc_object_entries_show_parents == 'hide':
+            return name + parens
+        if config.toc_object_entries_show_parents == 'all':
+            if objtype in {'method', 'const', 'attr', 'staticmethod', 'case'} and len(parents) > 0:
+                name = parents.pop() + '::' + name
+            return '\\'.join(parents + [name + parens])
+        return ''
 
     def get_index_text(self, modname, name):
         """
