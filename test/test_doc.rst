@@ -168,13 +168,9 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`DateTime::setDate()`
 
-:php:func:`~DateTime::setDate()` Should not be prefixed with a classname
-
 :php:func:`DateTime::ATOM`
 
 :php:func:`DateTime::$testattr`
-
-:php:func:`~DateTime::$testattr` Should not be prefixed with classname
 
 :php:func:`OtherClass::update`
 
@@ -202,10 +198,20 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`LogTrait::log()`
 
-.. php:namespace:: LibraryName
+Test Case - Prefix less links
+-----------------------------
+
+The following links should not be prefixed with a classname.
+
+:php:func:`~DateTime::setDate()`
+
+:php:attr:`~DateTime::$testattr`
+
 
 Namespaced elements
 ===================
+
+.. php:namespace:: LibraryName
 
 .. php:function:: namespaced_function($one[, $two])
 
@@ -312,6 +318,8 @@ Namespaced elements
 Test Case - not including namespace
 -----------------------------------
 
+Within a namespace context you don't need to include the namespace in links.
+
 :php:ns:`LibraryName`
 
 :php:func:`namespaced_function()`
@@ -320,22 +328,13 @@ Test Case - not including namespace
 
 :php:class:`LibraryClass`
 
-:php:class:`~LibraryName\\LibraryClass` Should not be be prefixed with
-classname.
-
 :php:func:`LibraryClass::instanceMethod`
-
-:php:func:`~LibraryClass::instanceMethod` Should not be prefixed with classname.
 
 :php:func:`LibraryClass::staticMethod()`
 
 :php:attr:`LibraryClass::$property`
 
-:php:attr:`~LibraryClass::$property` Should not be prefixed with classname.
-
 :php:const:`LibraryClass::TEST_CONST`
-
-:php:const:`~LibraryClass::TEST_CONST` Should not be prefixed with classname.
 
 :php:class:`LibraryName\\OtherClass`
 
@@ -363,8 +362,6 @@ classname.
 
 :php:interface:`LibraryInterface`
 
-:php:interface:`~LibraryName\\LibraryInterface`
-
 :php:func:`LibraryInterface::instanceMethod`
 
 :php:exc:`NamespaceException`
@@ -374,6 +371,28 @@ classname.
 :php:trait:`LibraryName\\TemplateTrait`
 
 :php:func:`LibraryName\\TemplateTrait::render()`
+
+Test Case - Links with prefix trimming
+--------------------------------------
+
+All of the following links should not be prefixed with a namespace.
+
+:php:interface:`~LibraryName\\LibraryInterface`
+
+:php:class:`~LibraryName\\LibraryClass`
+
+:php:trait:`~LibraryName\\TemplateTrait`
+
+:php:exc:`~LibraryName\\NamespaceException`
+
+All of the following links should not be prefixed with a classname.
+
+:php:func:`~LibraryClass::instanceMethod`
+
+:php:const:`~LibraryClass::TEST_CONST`
+
+:php:attr:`~LibraryClass::$property`
+
 
 Test Case - global access
 -------------------------
