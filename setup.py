@@ -7,9 +7,26 @@ with open(os.path.join(os.path.dirname(__file__),
     requirements = f.read()
 
 long_desc = '''
-This package contains the phpdomain Sphinx extension.
+This package provides a Sphinx extension for documenting PHP projects.
 
-This extension provides a PHP domain for sphinx
+PHP Domain supports following objects:
+
+* Global variable
+* Global function
+* Constants
+* Namespaces
+
+    * Functions
+    * Class
+
+* Class
+
+    * Class constant
+    * Instance methods
+    * Static methods
+    * Properties
+
+* Enums
 '''
 
 setup(
