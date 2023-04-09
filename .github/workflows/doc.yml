@@ -1,4 +1,4 @@
-name: Doc
+name: GitHub Pages Publish 
 
 on:
   # Runs on pushes targeting the default branch
@@ -27,12 +27,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
-      - name: Build doc
+
+      - name: Build doct
         run: make -C doc html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
