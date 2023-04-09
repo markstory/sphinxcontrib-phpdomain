@@ -39,8 +39,8 @@ PHP Domain supports following objects:
 URLs
 ====
 
-:PyPI: http://pypi.python.org/pypi/sphinxcontrib-phpdomain
-:Detail Document: http://packages.python.org/sphinxcontrib-phpdomain
+:PyPI: https://pypi.python.org/pypi/sphinxcontrib-phpdomain
+:Documentation: https://markstory.github.io/sphinxcontrib-phpdomain/
 
 Quick Sample
 ============
