@@ -166,11 +166,15 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`DateTime::getLastErrors()`
 
-:php:func:`~DateTime::setDate()`
+:php:func:`DateTime::setDate()`
+
+:php:func:`~DateTime::setDate()` Should not be prefixed with a classname
 
 :php:func:`DateTime::ATOM`
 
 :php:func:`DateTime::$testattr`
+
+:php:func:`~DateTime::$testattr` Should not be prefixed with classname
 
 :php:func:`OtherClass::update`
 
@@ -316,16 +320,22 @@ Test Case - not including namespace
 
 :php:class:`LibraryClass`
 
-
-:php:class:`~LibraryName\\LibraryClass`
+:php:class:`~LibraryName\\LibraryClass` Should not be be prefixed with
+classname.
 
 :php:func:`LibraryClass::instanceMethod`
+
+:php:func:`~LibraryClass::instanceMethod` Should not be prefixed with classname.
 
 :php:func:`LibraryClass::staticMethod()`
 
 :php:attr:`LibraryClass::$property`
 
+:php:attr:`~LibraryClass::$property` Should not be prefixed with classname.
+
 :php:const:`LibraryClass::TEST_CONST`
+
+:php:const:`~LibraryClass::TEST_CONST` Should not be prefixed with classname.
 
 :php:class:`LibraryName\\OtherClass`
 
@@ -377,6 +387,8 @@ Test Case - global access
 :php:const:`SOME_CONSTANT`
 
 :php:attr:`LibraryName\\LibraryClass::$property`
+
+:php:attr:`~LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
 
 :php:const:`LibraryName\\LibraryClass::TEST_CONST`
 

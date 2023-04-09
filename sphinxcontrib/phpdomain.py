@@ -508,16 +508,15 @@ class PhpXRefRole(XRefRole):
             if title.startswith("::"):
                 title = title[2:]
             target = target.lstrip('~')  # only has a meaning for the title
-            # if the first character is a tilde, don't display the module/class
-            # parts of the contents
-            if title[0:1] == '~':
-                m = re.search(r"(?:.+[:]{2}|(?:.*?\\{2})+)?(.*)\Z", title)
+
+            # If the first char is ~ don't display the leading namespace & class.
+            if title.startswith('~'):
+                m = re.search(r"(?:.+[:]{2}|(?:.*?\\{1,2})+)?(.*)\Z", title)
                 if m:
                     title = m.group(1)
 
-        if not title.startswith("$"):
-            refnode['php:namespace'] = env.temp_data.get('php:namespace')
-            refnode['php:class'] = env.temp_data.get('php:class')
+        refnode['php:namespace'] = env.temp_data.get('php:namespace')
+        refnode['php:class'] = env.temp_data.get('php:class')
 
         return title, target
 
