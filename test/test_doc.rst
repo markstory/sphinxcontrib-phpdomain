@@ -166,7 +166,7 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`DateTime::getLastErrors()`
 
-:php:func:`~DateTime::setDate()`
+:php:func:`DateTime::setDate()`
 
 :php:func:`DateTime::ATOM`
 
@@ -198,10 +198,20 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`LogTrait::log()`
 
-.. php:namespace:: LibraryName
+Test Case - Prefix less links
+-----------------------------
+
+The following links should not be prefixed with a classname.
+
+:php:func:`~DateTime::setDate()`
+
+:php:attr:`~DateTime::$testattr`
+
 
 Namespaced elements
 ===================
+
+.. php:namespace:: LibraryName
 
 .. php:function:: namespaced_function($one[, $two])
 
@@ -308,6 +318,8 @@ Namespaced elements
 Test Case - not including namespace
 -----------------------------------
 
+Within a namespace context you don't need to include the namespace in links.
+
 :php:ns:`LibraryName`
 
 :php:func:`namespaced_function()`
@@ -315,9 +327,6 @@ Test Case - not including namespace
 :php:const:`NS_CONST`
 
 :php:class:`LibraryClass`
-
-
-:php:class:`~LibraryName\\LibraryClass`
 
 :php:func:`LibraryClass::instanceMethod`
 
@@ -353,8 +362,6 @@ Test Case - not including namespace
 
 :php:interface:`LibraryInterface`
 
-:php:interface:`~LibraryName\\LibraryInterface`
-
 :php:func:`LibraryInterface::instanceMethod`
 
 :php:exc:`NamespaceException`
@@ -364,6 +371,28 @@ Test Case - not including namespace
 :php:trait:`LibraryName\\TemplateTrait`
 
 :php:func:`LibraryName\\TemplateTrait::render()`
+
+Test Case - Links with prefix trimming
+--------------------------------------
+
+All of the following links should not be prefixed with a namespace.
+
+:php:interface:`~LibraryName\\LibraryInterface`
+
+:php:class:`~LibraryName\\LibraryClass`
+
+:php:trait:`~LibraryName\\TemplateTrait`
+
+:php:exc:`~LibraryName\\NamespaceException`
+
+All of the following links should not be prefixed with a classname.
+
+:php:func:`~LibraryClass::instanceMethod`
+
+:php:const:`~LibraryClass::TEST_CONST`
+
+:php:attr:`~LibraryClass::$property`
+
 
 Test Case - global access
 -------------------------
@@ -377,6 +406,8 @@ Test Case - global access
 :php:const:`SOME_CONSTANT`
 
 :php:attr:`LibraryName\\LibraryClass::$property`
+
+:php:attr:`~LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
 
 :php:const:`LibraryName\\LibraryClass::TEST_CONST`
 
