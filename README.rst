@@ -49,9 +49,9 @@ This is source::
 
   .. php:class:: DateTime
 
-    Datetime class
+     Datetime class
 
-    .. php:method:: setDate($year, $month, $day)
+     .. php:method:: setDate($year, $month, $day)
 
         Set the date.
 
@@ -61,7 +61,7 @@ This is source::
         :returns: Either false on failure, or the datetime object for method chaining.
 
 
-    .. php:method:: setTime($hour, $minute[, $second])
+     .. php:method:: setTime($hour, $minute[, $second])
 
         Set the time.
 
@@ -70,7 +70,7 @@ This is source::
         :param int $second: The second
         :returns: Either false on failure, or the datetime object for method chaining.
 
-    .. php:const:: ATOM
+     .. php:const:: ATOM
 
         Y-m-d\TH:i:sP
 
@@ -78,10 +78,12 @@ Result
 -----------------
 
 .. php:class:: DateTime
+   :nocontentsentry:
 
-  Datetime class
+   Datetime class
 
-  .. php:method:: setDate($year, $month, $day)
+   .. php:method:: setDate($year, $month, $day)
+      :nocontentsentry:
 
       Set the date.
 
@@ -91,7 +93,8 @@ Result
       :returns: Either false on failure, or the DateTime object for method chaining.
 
 
-  .. php:method:: setTime($hour, $minute[, $second])
+   .. php:method:: setTime($hour, $minute[, $second])
+      :nocontentsentry:
 
       Set the time.
 
@@ -100,7 +103,8 @@ Result
       :param int $second: The second
       :returns: Either false on failure, or the DateTime object for method chaining.
 
-  .. php:const:: ATOM
+   .. php:const:: ATOM
+      :nocontentsentry:
 
       Y-m-d\TH:i:sP
 
