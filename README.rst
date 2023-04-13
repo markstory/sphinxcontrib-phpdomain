@@ -78,11 +78,13 @@ Result
 -----------------
 
 .. php:class:: DateTime
+   :noindexentry:
    :nocontentsentry:
 
    Datetime class
 
    .. php:method:: setDate($year, $month, $day)
+      :noindexentry:
       :nocontentsentry:
 
       Set the date.
@@ -94,6 +96,7 @@ Result
 
 
    .. php:method:: setTime($hour, $minute[, $second])
+      :noindexentry:
       :nocontentsentry:
 
       Set the time.
@@ -104,6 +107,7 @@ Result
       :returns: Either false on failure, or the DateTime object for method chaining.
 
    .. php:const:: ATOM
+      :noindexentry:
       :nocontentsentry:
 
       Y-m-d\TH:i:sP
