@@ -1,18 +1,15 @@
 .. include:: ../README.rst
 
-Contents:
----------
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
 
+   usage
    reference
+   changes
 
 * :ref:`genindex`
 * :ref:`search`
-
-ChangeLog
-=========
-
-.. include:: ../CHANGES
 
