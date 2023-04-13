@@ -45,7 +45,9 @@ URLs
 Quick Sample
 ============
 
-This is source::
+This is source:
+
+.. code:: rst
 
   .. php:class:: DateTime
 
@@ -111,7 +113,9 @@ Result
 Cross referencing
 -----------------
 
-From other place, you can create cross reference like that::
+From other place, you can create cross reference like that:
+
+.. code:: rst
 
    You can modify a DateTime's date using :php:meth:`DateTime::setDate`.
 
