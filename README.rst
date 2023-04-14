@@ -36,93 +36,15 @@ PHP Domain supports following objects:
 
         Package\Subpackage\Class
 
+See `Usage Example`_ in the documentation for information about how to use it.
+
+.. _`Usage Example`: https://markstory.github.io/sphinxcontrib-phpdomain/usage.html
+
 URLs
 ====
 
 :PyPI: https://pypi.python.org/pypi/sphinxcontrib-phpdomain
 :Documentation: https://markstory.github.io/sphinxcontrib-phpdomain/
-
-Quick Sample
-============
-
-This is source::
-
-  .. php:class:: DateTime
-
-     Datetime class
-
-     .. php:method:: setDate($year, $month, $day)
-
-        Set the date.
-
-        :param int $year: The year.
-        :param int $month: The month.
-        :param int $day: The day.
-        :returns: Either false on failure, or the datetime object for method chaining.
-
-
-     .. php:method:: setTime($hour, $minute[, $second])
-
-        Set the time.
-
-        :param int $hour: The hour
-        :param int $minute: The minute
-        :param int $second: The second
-        :returns: Either false on failure, or the datetime object for method chaining.
-
-     .. php:const:: ATOM
-
-        Y-m-d\TH:i:sP
-
-Result
------------------
-
-.. php:class:: DateTime
-   :noindexentry:
-   :nocontentsentry:
-
-   Datetime class
-
-   .. php:method:: setDate($year, $month, $day)
-      :noindexentry:
-      :nocontentsentry:
-
-      Set the date.
-
-      :param int $year: The year.
-      :param int $month: The month.
-      :param int $day: The day.
-      :returns: Either false on failure, or the DateTime object for method chaining.
-
-
-   .. php:method:: setTime($hour, $minute[, $second])
-      :noindexentry:
-      :nocontentsentry:
-
-      Set the time.
-
-      :param int $hour: The hour
-      :param int $minute: The minute
-      :param int $second: The second
-      :returns: Either false on failure, or the DateTime object for method chaining.
-
-   .. php:const:: ATOM
-      :noindexentry:
-      :nocontentsentry:
-
-      Y-m-d\TH:i:sP
-
-Cross referencing
------------------
-
-From other place, you can create cross reference like that::
-
-   You can modify a DateTime's date using :php:meth:`DateTime::setDate`.
-
-Result
------------
-
-You can modify a DateTime's date using :php:meth:`DateTime::setDate`.
 
 Install
 =======
