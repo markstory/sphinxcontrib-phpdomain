@@ -115,6 +115,7 @@ class PhpObject(ObjectDescription):
     """
     option_spec = {
         'noindex': directives.flag,
+        'noindexentry': directives.flag,
         'nocontentsentry': directives.flag,
         'module': directives.unchanged,
     }
@@ -328,10 +329,11 @@ class PhpObject(ObjectDescription):
                     line=self.lineno)
             objects[fullname] = (self.env.docname, self.objtype)
 
-        indextext = self.get_index_text(modname, name_cls)
-        if indextext:
-            self.indexnode['entries'].append(('single', indextext,
-                                              fullname, fullname, None))
+        if 'noindexentry' not in self.options:
+            indextext = self.get_index_text(modname, name_cls)
+            if indextext:
+                self.indexnode['entries'].append(('single', indextext,
+                                                  fullname, fullname, None))
 
 
 class PhpGloballevel(PhpObject):
