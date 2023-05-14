@@ -391,9 +391,6 @@ class PhpClasslike(PhpObject):
         'noindexentry': directives.flag,
         'nocontentsentry': directives.flag,
         'module': directives.unchanged,
-        'private': directives.flag,
-        'public': directives.flag,
-        'protected': directives.flag,
         'final': directives.flag,
         'abstract': directives.flag
     }
@@ -401,15 +398,9 @@ class PhpClasslike(PhpObject):
     def get_signature_prefix(self, sig):
         prefix = ''
         if 'final' in self.options:
-            prefix += _('final ')
+            prefix += 'final '
         elif self.objtype == 'class' and 'abstract' in self.options:
-            prefix += _('abstract')
-        if 'private' in self.options:
-            prefix += _('private ')
-        elif 'protected' in self.options:
-            prefix += _('protected')
-        elif 'public' in self.options:
-            prefix += _('public ')
+            prefix += 'abstract '
         return prefix + self.objtype + ' '
 
     def get_index_text(self, modname, name_cls):
@@ -465,17 +456,17 @@ class PhpClassmember(PhpObject):
         if self.objtype != 'case':
             if self.objtype == 'method':
                 if 'final' in self.options:
-                    prefix += _('final ')
+                    prefix += 'final '
                 elif 'abstract' in self.options:
-                    prefix += _('abstract ')
+                    prefix += 'abstract '
             if 'private' in self.options:
-                prefix += _('private ')
+                prefix += 'private '
             elif 'protected' in self.options:
-                prefix += _('protected ')
+                prefix += 'protected '
             elif 'public' in self.options:
-                prefix += _('public ')
+                prefix += 'public '
             if 'static' in self.options or self.objtype == 'staticmethod':
-                prefix += _('static ')
+                prefix += 'static '
         if self.objtype == 'attr':
             prefix += _('property ')
         if self.objtype == 'case':
