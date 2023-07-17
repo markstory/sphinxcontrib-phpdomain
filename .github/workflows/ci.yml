@@ -27,18 +27,18 @@ jobs:
         pip install -r requirements.txt
         pip install .
 
-    - name: Build test/
+    - name: Build Test
       run: |
-        cd test && make html SPHINXOPTS='-W'
+        cd test/must-build && make html SPHINXOPTS='-W'
 
     - name: Build Test with toc show_parents=hide
       run: |
-        cd test && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=hide'
+        cd test/must-build && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=hide'
 
     - name: Build Test with toc show_parents=domain
       run: |
-        cd test && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=domain'
+        cd test/must-build && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=domain'
 
     - name: Build Test with toc show_parents=all
       run: |
-        cd test && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
+        cd test/must-build && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
