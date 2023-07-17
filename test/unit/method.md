@@ -1,7 +1,17 @@
+# Simple method
+
+:::{php:class} Foo
+:::
+
+:::{php:method} test($a, ...$args)
+
+Simple test method.
+
 ```{eval-rst}
-.. php:method:: Foo::simplify()
-
-    Simplify expression.
-
-    :param array $args: Associative array
+:param array $args: Associative array
 ```
+:::
+
+## Cross linking
+
+- {php:meth}`Foo::test()`

@@ -1,15 +1,14 @@
-```{eval-rst}
-Simple NS
-=========
+# Simple NS
 
-.. php:namespace:: Foo
+:::{php:namespace} Foo
+:::
 
-.. php:class:: A
+:::{php:class} A
+:::
 
-.. php:method:: simplify()
+:::{php:method} simplify()
+:::
 
-Cross linking
-*************
+## Cross linking
 
-* :php:meth:`A::simplify`
-```
+- {php:meth}`A::simplify`

@@ -1,9 +1,7 @@
-```{eval-rst}
-Test: Build all files
-=====================
+# Test: Build all files
 
-.. toctree::
-   :glob:
+:::{toctree}
+:glob:
 
-   **
-```
+**
+:::
