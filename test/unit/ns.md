@@ -1,3 +1,4 @@
+```{eval-rst}
 Simple NS
 =========
 
@@ -61,3 +62,4 @@ Cross linking::
 
 - :php:meth:`X2::simplify`
 - :php:meth:`A2::simplify`
+```

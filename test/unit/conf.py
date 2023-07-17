@@ -4,14 +4,14 @@ sys.path.append(os.path.abspath('..'))
 
 extensions = [
     'sphinxcontrib.phpdomain',
+    'myst_parser',
 ]
 
-source_suffix = '.rst'
+myst_enable_extensions = ['colon_fence']
 
+source_suffix = '.rst'
 master_doc = 'index'
 
 exclude_patterns = ['_build']
-
-pygments_style = 'sphinx'
 
 html_theme = 'default'
