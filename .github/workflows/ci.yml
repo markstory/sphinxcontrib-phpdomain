@@ -71,7 +71,6 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         branch: ${{ github.head_ref || github.ref_name }}.changes
-        create_branch: true
         push_options: '--force'
         commit_message: Unit Changes
         commit_user_name: Bot
