@@ -386,8 +386,22 @@ class PhpClasslike(PhpObject):
     (classes, exceptions, interfaces, traits, enums).
     """
 
+    option_spec = {
+        'noindex': directives.flag,
+        'noindexentry': directives.flag,
+        'nocontentsentry': directives.flag,
+        'module': directives.unchanged,
+        'final': directives.flag,
+        'abstract': directives.flag
+    }
+
     def get_signature_prefix(self, sig):
-        return self.objtype + ' '
+        prefix = ''
+        if 'final' in self.options:
+            prefix += 'final '
+        elif self.objtype == 'class' and 'abstract' in self.options:
+            prefix += 'abstract '
+        return prefix + self.objtype + ' '
 
     def get_index_text(self, modname, name_cls):
         if self.objtype == 'class':
@@ -425,14 +439,39 @@ class PhpClassmember(PhpObject):
     Description of a class member (methods, attributes).
     """
 
+    option_spec = {
+        'noindex': directives.flag,
+        'noindexentry': directives.flag,
+        'nocontentsentry': directives.flag,
+        'module': directives.unchanged,
+        'private': directives.flag,
+        'public': directives.flag,
+        'protected': directives.flag,
+        'static': directives.flag,
+        'final': directives.flag
+    }
+
     def get_signature_prefix(self, sig):
+        prefix = ''
+        if self.objtype != 'case':
+            if self.objtype == 'method':
+                if 'final' in self.options:
+                    prefix += 'final '
+                elif 'abstract' in self.options:
+                    prefix += 'abstract '
+            if 'private' in self.options:
+                prefix += 'private '
+            elif 'protected' in self.options:
+                prefix += 'protected '
+            elif 'public' in self.options:
+                prefix += 'public '
+            if 'static' in self.options or self.objtype == 'staticmethod':
+                prefix += 'static '
         if self.objtype == 'attr':
-            return _('property ')
-        if self.objtype == 'staticmethod':
-            return _('static ')
+            prefix += _('property ')
         if self.objtype == 'case':
-            return _('case ')
-        return ''
+            prefix += _('case ')
+        return prefix
 
     def needs_arglist(self):
         return self.objtype == 'method'
