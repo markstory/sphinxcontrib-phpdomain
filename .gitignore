@@ -1,7 +1,8 @@
 dist/
 build/
 doc/_build
-test/_build
+test/must-build/_build
+test/unit/_build
 *.pyc
 *.egg-info
 .DS_Store

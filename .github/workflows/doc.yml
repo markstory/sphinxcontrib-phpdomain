@@ -21,8 +21,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
+    if: github.repository_owner == 'markstory'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v3
 
-      - name: Build doct
+      - name: Build doc
         run: make -C doc html
 
       - name: Upload artifact
@@ -43,7 +43,6 @@ jobs:
         with:
           path: doc/_build/html
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
