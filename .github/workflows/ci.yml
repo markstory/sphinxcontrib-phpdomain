@@ -57,8 +57,8 @@ jobs:
         cd test/unit
         find . -name '*.html' -exec rm {} \;
         make html SPHINXOPTS='-W'
+        (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
         (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
-        rm genindex.html index.html search.html php-modindex.html
 
     - name: Diff Unit Outputs
       run: |
@@ -71,6 +71,7 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         branch: ${{ github.head_ref || github.ref_name }}.changes
+        # create_branch: true
         push_options: '--force'
         commit_message: Unit Changes
         commit_user_name: Bot

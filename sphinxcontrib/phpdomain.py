@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import inspect
 
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
@@ -18,17 +19,46 @@ from sphinx.roles import XRefRole
 from sphinx.locale import _
 from sphinx.domains import Domain, ObjType, Index
 from sphinx.directives import ObjectDescription
+from sphinx.util import logging
 from sphinx.util.nodes import make_refnode
 from sphinx.util.docfields import Field, GroupedField, TypedField
 from sphinx import __version__ as sphinx_version
 
+# log informative messages
+def log_info(
+    fromdocnode,
+    message: str
+):
+    logger = logging.getLogger(__name__)
+    logger.info(f"[phpdomain] {message}", location=fromdocnode)
+
+# log messages that should fail CI
+def log_warning(
+    fromdocnode,
+    message: str
+):
+    logger = logging.getLogger(__name__)
+    logger.warning(f"[phpdomain] {message}", location=fromdocnode)
+
+# log assertions that should fail CI
+def log_assert(
+    fromdocnode,
+    value: bool
+):
+    if not value:
+        caller = inspect.getframeinfo(inspect.stack()[1][0])
+        logger = logging.getLogger(__name__)
+        logger.warning(f"[phpdomain-assert] line {caller.lineno}", location=fromdocnode)
+
 php_sig_re = re.compile(
     r'''^ (public\ |protected\ |private\ )? # visibility
           (final\ |abstract\ |static\ )?    # modifiers
-          ([\w.]*\:\:)?                     # class name(s)
-          (\$?\w+)  \s*                     # thing name
-          (?: \((.*)\)                      # optional: arguments
-          (?:\s* -> \s* (.*))?)?            # return annotation
+          ([\w\\]+\:\:)?                    # class name(s)
+          (\$?[\w\\]+)  \s*                 # thing name
+          (?:
+              \((.*)\)                      # optional: arguments
+              (?:\s* -> \s* (.*))?          # return annotation
+          )?
           (?:\s* : \s* (.*))?               # backed enum type / case value
           $                                 # and nothing more
           ''', re.VERBOSE)
@@ -170,13 +200,13 @@ class PhpObject(ObjectDescription):
         # determine module and class name (if applicable), as well as full name
         modname = self.options.get(
             'namespace', self.env.temp_data.get('php:namespace'))
-
-        classname = self.env.temp_data.get('php:class')
         separator = separators[self.objtype]
 
-        # Method declared as Class::methodName
-        if not classname and '::' in name_prefix:
+        if '::' in name_prefix:
             classname = name_prefix.rstrip('::')
+        else:
+            classname = self.env.temp_data.get('php:class')
+
         if self.objtype == 'global' or self.objtype == 'function':
             add_module = False
             modname = None
@@ -189,10 +219,10 @@ class PhpObject(ObjectDescription):
             if name_prefix and self.objtype != 'staticmethod':
                 if name_prefix.startswith(classname):
                     name_prefix = name_prefix[len(classname):].rstrip('::')
-                classname = classname.rstrip('::')
+                classname = classname.rstrip('::') # TODO seems like wrongly coded, there should be no '::' in the classname
                 fullname = name_prefix + classname + separator + name
             elif name_prefix:
-                classname = classname.rstrip('::')
+                classname = classname.rstrip('::') # TODO seems like wrongly coded, there should be no '::' in the classname
                 fullname = name_prefix + name
 
             # Currently in a class, but not creating another class,
@@ -544,11 +574,14 @@ class PhpXRefRole(XRefRole):
                 title = title[2:]
             target = target.lstrip('~')  # only has a meaning for the title
 
-            # If the first char is ~ don't display the leading namespace & class.
+            # If the first char is '~' don't display the leading namespace & class.
             if title.startswith('~'):
                 m = re.search(r"(?:.+[:]{2}|(?:.*?\\{1,2})+)?(.*)\Z", title)
                 if m:
                     title = m.group(1)
+
+            if title.startswith(NS):
+                title = title[1:]
 
         refnode['php:namespace'] = env.temp_data.get('php:namespace')
         refnode['php:class'] = env.temp_data.get('php:class')
@@ -735,7 +768,7 @@ class PhpDomain(Domain):
             modname = node.get('php:namespace')
             clsname = node.get('php:class')
             searchorder = node.hasattr('refspecific') and 1 or 0
-            name, obj = self.find_obj(env, modname, clsname,
+            name, obj = self.find_obj(env, node, modname, clsname,
                                       target, typ, searchorder)
             if not obj:
                 return None
@@ -743,23 +776,28 @@ class PhpDomain(Domain):
                 return make_refnode(builder, fromdocname, obj[0], name,
                                     contnode, name)
 
-    def find_obj(self, env, modname, classname, name, type, searchorder=0):
+    def find_obj(self, env, fromdocnode, modname, classname, name, type, searchorder=0):
         """
-        Find a PHP object for "name", perhaps using the given namespace and/or
-        classname.
+        Find a PHP object for "name", using the given namespace and classname.
         """
         # skip parens
         if name[-2:] == '()':
             name = name[:-2]
 
-        if not name:
-            return None, None
-
         objects = self.data['objects']
+
+        if name.startswith(NS):
+            absname = name[1:]
+        else:
+            absname = (modname + NS if modname else "") \
+                + (classname + NS if classname and '::' not in name else "") \
+                + name
 
         newname = None
         if searchorder == 1:
-            if modname and classname and \
+            if absname in objects:
+                newname = absname
+            elif modname and classname and \
                      modname + NS + classname + '::' + name in objects:
                 newname = modname + NS + classname + '::' + name
             elif modname and modname + NS + name in objects:
@@ -773,7 +811,9 @@ class PhpDomain(Domain):
             elif name in objects:
                 newname = name
         else:
-            if name in objects:
+            if absname in objects:
+                newname = absname
+            elif name in objects:
                 newname = name
             elif classname and classname + '::' + name in objects:
                 newname = classname + '::' + name
@@ -792,6 +832,7 @@ class PhpDomain(Domain):
                     'object::' + name in objects:
                 newname = 'object::' + name
         if newname is None:
+            log_info(fromdocnode, f"Target not found '{absname}'")
             return None, None
         return newname, objects[newname]
 
