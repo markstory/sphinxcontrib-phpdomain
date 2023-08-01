@@ -208,12 +208,10 @@ class PhpObject(ObjectDescription):
             classname = self.env.temp_data.get('php:class')
 
         if self.objtype == 'global' or self.objtype == 'function':
-            add_module = False
             modname = None
             classname = None
             fullname = name
         else:
-            add_module = True
             if name_prefix:
                 fullname = name_prefix + name
 
@@ -247,17 +245,9 @@ class PhpObject(ObjectDescription):
                 name_prefix = modname + NS + name_prefix
             signode += addnodes.desc_addname(name_prefix, name_prefix)
 
-        elif add_module and self.env.config.add_module_names:
-            if self.objtype == 'global':
-                nodetext = ''
-                signode += addnodes.desc_addname(nodetext, nodetext)
-            else:
-                modname = self.options.get(
-                    'namespace', self.env.temp_data.get('php:namespace'))
-
-                if modname and not self.env.temp_data.get('php:in_class', False):
-                    nodetext = modname + NS
-                    signode += addnodes.desc_addname(nodetext, nodetext)
+        elif modname and not self.env.temp_data.get('php:in_class', False) and self.env.config.add_module_names:
+            nodetext = modname + NS
+            signode += addnodes.desc_addname(nodetext, nodetext)
 
         signode += addnodes.desc_name(name, name)
         if not arglist:
@@ -461,7 +451,6 @@ class PhpClassmember(PhpObject):
 
     def get_index_text(self, modname, name_cls):
         name, cls = name_cls
-        add_modules = self.env.config.add_module_names
 
         if self.objtype.endswith('method') or self.objtype == 'attr' or self.objtype == 'case':
             try:
@@ -473,21 +462,21 @@ class PhpClassmember(PhpObject):
         if self.objtype.endswith('method'):
             if modname and clsname is None:
                 return _('%s() (in namespace %s)') % (name, modname)
-            elif modname and add_modules:
+            elif modname and self.env.config.add_module_names:
                 return _('%s() (%s\\%s method)') % (propname, modname, clsname)
             else:
                 return _('%s() (%s method)') % (propname, clsname)
         elif self.objtype == 'attr':
             if modname and clsname is None:
                 return _('%s (in namespace %s)') % (name, modname)
-            elif modname and add_modules:
+            elif modname and self.env.config.add_module_names:
                 return _('%s (%s\\%s property)') % (propname, modname, clsname)
             else:
                 return _('%s (%s property)') % (propname, clsname)
         elif self.objtype == 'case':
             if modname and clsname is None:
                 return _('%s enum case') % (name)
-            elif modname and add_modules:
+            elif modname and self.env.config.add_module_names:
                 return _('%s (%s\\%s enum case)') % (propname, modname, clsname)
             else:
                 return _('%s (%s enum case)') % (propname, clsname)
