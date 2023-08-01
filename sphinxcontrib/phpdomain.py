@@ -201,7 +201,7 @@ class PhpObject(ObjectDescription):
         if not name_prefix:
             name_prefix = ""
 
-        # determine module and class name (if applicable), as well as full name
+        # determine namespace and class name (if applicable), as well as full name
         namespace = self.options.get(
             'namespace', self.env.temp_data.get('php:namespace'))
         separator = separators[self.objtype]
@@ -490,7 +490,7 @@ class PhpClassmember(PhpObject):
 
 class PhpNamespace(Directive):
     """
-    Directive to start a new PHP namespace, which are similar to modules.
+    Directive to start a new PHP namespace, which is similar to module.
     """
     has_content = False
     required_arguments = 1
@@ -576,7 +576,7 @@ class PhpXRefRole(XRefRole):
 
 class PhpNamespaceIndex(Index):
     """
-    Index subclass to provide the Php module index.
+    Index subclass to provide the PHP namespace index.
     """
 
     name = 'modindex'
@@ -588,13 +588,13 @@ class PhpNamespaceIndex(Index):
         # list of prefixes to ignore
         ignores = self.domain.env.config['modindex_common_prefix']
         ignores = sorted(ignores, key=len, reverse=True)
-        # list of all modules, sorted by module name
-        modules = sorted(self.domain.data['namespaces'].items(),
+        # list of all namespaces, sorted by name
+        namespaces = sorted(self.domain.data['namespaces'].items(),
                          key=lambda x: x[0].lower())
-        # sort out collapsable modules
+        # sort out collapsable namespaces
         prev_namespace = ''
         num_toplevels = 0
-        for namespace, (docname, synopsis, deprecated) in modules:
+        for namespace, (docname, synopsis, deprecated) in namespaces:
             if docnames and docname not in docnames:
                 continue
 
@@ -606,7 +606,7 @@ class PhpNamespaceIndex(Index):
             else:
                 stripped = ''
 
-            # we stripped the whole module name?
+            # we stripped the whole namespace name?
             if not namespace:
                 namespace, stripped = stripped, ''
 
@@ -614,12 +614,12 @@ class PhpNamespaceIndex(Index):
 
             package = namespace.split(NS)[0]
             if package != namespace:
-                # it's a submodule
+                # it's a subnamespace
                 if prev_namespace == package:
-                    # first submodule - make parent a group head
+                    # first subnamespace - make parent a group head
                     entries[-1][1] = 1
                 elif not prev_namespace.startswith(package):
-                    # submodule without parent in list, add dummy entry
+                    # subnamespace without parent in list, add dummy entry
                     entries.append([stripped + package, 1, '', '', '', '', ''])
                 subtype = 2
             else:
@@ -633,9 +633,9 @@ class PhpNamespaceIndex(Index):
             prev_namespace = namespace
 
         # apply heuristics when to collapse modindex at page load:
-        # only collapse if number of toplevel modules is larger than
-        # number of submodules
-        collapse = len(modules) - num_toplevels < num_toplevels
+        # only collapse if number of toplevel namespaces is larger than
+        # number of subnamespaces
+        collapse = len(namespaces) - num_toplevels < num_toplevels
 
         # sort by first letter
         content = sorted(content.items())
