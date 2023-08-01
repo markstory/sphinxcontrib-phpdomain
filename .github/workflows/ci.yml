@@ -33,7 +33,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install -r test/unit/requirements.txt
+        pip install -r test/requirements.txt
         pip install .
 
     - name: Build Test
@@ -52,28 +52,28 @@ jobs:
       run: |
         cd test/must-build && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
 
-    - name: Run Unit Testing
+    - name: Build Unit Tests
       run: |
-        cd test/unit
+        cd test
         find . -name '*.html' -exec rm {} \;
         make html SPHINXOPTS='-W'
         (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
         (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
 
-    - name: Diff Unit Outputs
+    - name: Diff Unit Tests Output
       run: |
-        cd test/unit
+        cd test
         rm -r _build
         git add . -N && git diff --exit-code
 
-    - name: Push Unit Changes
+    - name: Push Unit Tests Output
       if: failure()
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         branch: ${{ github.head_ref || github.ref_name }}.changes
         # create_branch: true
         push_options: '--force'
-        commit_message: Unit Changes
+        commit_message: Unit Tests Changes
         commit_user_name: Bot
         commit_user_email: bot@example.com
         commit_author: Bot <bot@example.com>
