@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
 """
-    sphinx.domains.php
-    ~~~~~~~~~~~~~~~~~~~
+    Sphinx PHP domain.
 
-    The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
-
-    :copyright: Copyright 2017 by Mark Story
+    :copyright: Copyright 2023 by Mark Story
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -24,27 +20,34 @@ from sphinx.util.nodes import make_refnode
 from sphinx.util.docfields import Field, GroupedField, TypedField
 from sphinx import __version__ as sphinx_version
 
-# log informative messages
 def log_info(
     fromdocnode,
     message: str
 ):
+    """
+    Log informative message. Should have no affect on exit code.
+    """
     logger = logging.getLogger(__name__)
     logger.info(f"[phpdomain.info] {message}", location=fromdocnode)
 
-# log messages that should fail CI
 def log_warning(
     fromdocnode,
     message: str
 ):
+    """
+    Log warning. Should set exit code to non-zero.
+    """
     logger = logging.getLogger(__name__)
     logger.warning(f"[phpdomain.warning] {message}", location=fromdocnode)
 
-# log assertions that should fail CI
+# 
 def log_assert(
     fromdocnode,
     value: bool
 ):
+    """
+    Log assertion. Should set exit code to non-zero.
+    """
     if not value:
         caller = inspect.getframeinfo(inspect.stack()[1][0])
         logger = logging.getLogger(__name__)
@@ -87,7 +90,8 @@ php_separator = re.compile(r"(\w+)?(?:[:]{2})?")
 
 def _pseudo_parse_arglist(signode, arglist):
     # type: (addnodes.desc_signature, unicode) -> None
-    """"Parse" a list of arguments separated by commas.
+    """
+    "Parse" a list of arguments separated by commas.
     Arguments can have "optional" annotations given by enclosing them in
     brackets.  Currently, this will split at any comma, even if it's inside a
     string literal (e.g. default argument value).
@@ -640,7 +644,9 @@ class PhpNamespaceIndex(Index):
 
 
 class PhpDomain(Domain):
-    """PHP language domain."""
+    """
+    PHP language domain.
+    """
     name = 'php'
     label = 'PHP'
     object_types = {
