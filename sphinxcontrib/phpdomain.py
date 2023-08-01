@@ -784,15 +784,10 @@ class PhpDomain(Domain):
         if searchorder == 1:
             if absname in objects:
                 newname = absname
-            elif namespace and classname and \
-                     namespace + NS + classname + '::' + name in objects:
-                newname = namespace + NS + classname + '::' + name
-            elif namespace and namespace + NS + name in objects:
-                newname = namespace + NS + name
             elif namespace and namespace + NS + name in objects:
                 newname = namespace + NS + name
             elif classname and classname + '::' + name in objects:
-                newname = classname + '.' + name
+                newname = classname + '::' + name
             elif classname and classname + '::$' + name in objects:
                 newname = classname + '::$' + name
             elif name in objects:
@@ -808,16 +803,6 @@ class PhpDomain(Domain):
                 newname = classname + '::$' + name
             elif namespace and namespace + NS + name in objects:
                 newname = namespace + NS + name
-            elif namespace and classname and \
-                    namespace + NS + classname + '::' + name in objects:
-                newname = namespace + NS + classname + '::' + name
-            elif namespace and classname and \
-                    namespace + NS + classname + '::$' + name in objects:
-                newname = namespace + NS + classname + '::$' + name
-            # special case: object methods
-            elif type in ('func', 'meth') and '::' not in name and \
-                    'object::' + name in objects:
-                newname = 'object::' + name
         if newname is None:
             log_info(fromdocnode, f"Target not found '{absname}'")
             return None, None
