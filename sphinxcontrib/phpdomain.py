@@ -214,15 +214,7 @@ class PhpObject(ObjectDescription):
             fullname = name
         else:
             add_module = True
-            # name_prefix and a non-static method, means the classname was
-            # repeated. Trim off the <class>::
-            if name_prefix and self.objtype != 'staticmethod':
-                if name_prefix.startswith(classname):
-                    name_prefix = name_prefix[len(classname):].rstrip('::')
-                classname = classname.rstrip('::') # TODO seems like wrongly coded, there should be no '::' in the classname
-                fullname = name_prefix + classname + separator + name
-            elif name_prefix:
-                classname = classname.rstrip('::') # TODO seems like wrongly coded, there should be no '::' in the classname
+            if name_prefix:
                 fullname = name_prefix + name
 
             # Currently in a class, but not creating another class,
