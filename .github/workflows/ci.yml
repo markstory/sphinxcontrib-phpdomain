@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ['3.7', '3.8', '3.9', '3.10', '3.11']
+        python: ['3.8', '3.9', '3.10', '3.11']
       fail-fast: false
 
     permissions:
@@ -40,9 +40,10 @@ jobs:
       run: |
         cd test
         find . -name '*.html' -exec rm {} \;
-        make html SPHINXOPTS='-W'
+        make html SPHINXOPTS='-W' | tee log.txt
         (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
         (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
+        sed -i -r 's~.*/(test/.* \[phpdomain)~\1~;t;d' log.txt
 
     - name: Diff Unit Tests Output
       run: |

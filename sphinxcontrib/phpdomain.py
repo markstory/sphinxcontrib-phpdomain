@@ -30,7 +30,7 @@ def log_info(
     message: str
 ):
     logger = logging.getLogger(__name__)
-    logger.info(f"[phpdomain] {message}", location=fromdocnode)
+    logger.info(f"[phpdomain.info] {message}", location=fromdocnode)
 
 # log messages that should fail CI
 def log_warning(
@@ -38,7 +38,7 @@ def log_warning(
     message: str
 ):
     logger = logging.getLogger(__name__)
-    logger.warning(f"[phpdomain] {message}", location=fromdocnode)
+    logger.warning(f"[phpdomain.warning] {message}", location=fromdocnode)
 
 # log assertions that should fail CI
 def log_assert(
@@ -48,7 +48,7 @@ def log_assert(
     if not value:
         caller = inspect.getframeinfo(inspect.stack()[1][0])
         logger = logging.getLogger(__name__)
-        logger.warning(f"[phpdomain-assert] line {caller.lineno}", location=fromdocnode)
+        logger.warning(f"[phpdomain.assert] line {caller.lineno}", location=fromdocnode)
 
 php_sig_re = re.compile(
     r'''^ (public\ |protected\ |private\ )? # visibility
