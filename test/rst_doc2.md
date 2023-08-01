@@ -1,3 +1,4 @@
+```{eval-rst}
 Top Level Namespace
 ###################
 
@@ -41,4 +42,4 @@ No indexing errors or links should point to this namespace.
 .. php:class:: OtherClass
 
     Another class in a reused namespace
-
+```

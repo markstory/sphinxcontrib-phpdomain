@@ -36,22 +36,6 @@ jobs:
         pip install -r test/requirements.txt
         pip install .
 
-    - name: Build Test
-      run: |
-        cd test/must-build && make html SPHINXOPTS='-W'
-
-    - name: Build Test with toc show_parents=hide
-      run: |
-        cd test/must-build && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=hide'
-
-    - name: Build Test with toc show_parents=domain
-      run: |
-        cd test/must-build && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=domain'
-
-    - name: Build Test with toc show_parents=all
-      run: |
-        cd test/must-build && make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
-
     - name: Build Unit Tests
       run: |
         cd test
@@ -77,3 +61,18 @@ jobs:
         commit_user_name: Bot
         commit_user_email: bot@example.com
         commit_author: Bot <bot@example.com>
+
+    - name: Build Unit Tests with toc show_parents=hide
+      run: |
+        cd test
+        make html SPHINXOPTS='-W -D toc_object_entries_show_parents=hide'
+
+    - name: Build Unit Tests with toc show_parents=domain
+      run: |
+        cd test
+        make html SPHINXOPTS='-W -D toc_object_entries_show_parents=domain'
+
+    - name: Build Unit Tests with toc show_parents=all
+      run: |
+        cd test
+        make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'

@@ -1,3 +1,4 @@
+```{eval-rst}
 Nested method Regression
 ========================
 
@@ -17,3 +18,4 @@ Test nested methods to ensure page generation doesn't hard fail.
       this creates the byline text and adds it to $this->output
 
       :see: $output $reates this
+```

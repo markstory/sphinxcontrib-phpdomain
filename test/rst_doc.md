@@ -1,3 +1,4 @@
+```{eval-rst}
 Acceptance tests for PHPdomain
 ##############################
 
@@ -629,3 +630,4 @@ Links to Advanced Enumeration Example
 :php:const:`Example\\Advanced\\Suit::Acorns`
 
 :php:const:`Example\\Advanced\\Suit::Shields`
+```
