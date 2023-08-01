@@ -803,9 +803,12 @@ class PhpDomain(Domain):
                 newname = classname + '::$' + name
             elif namespace and namespace + NS + name in objects:
                 newname = namespace + NS + name
+
         if newname is None:
-            log_info(fromdocnode, f"Target not found '{absname}'")
+            if name not in ['array', 'bool', 'callable', 'false', 'float', 'int', 'iterable', 'mixed', 'never', 'null', 'numeric', 'object', 'parent', 'resource', 'self', 'static', 'string', 'true', 'void']:
+                log_info(fromdocnode, f"Target {absname} not found")
             return None, None
+
         return newname, objects[newname]
 
     def get_objects(self):
