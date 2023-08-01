@@ -202,7 +202,7 @@ class PhpObject(ObjectDescription):
             name_prefix = ""
 
         # determine module and class name (if applicable), as well as full name
-        modname = self.options.get(
+        namespace = self.options.get(
             'namespace', self.env.temp_data.get('php:namespace'))
         separator = separators[self.objtype]
 
@@ -212,7 +212,7 @@ class PhpObject(ObjectDescription):
             classname = self.env.temp_data.get('php:class')
 
         if self.objtype == 'global' or self.objtype == 'function':
-            modname = None
+            namespace = None
             classname = None
             fullname = name
         else:
@@ -229,7 +229,7 @@ class PhpObject(ObjectDescription):
                 classname = ''
                 fullname = name
 
-        signode['namespace'] = modname
+        signode['namespace'] = namespace
         signode['class'] = self.class_name = classname
         signode['fullname'] = fullname
 
@@ -245,12 +245,12 @@ class PhpObject(ObjectDescription):
             signode += addnodes.desc_annotation(sig_prefix, sig_prefix)
 
         if name_prefix:
-            if modname and not self.env.temp_data['php:in_class']:
-                name_prefix = modname + NS + name_prefix
+            if namespace and not self.env.temp_data['php:in_class']:
+                name_prefix = namespace + NS + name_prefix
             signode += addnodes.desc_addname(name_prefix, name_prefix)
 
-        elif modname and not self.env.temp_data.get('php:in_class', False) and self.env.config.add_module_names:
-            nodetext = modname + NS
+        elif namespace and not self.env.temp_data.get('php:in_class', False) and self.env.config.add_module_names:
+            nodetext = namespace + NS
             signode += addnodes.desc_addname(nodetext, nodetext)
 
         signode += addnodes.desc_name(name, name)
@@ -304,7 +304,7 @@ class PhpObject(ObjectDescription):
             return '\\'.join(parents + [name + parens])
         return ''
 
-    def get_index_text(self, modname, name):
+    def get_index_text(self, namespace, name):
         """
         Return the text for the index entry of the object.
         """
@@ -316,18 +316,18 @@ class PhpObject(ObjectDescription):
 
     def add_target_and_index(self, name_cls, sig, signode):
         if self.objtype == 'global':
-            modname = ''
+            namespace = None
         else:
-            modname = self.options.get(
+            namespace = self.options.get(
                 'namespace', self.env.temp_data.get('php:namespace'))
         separator = separators[self.objtype]
         if self._is_class_member():
             if signode['class']:
-                prefix = modname and modname + NS or ''
+                prefix = namespace and namespace + NS or ''
             else:
-                prefix = modname and modname + NS or ''
+                prefix = namespace and namespace + NS or ''
         else:
-            prefix = modname and modname + NS or ''
+            prefix = namespace and namespace + NS or ''
         fullname = prefix + name_cls[0]
 
         # note target
@@ -346,7 +346,7 @@ class PhpObject(ObjectDescription):
             objects[fullname] = (self.env.docname, self.objtype)
 
         if 'noindexentry' not in self.options:
-            indextext = self.get_index_text(modname, name_cls)
+            indextext = self.get_index_text(namespace, name_cls)
             if indextext:
                 self.indexnode['entries'].append(('single', indextext,
                                                   fullname, fullname, None))
@@ -357,7 +357,7 @@ class PhpGloballevel(PhpObject):
     Description of an object on global level (global variables).
     """
 
-    def get_index_text(self, modname, name_cls):
+    def get_index_text(self, namespace, name_cls):
         if self.objtype == 'global':
             return _('%s (global variable)') % name_cls[0]
         else:
@@ -381,17 +381,17 @@ class PhpNamespacelevel(PhpObject):
         if self.class_name and self.class_name != '':
             return self.class_name + '::'
 
-    def get_index_text(self, modname, name_cls):
+    def get_index_text(self, namespace, name_cls):
         if self.objtype == 'function':
-            if not modname:
+            if not namespace:
                 return _('%s() (global function)') % name_cls[0]
-            return _('%s() (function in %s)') % (name_cls[0], modname)
+            return _('%s() (function in %s)') % (name_cls[0], namespace)
         elif self.objtype == 'const' and self.class_name != '':
             return _('%s (class constant)') % (name_cls[0])
         elif self.objtype == 'const':
-            if not modname:
+            if not namespace:
                 return _('%s (global constant)') % (name_cls[0])
-            return _('%s (constant in %s)') % (name_cls[0], modname)
+            return _('%s (constant in %s)') % (name_cls[0], namespace)
         else:
             return ''
 
@@ -405,23 +405,23 @@ class PhpClasslike(PhpObject):
     def get_signature_prefix(self, sig):
         return self.objtype + ' '
 
-    def get_index_text(self, modname, name_cls):
+    def get_index_text(self, namespace, name_cls):
         if self.objtype == 'class':
-            if not modname:
+            if not namespace:
                 return _('%s (class)') % name_cls[0]
-            return _('%s (class in %s)') % (name_cls[0], modname)
+            return _('%s (class in %s)') % (name_cls[0], namespace)
         elif self.objtype == 'interface':
-            if not modname:
+            if not namespace:
                 return _('%s (interface)') % name_cls[0]
-            return _('%s (interface in %s)') % (name_cls[0], modname)
+            return _('%s (interface in %s)') % (name_cls[0], namespace)
         elif self.objtype == 'trait':
-            if not modname:
+            if not namespace:
                 return _('%s (trait)') % name_cls[0]
-            return _('%s (trait in %s)') % (name_cls[0], modname)
+            return _('%s (trait in %s)') % (name_cls[0], namespace)
         elif self.objtype == 'enum':
-            if not modname:
+            if not namespace:
                 return _('%s (enum)') % name_cls[0]
-            return _('%s (enum in %s)') % (name_cls[0], modname)
+            return _('%s (enum in %s)') % (name_cls[0], namespace)
         elif self.objtype == 'exception':
             return name_cls[0]
         else:
@@ -453,7 +453,7 @@ class PhpClassmember(PhpObject):
     def needs_arglist(self):
         return self.objtype == 'method'
 
-    def get_index_text(self, modname, name_cls):
+    def get_index_text(self, namespace, name_cls):
         name, cls = name_cls
 
         if self.objtype.endswith('method') or self.objtype == 'attr' or self.objtype == 'case':
@@ -464,24 +464,24 @@ class PhpClassmember(PhpObject):
                 clsname = None
 
         if self.objtype.endswith('method'):
-            if modname and clsname is None:
-                return _('%s() (in namespace %s)') % (name, modname)
-            elif modname and self.env.config.add_module_names:
-                return _('%s() (%s\\%s method)') % (propname, modname, clsname)
+            if namespace and clsname is None:
+                return _('%s() (in namespace %s)') % (name, namespace)
+            elif namespace and self.env.config.add_module_names:
+                return _('%s() (%s\\%s method)') % (propname, namespace, clsname)
             else:
                 return _('%s() (%s method)') % (propname, clsname)
         elif self.objtype == 'attr':
-            if modname and clsname is None:
-                return _('%s (in namespace %s)') % (name, modname)
-            elif modname and self.env.config.add_module_names:
-                return _('%s (%s\\%s property)') % (propname, modname, clsname)
+            if namespace and clsname is None:
+                return _('%s (in namespace %s)') % (name, namespace)
+            elif namespace and self.env.config.add_module_names:
+                return _('%s (%s\\%s property)') % (propname, namespace, clsname)
             else:
                 return _('%s (%s property)') % (propname, clsname)
         elif self.objtype == 'case':
-            if modname and clsname is None:
+            if namespace and clsname is None:
                 return _('%s enum case') % (name)
-            elif modname and self.env.config.add_module_names:
-                return _('%s (%s\\%s enum case)') % (propname, modname, clsname)
+            elif namespace and self.env.config.add_module_names:
+                return _('%s (%s\\%s enum case)') % (propname, namespace, clsname)
             else:
                 return _('%s (%s enum case)') % (propname, clsname)
         else:
@@ -504,15 +504,15 @@ class PhpNamespace(Directive):
 
     def run(self):
         env = self.state.document.settings.env
-        modname = self.arguments[0].strip()
+        namespace = self.arguments[0].strip()
         noindex = 'noindex' in self.options
-        env.temp_data['php:namespace'] = modname
+        env.temp_data['php:namespace'] = namespace
         env.temp_data['php:class'] = None
-        env.domaindata['php']['namespaces'][modname] = (
+        env.domaindata['php']['namespaces'][namespace] = (
             env.docname, self.options.get('synopsis', ''),
             'deprecated' in self.options)
 
-        targetnode = nodes.target('', '', ids=['namespace-' + modname],
+        targetnode = nodes.target('', '', ids=['namespace-' + namespace],
                                   ismod=True)
         self.state.document.note_explicit_target(targetnode)
         ret = [targetnode]
@@ -520,9 +520,9 @@ class PhpNamespace(Directive):
         # the synopsis isn't printed; in fact, it is only used in the
         # modindex currently
         if not noindex:
-            indextext = _('%s (namespace)') % modname
+            indextext = _('%s (namespace)') % namespace
             inode = addnodes.index(entries=[('single', indextext,
-                                             'namespace-' + modname, modname, None)])
+                                             'namespace-' + namespace, namespace, None)])
             ret.append(inode)
         return ret
 
@@ -541,11 +541,11 @@ class PhpCurrentNamespace(Directive):
 
     def run(self):
         env = self.state.document.settings.env
-        modname = self.arguments[0].strip()
-        if modname == 'None':
+        namespace = self.arguments[0].strip()
+        if namespace == 'None':
             env.temp_data['php:namespace'] = None
         else:
-            env.temp_data['php:namespace'] = modname
+            env.temp_data['php:namespace'] = namespace
         return []
 
 
@@ -592,33 +592,33 @@ class PhpNamespaceIndex(Index):
         modules = sorted(self.domain.data['namespaces'].items(),
                          key=lambda x: x[0].lower())
         # sort out collapsable modules
-        prev_modname = ''
+        prev_namespace = ''
         num_toplevels = 0
-        for modname, (docname, synopsis, deprecated) in modules:
+        for namespace, (docname, synopsis, deprecated) in modules:
             if docnames and docname not in docnames:
                 continue
 
             for ignore in ignores:
-                if modname.startswith(ignore):
-                    modname = modname[len(ignore):]
+                if namespace.startswith(ignore):
+                    namespace = namespace[len(ignore):]
                     stripped = ignore
                     break
             else:
                 stripped = ''
 
             # we stripped the whole module name?
-            if not modname:
-                modname, stripped = stripped, ''
+            if not namespace:
+                namespace, stripped = stripped, ''
 
-            entries = content.setdefault(modname[0].lower(), [])
+            entries = content.setdefault(namespace[0].lower(), [])
 
-            package = modname.split(NS)[0]
-            if package != modname:
+            package = namespace.split(NS)[0]
+            if package != namespace:
                 # it's a submodule
-                if prev_modname == package:
+                if prev_namespace == package:
                     # first submodule - make parent a group head
                     entries[-1][1] = 1
-                elif not prev_modname.startswith(package):
+                elif not prev_namespace.startswith(package):
                     # submodule without parent in list, add dummy entry
                     entries.append([stripped + package, 1, '', '', '', '', ''])
                 subtype = 2
@@ -627,10 +627,10 @@ class PhpNamespaceIndex(Index):
                 subtype = 0
 
             qualifier = deprecated and _('Deprecated') or ''
-            entries.append([stripped + modname, subtype, docname,
-                            'namespace-' + stripped + modname, '',
+            entries.append([stripped + namespace, subtype, docname,
+                            'namespace-' + stripped + namespace, '',
                             qualifier, synopsis])
-            prev_modname = modname
+            prev_namespace = namespace
 
         # apply heuristics when to collapse modindex at page load:
         # only collapse if number of toplevel modules is larger than
@@ -752,10 +752,10 @@ class PhpDomain(Domain):
                     contnode,
                     title)
         else:
-            modname = node.get('php:namespace')
+            namespace = node.get('php:namespace')
             clsname = node.get('php:class')
             searchorder = node.hasattr('refspecific') and 1 or 0
-            name, obj = self.find_obj(env, node, modname, clsname,
+            name, obj = self.find_obj(env, node, namespace, clsname,
                                       target, typ, searchorder)
             if not obj:
                 return None
@@ -763,7 +763,7 @@ class PhpDomain(Domain):
                 return make_refnode(builder, fromdocname, obj[0], name,
                                     contnode, name)
 
-    def find_obj(self, env, fromdocnode, modname, classname, name, type, searchorder=0):
+    def find_obj(self, env, fromdocnode, namespace, classname, name, type, searchorder=0):
         """
         Find a PHP object for "name", using the given namespace and classname.
         """
@@ -776,7 +776,7 @@ class PhpDomain(Domain):
         if name.startswith(NS):
             absname = name[1:]
         else:
-            absname = (modname + NS if modname else "") \
+            absname = (namespace + NS if namespace else "") \
                 + (classname + NS if classname and '::' not in name else "") \
                 + name
 
@@ -784,13 +784,13 @@ class PhpDomain(Domain):
         if searchorder == 1:
             if absname in objects:
                 newname = absname
-            elif modname and classname and \
-                     modname + NS + classname + '::' + name in objects:
-                newname = modname + NS + classname + '::' + name
-            elif modname and modname + NS + name in objects:
-                newname = modname + NS + name
-            elif modname and modname + NS + name in objects:
-                newname = modname + NS + name
+            elif namespace and classname and \
+                     namespace + NS + classname + '::' + name in objects:
+                newname = namespace + NS + classname + '::' + name
+            elif namespace and namespace + NS + name in objects:
+                newname = namespace + NS + name
+            elif namespace and namespace + NS + name in objects:
+                newname = namespace + NS + name
             elif classname and classname + '::' + name in objects:
                 newname = classname + '.' + name
             elif classname and classname + '::$' + name in objects:
@@ -806,14 +806,14 @@ class PhpDomain(Domain):
                 newname = classname + '::' + name
             elif classname and classname + '::$' + name in objects:
                 newname = classname + '::$' + name
-            elif modname and modname + NS + name in objects:
-                newname = modname + NS + name
-            elif modname and classname and \
-                    modname + NS + classname + '::' + name in objects:
-                newname = modname + NS + classname + '::' + name
-            elif modname and classname and \
-                    modname + NS + classname + '::$' + name in objects:
-                newname = modname + NS + classname + '::$' + name
+            elif namespace and namespace + NS + name in objects:
+                newname = namespace + NS + name
+            elif namespace and classname and \
+                    namespace + NS + classname + '::' + name in objects:
+                newname = namespace + NS + classname + '::' + name
+            elif namespace and classname and \
+                    namespace + NS + classname + '::$' + name in objects:
+                newname = namespace + NS + classname + '::$' + name
             # special case: object methods
             elif type in ('func', 'meth') and '::' not in name and \
                     'object::' + name in objects:
