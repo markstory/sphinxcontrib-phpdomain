@@ -337,9 +337,9 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:const:`LibraryClass::TEST_CONST`
 
-:php:class:`LibraryName\\OtherClass`
+:php:class:`OtherClass`
 
-:php:class:`LibraryName\\ThirdClass`
+:php:class:`ThirdClass`
 
 :php:class:`NamespaceClass`
 
@@ -369,22 +369,20 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:trait:`TemplateTrait`
 
-:php:trait:`LibraryName\\TemplateTrait`
-
-:php:func:`LibraryName\\TemplateTrait::render()`
+:php:func:`TemplateTrait::render()`
 
 Test Case - Links with prefix trimming
 --------------------------------------
 
 All of the following links should not be prefixed with a namespace.
 
-:php:interface:`~LibraryName\\LibraryInterface`
+:php:interface:`~LibraryInterface`
 
-:php:class:`~LibraryName\\LibraryClass`
+:php:class:`~LibraryClass`
 
-:php:trait:`~LibraryName\\TemplateTrait`
+:php:trait:`~TemplateTrait`
 
-:php:exc:`~LibraryName\\NamespaceException`
+:php:exc:`~NamespaceException`
 
 All of the following links should not be prefixed with a classname.
 
@@ -398,25 +396,27 @@ All of the following links should not be prefixed with a classname.
 Test Case - global access
 -------------------------
 
-:php:class:`DateTime`
+:php:class:`\\DateTime`
 
-:php:func:`DateTime::setTime()`
+:php:func:`\\DateTime::setTime()`
 
 :php:global:`$global_var`
 
 :php:const:`SOME_CONSTANT`
 
-:php:attr:`LibraryName\\LibraryClass::$property`
+:php:func:`in_array()`
 
-:php:attr:`~LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
+:php:attr:`\\LibraryName\\LibraryClass::$property`
 
-:php:const:`LibraryName\\LibraryClass::TEST_CONST`
+:php:attr:`~\\LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
 
-:php:const:`LibraryName\\NS_CONST`
+:php:const:`\\LibraryName\\LibraryClass::TEST_CONST`
 
-:php:interface:`DateTimeInterface`
+:php:const:`\\LibraryName\\NS_CONST`
 
-:php:func:`DateTimeInterface::setTime()`
+:php:interface:`\\DateTimeInterface`
+
+:php:func:`\\DateTimeInterface::setTime()`
 
 Any Cross Ref
 =============
@@ -447,15 +447,19 @@ Test Case - Test subpackage links
 
 :php:ns:`LibraryName\\SubPackage`
 
+:php:ns:`\\LibraryName\\SubPackage`
+
 :php:class:`SubpackageClass`
 
-:php:class:`LibraryName\\SubPackage\\SubpackageClass`
+:php:class:`\\LibraryName\\SubPackage\\SubpackageClass`
 
 :php:interface:`SubpackageInterface`
 
-:php:class:`LibraryName\\SubPackage\\SubpackageInterface`
+:php:class:`\\LibraryName\\SubPackage\\SubpackageInterface`
 
-:php:exc:`LibraryName\\SubPackage\\NestedNamespaceException`
+:php:exc:`NestedNamespaceException`
+
+:php:exc:`\\LibraryName\\SubPackage\\NestedNamespaceException`
 
 Return Types
 ============
@@ -469,27 +473,27 @@ Return Types
     .. php:method:: returnClassFromSameNamespace()
 
         :returns: An object instance of a class from the same namespace.
-        :returntype: OtherLibrary\\ReturnedClass
+        :returntype: ReturnedClass
 
     .. php:method:: returnClassFromOtherNamespace()
 
         :returns: An object instance of a class from another namespace.
-        :returntype: LibraryName\\SubPackage\\SubpackageInterface
+        :returntype: \\LibraryName\\SubPackage\\SubpackageInterface
 
     .. php:method:: returnClassConstant()
 
         :returns: The value of a specific class constant.
-        :returntype: LibraryName\\NamespaceClass::NAMESPACE_CONST
+        :returntype: \\LibraryName\\NamespaceClass::NAMESPACE_CONST
 
     .. php:method:: returnGlobalConstant()
 
-        :returns: The value of a specific global constant.
+        :returns: The value of a specific global constant. # TODO link is not working without "\\"
         :returntype: SOME_CONSTANT
 
     .. php:method:: returnExceptionInstance()
 
         :returns: An instance of an exception.
-        :returntype: InvalidArgumentException
+        :returntype: \\InvalidArgumentException
 
     .. php:method:: returnScalarType()
 
@@ -499,7 +503,7 @@ Return Types
     .. php:method:: returnUnionType()
 
         :returns: Any of a whole bunch of things specified with a PHP 8 union type.
-        :returntype: int|string|OtherLibrary\\ReturnedClass|LibraryName\\SubPackage\\SubpackageInterface|null
+        :returntype: int|string|ReturnedClass|\\LibraryName\\SubPackage\\SubpackageInterface|null
 
 .. php:class:: ReturnedClass
 
@@ -563,19 +567,19 @@ Advanced Enumerations
 
     .. php:const:: Roses() : Hearts
 
-        An alias for :php:case:`Example\\Advanced\\Suit::Hearts`.
+        An alias for :php:case:`Suit::Hearts`.
 
     .. php:const:: Bells : Diamonds
 
-        An alias for :php:case:`Example\\Advanced\\Suit::Diamonds`.
+        An alias for :php:case:`Suit::Diamonds`.
 
     .. php:const:: Acorns : Clubs
 
-        An alias for :php:case:`Example\\Advanced\\Suit::Clubs`.
+        An alias for :php:case:`Suit::Clubs`.
 
     .. php:const:: Shields : Spades
 
-        An alias for :php:case:`Example\\Advanced\\Suit::Spades`.
+        An alias for :php:case:`Suit::Spades`.
 
 Enumeration Links
 -----------------
@@ -583,51 +587,51 @@ Enumeration Links
 Links to Basic Enumeration Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:php:enum:`Example\\Basic\\Suit`
+:php:enum:`\\Example\\Basic\\Suit`
 
-:php:case:`Example\\Basic\\Suit::Hearts`
+:php:case:`\\Example\\Basic\\Suit::Hearts`
 
-:php:case:`Example\\Basic\\Suit::Diamonds`
+:php:case:`\\Example\\Basic\\Suit::Diamonds`
 
-:php:case:`Example\\Basic\\Suit::Clubs`
+:php:case:`\\Example\\Basic\\Suit::Clubs`
 
-:php:case:`Example\\Basic\\Suit::Spades`
+:php:case:`\\Example\\Basic\\Suit::Spades`
 
 Links to Backed Enumeration Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:php:enum:`Example\\Backed\\Suit`
+:php:enum:`\\Example\\Backed\\Suit`
 
-:php:case:`Example\\Backed\\Suit::Hearts`
+:php:case:`\\Example\\Backed\\Suit::Hearts`
 
-:php:case:`Example\\Backed\\Suit::Diamonds`
+:php:case:`\\Example\\Backed\\Suit::Diamonds`
 
-:php:case:`Example\\Backed\\Suit::Clubs`
+:php:case:`\\Example\\Backed\\Suit::Clubs`
 
-:php:case:`Example\\Backed\\Suit::Spades`
+:php:case:`\\Example\\Backed\\Suit::Spades`
 
 Links to Advanced Enumeration Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:php:enum:`Example\\Advanced\\Suit`
+:php:enum:`Suit`
 
-:php:case:`Example\\Advanced\\Suit::Hearts`
+:php:case:`Suit::Hearts`
 
-:php:case:`Example\\Advanced\\Suit::Diamonds`
+:php:case:`Suit::Diamonds`
 
-:php:case:`Example\\Advanced\\Suit::Clubs`
+:php:case:`Suit::Clubs`
 
-:php:case:`Example\\Advanced\\Suit::Spades`
+:php:case:`Suit::Spades`
 
-:php:meth:`Example\\Advanced\\Suit::color`
+:php:meth:`Suit::color`
 
-:php:meth:`Example\\Advanced\\Suit::values`
+:php:meth:`Suit::values`
 
-:php:const:`Example\\Advanced\\Suit::Roses`
+:php:const:`Suit::Roses`
 
-:php:const:`Example\\Advanced\\Suit::Bells`
+:php:const:`Suit::Bells`
 
-:php:const:`Example\\Advanced\\Suit::Acorns`
+:php:const:`Suit::Acorns`
 
-:php:const:`Example\\Advanced\\Suit::Shields`
+:php:const:`Suit::Shields`
 ```

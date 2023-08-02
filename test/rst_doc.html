@@ -618,7 +618,7 @@
       <span id="namespaced-elements"/>
       <h2>Namespaced elements<a class="headerlink" href="#namespace-LibraryName" title="Permalink to this heading">&#xB6;</a></h2>
       <dl class="php function">
-        <dt class="sig sig-object php" id="LibraryName\namespaced_function"><span class="sig-name descname"><span class="pre">namespaced_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$two</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\namespaced_function" title="Permalink to this definition">&#xB6;</a></dt>
+        <dt class="sig sig-object php" id="LibraryName\namespaced_function"><span class="sig-prename descclassname"><span class="pre">LibraryName\</span></span><span class="sig-name descname"><span class="pre">namespaced_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$two</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\namespaced_function" title="Permalink to this definition">&#xB6;</a></dt>
         <dd>
           <p>A function in a namespace</p>
           <dl class="field-list simple">
@@ -1026,14 +1026,14 @@
         <p>
           <a class="reference internal" href="rst_doc2.html#LibraryName\OtherClass" title="LibraryName\OtherClass">
             <code class="xref php php-class docutils literal notranslate">
-              <span class="pre">LibraryName\OtherClass</span>
+              <span class="pre">OtherClass</span>
             </code>
           </a>
         </p>
         <p>
           <a class="reference internal" href="rst_doc2.html#LibraryName\ThirdClass" title="LibraryName\ThirdClass">
             <code class="xref php php-class docutils literal notranslate">
-              <span class="pre">LibraryName\ThirdClass</span>
+              <span class="pre">ThirdClass</span>
             </code>
           </a>
         </p>
@@ -1136,16 +1136,9 @@
           </a>
         </p>
         <p>
-          <a class="reference internal" href="#LibraryName\TemplateTrait" title="LibraryName\TemplateTrait">
-            <code class="xref php php-trait docutils literal notranslate">
-              <span class="pre">LibraryName\TemplateTrait</span>
-            </code>
-          </a>
-        </p>
-        <p>
           <a class="reference internal" href="#LibraryName\TemplateTrait::render" title="LibraryName\TemplateTrait::render">
             <code class="xref php php-func docutils literal notranslate">
-              <span class="pre">LibraryName\TemplateTrait::render()</span>
+              <span class="pre">TemplateTrait::render()</span>
             </code>
           </a>
         </p>
@@ -1231,6 +1224,13 @@
           <a class="reference internal" href="#SOME_CONSTANT" title="SOME_CONSTANT">
             <code class="xref php php-const docutils literal notranslate">
               <span class="pre">SOME_CONSTANT</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#in_array" title="in_array">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">in_array()</span>
             </code>
           </a>
         </p>
@@ -1353,6 +1353,11 @@
           </a>
         </p>
         <p>
+          <code class="xref php php-ns docutils literal notranslate">
+            <span class="pre">LibraryName\SubPackage</span>
+          </code>
+        </p>
+        <p>
           <a class="reference internal" href="#LibraryName\SubPackage\SubpackageClass" title="LibraryName\SubPackage\SubpackageClass">
             <code class="xref php php-class docutils literal notranslate">
               <span class="pre">SubpackageClass</span>
@@ -1377,6 +1382,13 @@
           <a class="reference internal" href="#LibraryName\SubPackage\SubpackageInterface" title="LibraryName\SubPackage\SubpackageInterface">
             <code class="xref php php-class docutils literal notranslate">
               <span class="pre">LibraryName\SubPackage\SubpackageInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\SubPackage\NestedNamespaceException" title="LibraryName\SubPackage\NestedNamespaceException">
+            <code class="xref php php-exc docutils literal notranslate">
+              <span class="pre">NestedNamespaceException</span>
             </code>
           </a>
         </p>
@@ -1428,7 +1440,7 @@
                     <span>
                       <a class="reference internal" href="#OtherLibrary\ReturnedClass" title="OtherLibrary\ReturnedClass">
                         <code class="xref php php-obj docutils literal notranslate">
-                          <span class="pre">OtherLibrary\ReturnedClass</span>
+                          <span class="pre">ReturnedClass</span>
                         </code>
                       </a>
                     </span>
@@ -1510,7 +1522,7 @@
               <dl class="field-list simple">
                 <dt class="field-odd">Returns<span class="colon">:</span></dt>
                 <dd class="field-odd">
-                  <p>The value of a specific global constant.</p>
+                  <p>The value of a specific global constant. # TODO link is not working without &#x201C;\&#x201D;</p>
                 </dd>
                 <dt class="field-even">Return type<span class="colon">:</span></dt>
                 <dd class="field-even">
@@ -1605,7 +1617,7 @@
                   <p>
                     <span>
                       <code class="xref php php-obj docutils literal notranslate">
-                        <span class="pre">int|string|OtherLibrary\ReturnedClass|LibraryName\SubPackage\SubpackageInterface|null</span>
+                        <span class="pre">int|string|ReturnedClass|\LibraryName\SubPackage\SubpackageInterface|null</span>
                       </code>
                     </span>
                   </p>
@@ -1958,7 +1970,7 @@ deck are divided.</p>
                 <a class="headerlink" href="#Example\Advanced\Suit::Roses" title="Permalink to this definition">&#xB6;</a>
               </dt>
               <dd>
-                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Hearts" title="Example\Advanced\Suit::Hearts"><code class="xref php php-case docutils literal notranslate"><span class="pre">Example\Advanced\Suit::Hearts</span></code></a>.</p>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Hearts" title="Example\Advanced\Suit::Hearts"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Hearts</span></code></a>.</p>
               </dd>
             </dl>
             <dl class="php const">
@@ -1978,7 +1990,7 @@ deck are divided.</p>
                 <a class="headerlink" href="#Example\Advanced\Suit::Bells" title="Permalink to this definition">&#xB6;</a>
               </dt>
               <dd>
-                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Diamonds" title="Example\Advanced\Suit::Diamonds"><code class="xref php php-case docutils literal notranslate"><span class="pre">Example\Advanced\Suit::Diamonds</span></code></a>.</p>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Diamonds" title="Example\Advanced\Suit::Diamonds"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Diamonds</span></code></a>.</p>
               </dd>
             </dl>
             <dl class="php const">
@@ -1998,7 +2010,7 @@ deck are divided.</p>
                 <a class="headerlink" href="#Example\Advanced\Suit::Acorns" title="Permalink to this definition">&#xB6;</a>
               </dt>
               <dd>
-                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Clubs" title="Example\Advanced\Suit::Clubs"><code class="xref php php-case docutils literal notranslate"><span class="pre">Example\Advanced\Suit::Clubs</span></code></a>.</p>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Clubs" title="Example\Advanced\Suit::Clubs"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Clubs</span></code></a>.</p>
               </dd>
             </dl>
             <dl class="php const">
@@ -2018,7 +2030,7 @@ deck are divided.</p>
                 <a class="headerlink" href="#Example\Advanced\Suit::Shields" title="Permalink to this definition">&#xB6;</a>
               </dt>
               <dd>
-                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Spades" title="Example\Advanced\Suit::Spades"><code class="xref php php-case docutils literal notranslate"><span class="pre">Example\Advanced\Suit::Spades</span></code></a>.</p>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Spades" title="Example\Advanced\Suit::Spades"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Spades</span></code></a>.</p>
               </dd>
             </dl>
           </dd>
@@ -2107,77 +2119,77 @@ deck are divided.</p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit" title="Example\Advanced\Suit">
               <code class="xref php php-enum docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit</span>
+                <span class="pre">Suit</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Hearts" title="Example\Advanced\Suit::Hearts">
               <code class="xref php php-case docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Hearts</span>
+                <span class="pre">Suit::Hearts</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Diamonds" title="Example\Advanced\Suit::Diamonds">
               <code class="xref php php-case docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Diamonds</span>
+                <span class="pre">Suit::Diamonds</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Clubs" title="Example\Advanced\Suit::Clubs">
               <code class="xref php php-case docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Clubs</span>
+                <span class="pre">Suit::Clubs</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Spades" title="Example\Advanced\Suit::Spades">
               <code class="xref php php-case docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Spades</span>
+                <span class="pre">Suit::Spades</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::color" title="Example\Advanced\Suit::color">
               <code class="xref php php-meth docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::color</span>
+                <span class="pre">Suit::color</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::values" title="Example\Advanced\Suit::values">
               <code class="xref php php-meth docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::values</span>
+                <span class="pre">Suit::values</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Roses" title="Example\Advanced\Suit::Roses">
               <code class="xref php php-const docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Roses</span>
+                <span class="pre">Suit::Roses</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Bells" title="Example\Advanced\Suit::Bells">
               <code class="xref php php-const docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Bells</span>
+                <span class="pre">Suit::Bells</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Acorns" title="Example\Advanced\Suit::Acorns">
               <code class="xref php php-const docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Acorns</span>
+                <span class="pre">Suit::Acorns</span>
               </code>
             </a>
           </p>
           <p>
             <a class="reference internal" href="#Example\Advanced\Suit::Shields" title="Example\Advanced\Suit::Shields">
               <code class="xref php php-const docutils literal notranslate">
-                <span class="pre">Example\Advanced\Suit::Shields</span>
+                <span class="pre">Suit::Shields</span>
               </code>
             </a>
           </p>

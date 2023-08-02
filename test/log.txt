@@ -1,6 +1,6 @@
 test/ns.md:48: [phpdomain.info] Target A2::simplify not found
 test/ns.md:53: [phpdomain.info] Target Bar2\A::simplify not found
-test/rst_doc.md:502: [phpdomain.info] Target OtherLibrary\ReturningClass\int|string|OtherLibrary\ReturnedClass|LibraryName\SubPackage\SubpackageInterface|null not found
+test/rst_doc.md:506: [phpdomain.info] Target OtherLibrary\int|string|ReturnedClass|\LibraryName\SubPackage\SubpackageInterface|null not found
 test/rst_doc2.md:11: [phpdomain.info] Target Imagine\Image\ImageInterface::draw not found
 test/rst_doc2.md:17: [phpdomain.info] Target Imagine\Image\PointInterface not found
 test/rst_doc2.md:17: [phpdomain.info] Target Imagine\Image\BoxInterface not found
