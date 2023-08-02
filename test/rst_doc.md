@@ -143,7 +143,7 @@ More globals after classes
 
     A global variable
 
-.. php:global:: strpos($needle, $haystack)
+.. php:function:: strpos($needle, $haystack)
 
     Position of needle in haystack
 
