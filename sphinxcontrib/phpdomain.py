@@ -195,6 +195,7 @@ class PhpObject(ObjectDescription):
         """
         m = php_sig_re.match(sig)
         if m is None:
+            log_warning(signode, 'Invalid signature: ' + sig)
             raise ValueError
 
         visibility, modifiers, name_prefix, name, arglist, retann, enumtype = m.groups()
