@@ -20,31 +20,25 @@ from sphinx.util.nodes import make_refnode
 from sphinx.util.docfields import Field, GroupedField, TypedField
 from sphinx import __version__ as sphinx_version
 
-def log_info(
-    fromdocnode,
-    message: str
-):
+
+def log_info(fromdocnode, message: str):
     """
     Log informative message. Should have no affect on exit code.
     """
     logger = logging.getLogger(__name__)
     logger.info(f"[phpdomain.info] {message}", location=fromdocnode)
 
-def log_warning(
-    fromdocnode,
-    message: str
-):
+
+def log_warning(fromdocnode, message: str):
     """
     Log warning. Should set exit code to non-zero.
     """
     logger = logging.getLogger(__name__)
     logger.warning(f"[phpdomain.warning] {message}", location=fromdocnode)
 
-# 
-def log_assert(
-    fromdocnode,
-    value: bool
-):
+
+#
+def log_assert(fromdocnode, value: bool):
     """
     Log assertion. Should set exit code to non-zero.
     """
@@ -53,8 +47,9 @@ def log_assert(
         logger = logging.getLogger(__name__)
         logger.warning(f"[phpdomain.assert] line {caller.lineno}", location=fromdocnode)
 
+
 php_sig_re = re.compile(
-    r'''^ (public\ |protected\ |private\ )? # visibility
+    r"""^ (public\ |protected\ |private\ )? # visibility
           (final\ |abstract\ |static\ )?    # modifiers
           ((?:\\?(?!\d)\w+)\:\:)?           # class name
           (\$?(?:\\?(?!\d)\w+)+) \s*        # thing name
@@ -64,26 +59,27 @@ php_sig_re = re.compile(
           )?
           (?: \s* : \s* (.*))?              # backed enum type / case value
           $                                 # and nothing more
-          ''', re.VERBOSE)
+          """,
+    re.VERBOSE,
+)
 
 
-NS = '\\'
+NS = "\\"
 
 separators = {
-  'global': None,
-  'namespace': None,
-  'function': None,
-  'interface': None,
-  'class': None,
-  'trait': None,
-  'enum': None,
-  'exception': None,
-  
-  'method': '::',
-  'const': '::',
-  'attr': '::$',
-  'staticmethod': '::',
-  'case': '::',
+    "global": None,
+    "namespace": None,
+    "function": None,
+    "interface": None,
+    "class": None,
+    "trait": None,
+    "enum": None,
+    "exception": None,
+    "method": "::",
+    "const": "::",
+    "attr": "::$",
+    "staticmethod": "::",
+    "case": "::",
 }
 
 php_separator = re.compile(r"(\w+)?(?:[:]{2})?")
@@ -102,20 +98,20 @@ def _pseudo_parse_arglist(signode, arglist):
     paramlist = addnodes.desc_parameterlist()
     stack = [paramlist]
     try:
-        for argument in arglist.split(','):
+        for argument in arglist.split(","):
             argument = argument.strip()
             ends_open = ends_close = 0
-            while argument.startswith('['):
+            while argument.startswith("["):
                 stack.append(addnodes.desc_optional())
                 stack[-2] += stack[-1]
                 argument = argument[1:].strip()
-            while argument.startswith(']'):
+            while argument.startswith("]"):
                 stack.pop()
                 argument = argument[1:].strip()
-            while argument.endswith(']') and not argument.endswith('[]'):
+            while argument.endswith("]") and not argument.endswith("[]"):
                 ends_close += 1
                 argument = argument[:-1].strip()
-            while argument.endswith('['):
+            while argument.endswith("["):
                 ends_open += 1
                 argument = argument[:-1].strip()
             if argument:
@@ -141,41 +137,64 @@ def _pseudo_parse_arglist(signode, arglist):
 
 def php_rsplit(fullname):
     items = [item for item in php_separator.findall(fullname)]
-    return ''.join(items[:-2]), ''.join(items[1:-1])
+    return "".join(items[:-2]), "".join(items[1:-1])
 
 
 class PhpObject(ObjectDescription):
     """
     Description of a general PHP object.
     """
+
     option_spec = {
-        'noindex': directives.flag,
-        'noindexentry': directives.flag,
-        'nocontentsentry': directives.flag,
-        'module': directives.unchanged,
+        "noindex": directives.flag,
+        "noindexentry": directives.flag,
+        "nocontentsentry": directives.flag,
+        "module": directives.unchanged,
     }
 
     doc_field_types = [
-        TypedField('parameter', label=_('Parameters'),
-                   names=('param', 'parameter', 'arg', 'argument'),
-                   typerolename='obj', typenames=('paramtype', 'type')),
-        TypedField('variable', label=_('Variables'), rolename='obj',
-                   names=('var', 'ivar', 'cvar'),
-                   typerolename='obj', typenames=('vartype',)),
-        GroupedField('exceptions', label=_('Throws'), rolename='exc',
-                     names=('throws', 'throw', 'exception', 'except'),
-                     can_collapse=True),
-        Field('returnvalue', label=_('Returns'), has_arg=False,
-              names=('returns', 'return')),
-        Field('returntype', label=_('Return type'), has_arg=False,
-              names=('rtype', 'returntype'), bodyrolename='obj'),
+        TypedField(
+            "parameter",
+            label=_("Parameters"),
+            names=("param", "parameter", "arg", "argument"),
+            typerolename="obj",
+            typenames=("paramtype", "type"),
+        ),
+        TypedField(
+            "variable",
+            label=_("Variables"),
+            rolename="obj",
+            names=("var", "ivar", "cvar"),
+            typerolename="obj",
+            typenames=("vartype",),
+        ),
+        GroupedField(
+            "exceptions",
+            label=_("Throws"),
+            rolename="exc",
+            names=("throws", "throw", "exception", "except"),
+            can_collapse=True,
+        ),
+        Field(
+            "returnvalue",
+            label=_("Returns"),
+            has_arg=False,
+            names=("returns", "return"),
+        ),
+        Field(
+            "returntype",
+            label=_("Return type"),
+            has_arg=False,
+            names=("rtype", "returntype"),
+            bodyrolename="obj",
+        ),
     ]
 
     def get_signature_prefix(self, sig):
         """
         May return a prefix to put before the object name in the signature.
         """
-        return ''
+        return ""
 
     def needs_arglist(self):
         """
@@ -195,7 +214,7 @@ class PhpObject(ObjectDescription):
         """
         m = php_sig_re.match(sig)
         if m is None:
-            log_warning(signode, 'Invalid signature: ' + sig)
+            log_warning(signode, "Invalid signature: " + sig)
             raise ValueError
 
         visibility, modifiers, name_prefix, name, arglist, retann, enumtype = m.groups()
@@ -205,15 +224,16 @@ class PhpObject(ObjectDescription):
 
         # determine namespace and class name (if applicable), as well as full name
         namespace = self.options.get(
-            'namespace', self.env.temp_data.get('php:namespace'))
+            "namespace", self.env.temp_data.get("php:namespace")
+        )
         separator = separators[self.objtype]
 
-        if '::' in name_prefix:
-            classname = name_prefix.rstrip('::')
+        if "::" in name_prefix:
+            classname = name_prefix.rstrip("::")
         else:
-            classname = self.env.temp_data.get('php:class')
+            classname = self.env.temp_data.get("php:class")
 
-        if self.objtype == 'global':
+        if self.objtype == "global":
             namespace = None
             classname = None
             fullname = name
@@ -222,36 +242,47 @@ class PhpObject(ObjectDescription):
                 fullname = name_prefix + name
 
             # Currently in a class, but not creating another class,
-            elif classname and not self.objtype in ['class', 'exception', 'interface', 'trait', 'enum', 'function']:
-                if not self.env.temp_data['php:in_class']:
+            elif classname and not self.objtype in [
+                "class",
+                "exception",
+                "interface",
+                "trait",
+                "enum",
+                "function",
+            ]:
+                if not self.env.temp_data["php:in_class"]:
                     name_prefix = classname + separator
 
                 fullname = classname + separator + name
             else:
-                classname = ''
+                classname = ""
                 fullname = name
 
-        signode['namespace'] = namespace
-        signode['class'] = self.class_name = classname
-        signode['fullname'] = fullname
+        signode["namespace"] = namespace
+        signode["class"] = self.class_name = classname
+        signode["fullname"] = fullname
 
         if visibility:
             signode += addnodes.desc_annotation(visibility, visibility)
 
         sig_prefix = self.get_signature_prefix(sig)
 
-        if modifiers and not (sig_prefix and 'static' in sig_prefix):
-                signode += addnodes.desc_annotation(modifiers, modifiers)
+        if modifiers and not (sig_prefix and "static" in sig_prefix):
+            signode += addnodes.desc_annotation(modifiers, modifiers)
 
         if sig_prefix:
             signode += addnodes.desc_annotation(sig_prefix, sig_prefix)
 
         if name_prefix:
-            if namespace and not self.env.temp_data['php:in_class']:
+            if namespace and not self.env.temp_data["php:in_class"]:
                 name_prefix = namespace + NS + name_prefix
             signode += addnodes.desc_addname(name_prefix, name_prefix)
 
-        elif namespace and not self.env.temp_data.get('php:in_class', False) and self.env.config.add_module_names:
+        elif (
+            namespace
+            and not self.env.temp_data.get("php:in_class", False)
+            and self.env.config.add_module_names
+        ):
             nodetext = namespace + NS
             signode += addnodes.desc_addname(nodetext, nodetext)
 
@@ -275,82 +306,87 @@ class PhpObject(ObjectDescription):
         return fullname, name_prefix
 
     def _object_hierarchy_parts(self, sig_node: addnodes.desc_signature):
-        if 'fullname' not in sig_node:
+        if "fullname" not in sig_node:
             return ()
-        namespace = sig_node.get('namespace')
-        fullname = sig_node['fullname']
+        namespace = sig_node.get("namespace")
+        fullname = sig_node["fullname"]
 
         if isinstance(namespace, str):
-            return (namespace, *fullname.split('::'))
+            return (namespace, *fullname.split("::"))
         else:
-            return tuple(fullname.split('::'))
+            return tuple(fullname.split("::"))
 
     def _toc_entry_name(self, sig_node: addnodes.desc_signature) -> str:
-        if not sig_node.get('_toc_parts'):
-            return ''
+        if not sig_node.get("_toc_parts"):
+            return ""
 
         config = self.env.app.config
-        objtype = sig_node.parent.get('objtype')
-        if config.add_function_parentheses and objtype in {'function', 'method'}:
-            parens = '()'
+        objtype = sig_node.parent.get("objtype")
+        if config.add_function_parentheses and objtype in {"function", "method"}:
+            parens = "()"
         else:
-            parens = ''
-        *parents, name = sig_node['_toc_parts']
-        if config.toc_object_entries_show_parents == 'domain':
-            return sig_node.get('fullname', name) + parens
-        if config.toc_object_entries_show_parents == 'hide':
+            parens = ""
+        *parents, name = sig_node["_toc_parts"]
+        if config.toc_object_entries_show_parents == "domain":
+            return sig_node.get("fullname", name) + parens
+        if config.toc_object_entries_show_parents == "hide":
             return name + parens
-        if config.toc_object_entries_show_parents == 'all':
-            if objtype in {'method', 'const', 'attr', 'staticmethod', 'case'} and len(parents) > 0:
-                name = parents.pop() + '::' + name
-            return '\\'.join(parents + [name + parens])
-        return ''
+        if config.toc_object_entries_show_parents == "all":
+            if (
+                objtype in {"method", "const", "attr", "staticmethod", "case"}
+                and len(parents) > 0
+            ):
+                name = parents.pop() + "::" + name
+            return "\\".join(parents + [name + parens])
+        return ""
 
     def get_index_text(self, namespace, name):
         """
         Return the text for the index entry of the object.
         """
-        raise NotImplementedError('must be implemented in subclasses')
+        raise NotImplementedError("must be implemented in subclasses")
 
     def _is_class_member(self):
-        return (self.objtype.startswith('method') or
-                self.objtype.startswith('attr'))
+        return self.objtype.startswith("method") or self.objtype.startswith("attr")
 
     def add_target_and_index(self, name_cls, sig, signode):
-        if self.objtype == 'global':
+        if self.objtype == "global":
             namespace = None
         else:
             namespace = self.options.get(
-                'namespace', self.env.temp_data.get('php:namespace'))
+                "namespace", self.env.temp_data.get("php:namespace")
+            )
         if self._is_class_member():
-            if signode['class']:
-                prefix = namespace and namespace + NS or ''
+            if signode["class"]:
+                prefix = namespace and namespace + NS or ""
             else:
-                prefix = namespace and namespace + NS or ''
+                prefix = namespace and namespace + NS or ""
         else:
-            prefix = namespace and namespace + NS or ''
+            prefix = namespace and namespace + NS or ""
         fullname = prefix + name_cls[0]
 
         # note target
         if fullname not in self.state.document.ids:
-            signode['names'].append(fullname)
-            signode['ids'].append(fullname)
-            signode['first'] = (not self.names)
+            signode["names"].append(fullname)
+            signode["ids"].append(fullname)
+            signode["first"] = not self.names
             self.state.document.note_explicit_target(signode)
-            objects = self.env.domaindata['php']['objects']
+            objects = self.env.domaindata["php"]["objects"]
             if fullname in objects:
                 self.state_machine.reporter.warning(
-                    'duplicate object description of %s, ' % fullname +
-                    'other instance in ' +
-                    self.env.doc2path(objects[fullname][0]),
-                    line=self.lineno)
+                    "duplicate object description of %s, " % fullname
+                    + "other instance in "
+                    + self.env.doc2path(objects[fullname][0]),
+                    line=self.lineno,
+                )
             objects[fullname] = (self.env.docname, self.objtype)
 
-        if 'noindexentry' not in self.options:
+        if "noindexentry" not in self.options:
             indextext = self.get_index_text(namespace, name_cls)
             if indextext:
-                self.indexnode['entries'].append(('single', indextext,
-                                                  fullname, fullname, None))
+                self.indexnode["entries"].append(
+                    ("single", indextext, fullname, fullname, None)
+                )
 
 
 class PhpGloballevel(PhpObject):
@@ -359,10 +395,10 @@ class PhpGloballevel(PhpObject):
     """
 
     def get_index_text(self, namespace, name_cls):
-        if self.objtype == 'global':
-            return _('%s (global variable)') % name_cls[0]
+        if self.objtype == "global":
+            return _("%s (global variable)") % name_cls[0]
         else:
-            return ''
+            return ""
 
 
 class PhpNamespacelevel(PhpObject):
@@ -371,30 +407,30 @@ class PhpNamespacelevel(PhpObject):
     """
 
     def needs_arglist(self):
-        return self.objtype == 'function'
+        return self.objtype == "function"
 
     def get_signature_prefix(self, sig):
         """
         Adds class prefix for constants created inside classes
         """
-        if self.objtype == 'const':
-            return _('constant ')
-        if self.class_name and self.class_name != '':
-            return self.class_name + '::'
+        if self.objtype == "const":
+            return _("constant ")
+        if self.class_name and self.class_name != "":
+            return self.class_name + "::"
 
     def get_index_text(self, namespace, name_cls):
-        if self.objtype == 'function':
+        if self.objtype == "function":
             if not namespace:
-                return _('%s() (global function)') % name_cls[0]
-            return _('%s() (function in %s)') % (name_cls[0], namespace)
-        elif self.objtype == 'const' and self.class_name != '':
-            return _('%s (class constant)') % (name_cls[0])
-        elif self.objtype == 'const':
+                return _("%s() (global function)") % name_cls[0]
+            return _("%s() (function in %s)") % (name_cls[0], namespace)
+        elif self.objtype == "const" and self.class_name != "":
+            return _("%s (class constant)") % (name_cls[0])
+        elif self.objtype == "const":
             if not namespace:
-                return _('%s (global constant)') % (name_cls[0])
-            return _('%s (constant in %s)') % (name_cls[0], namespace)
+                return _("%s (global constant)") % (name_cls[0])
+            return _("%s (constant in %s)") % (name_cls[0], namespace)
         else:
-            return ''
+            return ""
 
 
 class PhpClasslike(PhpObject):
@@ -404,37 +440,37 @@ class PhpClasslike(PhpObject):
     """
 
     def get_signature_prefix(self, sig):
-        return self.objtype + ' '
+        return self.objtype + " "
 
     def get_index_text(self, namespace, name_cls):
-        if self.objtype == 'class':
+        if self.objtype == "class":
             if not namespace:
-                return _('%s (class)') % name_cls[0]
-            return _('%s (class in %s)') % (name_cls[0], namespace)
-        elif self.objtype == 'interface':
+                return _("%s (class)") % name_cls[0]
+            return _("%s (class in %s)") % (name_cls[0], namespace)
+        elif self.objtype == "interface":
             if not namespace:
-                return _('%s (interface)') % name_cls[0]
-            return _('%s (interface in %s)') % (name_cls[0], namespace)
-        elif self.objtype == 'trait':
+                return _("%s (interface)") % name_cls[0]
+            return _("%s (interface in %s)") % (name_cls[0], namespace)
+        elif self.objtype == "trait":
             if not namespace:
-                return _('%s (trait)') % name_cls[0]
-            return _('%s (trait in %s)') % (name_cls[0], namespace)
-        elif self.objtype == 'enum':
+                return _("%s (trait)") % name_cls[0]
+            return _("%s (trait in %s)") % (name_cls[0], namespace)
+        elif self.objtype == "enum":
             if not namespace:
-                return _('%s (enum)') % name_cls[0]
-            return _('%s (enum in %s)') % (name_cls[0], namespace)
-        elif self.objtype == 'exception':
+                return _("%s (enum)") % name_cls[0]
+            return _("%s (enum in %s)") % (name_cls[0], namespace)
+        elif self.objtype == "exception":
             return name_cls[0]
         else:
-            return ''
+            return ""
 
     def after_content(self):
-        self.env.temp_data['php:in_class'] = False
+        self.env.temp_data["php:in_class"] = False
 
     def before_content(self):
-        self.env.temp_data['php:in_class'] = True
+        self.env.temp_data["php:in_class"] = True
         if self.names:
-            self.env.temp_data['php:class'] = self.names[0][0]
+            self.env.temp_data["php:class"] = self.names[0][0]
 
 
 class PhpClassmember(PhpObject):
@@ -443,87 +479,96 @@ class PhpClassmember(PhpObject):
     """
 
     def get_signature_prefix(self, sig):
-        if self.objtype == 'attr':
-            return _('property ')
-        if self.objtype == 'staticmethod':
-            return _('static ')
-        if self.objtype == 'case':
-            return _('case ')
-        return ''
+        if self.objtype == "attr":
+            return _("property ")
+        if self.objtype == "staticmethod":
+            return _("static ")
+        if self.objtype == "case":
+            return _("case ")
+        return ""
 
     def needs_arglist(self):
-        return self.objtype == 'method'
+        return self.objtype == "method"
 
     def get_index_text(self, namespace, name_cls):
         name, cls = name_cls
 
-        if self.objtype.endswith('method') or self.objtype == 'attr' or self.objtype == 'case':
+        if (
+            self.objtype.endswith("method")
+            or self.objtype == "attr"
+            or self.objtype == "case"
+        ):
             try:
                 clsname, propname = php_rsplit(name)
             except ValueError:
                 propname = name
                 clsname = None
 
-        if self.objtype.endswith('method'):
+        if self.objtype.endswith("method"):
             if namespace and clsname is None:
-                return _('%s() (in namespace %s)') % (name, namespace)
+                return _("%s() (in namespace %s)") % (name, namespace)
             elif namespace and self.env.config.add_module_names:
-                return _('%s() (%s\\%s method)') % (propname, namespace, clsname)
+                return _("%s() (%s\\%s method)") % (propname, namespace, clsname)
             else:
-                return _('%s() (%s method)') % (propname, clsname)
-        elif self.objtype == 'attr':
+                return _("%s() (%s method)") % (propname, clsname)
+        elif self.objtype == "attr":
             if namespace and clsname is None:
-                return _('%s (in namespace %s)') % (name, namespace)
+                return _("%s (in namespace %s)") % (name, namespace)
             elif namespace and self.env.config.add_module_names:
-                return _('%s (%s\\%s property)') % (propname, namespace, clsname)
+                return _("%s (%s\\%s property)") % (propname, namespace, clsname)
             else:
-                return _('%s (%s property)') % (propname, clsname)
-        elif self.objtype == 'case':
+                return _("%s (%s property)") % (propname, clsname)
+        elif self.objtype == "case":
             if namespace and clsname is None:
-                return _('%s enum case') % (name)
+                return _("%s enum case") % (name)
             elif namespace and self.env.config.add_module_names:
-                return _('%s (%s\\%s enum case)') % (propname, namespace, clsname)
+                return _("%s (%s\\%s enum case)") % (propname, namespace, clsname)
             else:
-                return _('%s (%s enum case)') % (propname, clsname)
+                return _("%s (%s enum case)") % (propname, clsname)
         else:
-            return ''
+            return ""
 
 
 class PhpNamespace(Directive):
     """
     Directive to start a new PHP namespace, which is similar to module.
     """
+
     has_content = False
     required_arguments = 1
     optional_arguments = 0
     final_argument_whitespace = False
     option_spec = {
-        'synopsis': lambda x: x,
-        'noindex': directives.flag,
-        'deprecated': directives.flag,
+        "synopsis": lambda x: x,
+        "noindex": directives.flag,
+        "deprecated": directives.flag,
     }
 
     def run(self):
         env = self.state.document.settings.env
         namespace = self.arguments[0].strip()
-        noindex = 'noindex' in self.options
-        env.temp_data['php:namespace'] = namespace
-        env.temp_data['php:class'] = None
-        env.domaindata['php']['namespaces'][namespace] = (
-            env.docname, self.options.get('synopsis', ''),
-            'deprecated' in self.options)
+        noindex = "noindex" in self.options
+        env.temp_data["php:namespace"] = namespace
+        env.temp_data["php:class"] = None
+        env.domaindata["php"]["namespaces"][namespace] = (
+            env.docname,
+            self.options.get("synopsis", ""),
+            "deprecated" in self.options,
+        )
 
-        targetnode = nodes.target('', '', ids=['namespace-' + namespace],
-                                  ismod=True)
+        targetnode = nodes.target("", "", ids=["namespace-" + namespace], ismod=True)
         self.state.document.note_explicit_target(targetnode)
         ret = [targetnode]
 
         # the synopsis isn't printed; in fact, it is only used in the
         # modindex currently
         if not noindex:
-            indextext = _('%s (namespace)') % namespace
-            inode = addnodes.index(entries=[('single', indextext,
-                                             'namespace-' + namespace, namespace, None)])
+            indextext = _("%s (namespace)") % namespace
+            inode = addnodes.index(
+                entries=[
+                    ("single", indextext, "namespace-" + namespace, namespace, None)
+                ]
+            )
             ret.append(inode)
         return ret
 
@@ -543,10 +588,10 @@ class PhpCurrentNamespace(Directive):
     def run(self):
         env = self.state.document.settings.env
         namespace = self.arguments[0].strip()
-        if namespace == 'None':
-            env.temp_data['php:namespace'] = None
+        if namespace == "None":
+            env.temp_data["php:namespace"] = None
         else:
-            env.temp_data['php:namespace'] = namespace
+            env.temp_data["php:namespace"] = namespace
         return []
 
 
@@ -554,28 +599,29 @@ class PhpXRefRole(XRefRole):
     """
     Provides cross reference links for PHP objects
     """
+
     def process_link(self, env, refnode, has_explicit_title, title, target):
         if not has_explicit_title:
             # If the first char is '~' don't display the leading namespace & class.
-            if target.startswith('~'): # only has a meaning for the title
+            if target.startswith("~"):  # only has a meaning for the title
                 target = title[1:]
-            if title.startswith('~'):
+            if title.startswith("~"):
                 title = title[1:]
-                title = re.sub(r'^[\w\\]+::', '', title)
+                title = re.sub(r"^[\w\\]+::", "", title)
 
             if title.startswith(NS):
                 title = title[1:]
 
-        reftype = refnode.attributes['reftype']
-        if reftype == 'global':
+        reftype = refnode.attributes["reftype"]
+        if reftype == "global":
             namespace = None
             classname = None
         else:
-            namespace = env.temp_data.get('php:namespace')
-            classname = env.temp_data.get('php:class')
+            namespace = env.temp_data.get("php:namespace")
+            classname = env.temp_data.get("php:class")
 
-        refnode['php:namespace'] = namespace
-        refnode['php:class'] = classname
+        refnode["php:namespace"] = namespace
+        refnode["php:class"] = classname
 
         return title, target
 
@@ -585,20 +631,21 @@ class PhpNamespaceIndex(Index):
     Index subclass to provide the PHP namespace index.
     """
 
-    name = 'modindex'
-    localname = _('PHP Namespace Index')
-    shortname = _('namespaces')
+    name = "modindex"
+    localname = _("PHP Namespace Index")
+    shortname = _("namespaces")
 
     def generate(self, docnames=None):
         content = {}
         # list of prefixes to ignore
-        ignores = self.domain.env.config['modindex_common_prefix']
+        ignores = self.domain.env.config["modindex_common_prefix"]
         ignores = sorted(ignores, key=len, reverse=True)
         # list of all namespaces, sorted by name
-        namespaces = sorted(self.domain.data['namespaces'].items(),
-                         key=lambda x: x[0].lower())
+        namespaces = sorted(
+            self.domain.data["namespaces"].items(), key=lambda x: x[0].lower()
+        )
         # sort out collapsable namespaces
-        prev_namespace = ''
+        prev_namespace = ""
         num_toplevels = 0
         for namespace, (docname, synopsis, deprecated) in namespaces:
             if docnames and docname not in docnames:
@@ -606,15 +653,15 @@ class PhpNamespaceIndex(Index):
 
             for ignore in ignores:
                 if namespace.startswith(ignore):
-                    namespace = namespace[len(ignore):]
+                    namespace = namespace[len(ignore) :]
                     stripped = ignore
                     break
             else:
-                stripped = ''
+                stripped = ""
 
             # we stripped the whole namespace name?
             if not namespace:
-                namespace, stripped = stripped, ''
+                namespace, stripped = stripped, ""
 
             entries = content.setdefault(namespace[0].lower(), [])
 
@@ -626,16 +673,24 @@ class PhpNamespaceIndex(Index):
                     entries[-1][1] = 1
                 elif not prev_namespace.startswith(package):
                     # subnamespace without parent in list, add dummy entry
-                    entries.append([stripped + package, 1, '', '', '', '', ''])
+                    entries.append([stripped + package, 1, "", "", "", "", ""])
                 subtype = 2
             else:
                 num_toplevels += 1
                 subtype = 0
 
-            qualifier = deprecated and _('Deprecated') or ''
-            entries.append([stripped + namespace, subtype, docname,
-                            'namespace-' + stripped + namespace, '',
-                            qualifier, synopsis])
+            qualifier = deprecated and _("Deprecated") or ""
+            entries.append(
+                [
+                    stripped + namespace,
+                    subtype,
+                    docname,
+                    "namespace-" + stripped + namespace,
+                    "",
+                    qualifier,
+                    synopsis,
+                ]
+            )
             prev_namespace = namespace
 
         # apply heuristics when to collapse modindex at page load:
@@ -653,130 +708,126 @@ class PhpDomain(Domain):
     """
     PHP language domain.
     """
-    name = 'php'
-    label = 'PHP'
+
+    name = "php"
+    label = "PHP"
     object_types = {
-        'function': ObjType(_('function'), 'func', 'obj'),
-        'global': ObjType(_('global variable'), 'global', 'obj'),
-        'const': ObjType(_('const'), 'const', 'obj'),
-        'method': ObjType(_('method'), 'meth', 'obj'),
-        'class': ObjType(_('class'), 'class', 'obj'),
-        'attr': ObjType(_('attribute'), 'attr', 'obj'),
-        'exception': ObjType(_('exception'), 'exc', 'obj'),
-        'namespace': ObjType(_('namespace'), 'ns', 'obj'),
-        'interface': ObjType(_('interface'), 'interface', 'obj'),
-        'trait': ObjType(_('trait'), 'trait', 'obj'),
-        'enum': ObjType(_('enum'), 'enum', 'obj'),
-        'case': ObjType(_('case'), 'case', 'obj'),
+        "function": ObjType(_("function"), "func", "obj"),
+        "global": ObjType(_("global variable"), "global", "obj"),
+        "const": ObjType(_("const"), "const", "obj"),
+        "method": ObjType(_("method"), "meth", "obj"),
+        "class": ObjType(_("class"), "class", "obj"),
+        "attr": ObjType(_("attribute"), "attr", "obj"),
+        "exception": ObjType(_("exception"), "exc", "obj"),
+        "namespace": ObjType(_("namespace"), "ns", "obj"),
+        "interface": ObjType(_("interface"), "interface", "obj"),
+        "trait": ObjType(_("trait"), "trait", "obj"),
+        "enum": ObjType(_("enum"), "enum", "obj"),
+        "case": ObjType(_("case"), "case", "obj"),
     }
 
     directives = {
-        'function': PhpNamespacelevel,
-        'global': PhpGloballevel,
-        'const': PhpNamespacelevel,
-        'class': PhpClasslike,
-        'method': PhpClassmember,
-        'staticmethod': PhpClassmember,
-        'attr': PhpClassmember,
-        'case': PhpClassmember,
-        'exception': PhpClasslike,
-        'interface': PhpClasslike,
-        'trait': PhpClasslike,
-        'enum': PhpClasslike,
-        'namespace': PhpNamespace,
-        'currentmodule': PhpCurrentNamespace,
-        'currentnamespace': PhpCurrentNamespace,
+        "function": PhpNamespacelevel,
+        "global": PhpGloballevel,
+        "const": PhpNamespacelevel,
+        "class": PhpClasslike,
+        "method": PhpClassmember,
+        "staticmethod": PhpClassmember,
+        "attr": PhpClassmember,
+        "case": PhpClassmember,
+        "exception": PhpClasslike,
+        "interface": PhpClasslike,
+        "trait": PhpClasslike,
+        "enum": PhpClasslike,
+        "namespace": PhpNamespace,
+        "currentmodule": PhpCurrentNamespace,
+        "currentnamespace": PhpCurrentNamespace,
     }
 
     roles = {
-        'func': PhpXRefRole(fix_parens=False),
-        'global': PhpXRefRole(),
-        'class': PhpXRefRole(),
-        'exc': PhpXRefRole(),
-        'meth': PhpXRefRole(fix_parens=False),
-        'attr': PhpXRefRole(),
-        'const': PhpXRefRole(),
-        'ns': PhpXRefRole(),
-        'obj': PhpXRefRole(),
-        'interface': PhpXRefRole(),
-        'trait': PhpXRefRole(),
-        'enum': PhpXRefRole(),
-        'case': PhpXRefRole(),
+        "func": PhpXRefRole(fix_parens=False),
+        "global": PhpXRefRole(),
+        "class": PhpXRefRole(),
+        "exc": PhpXRefRole(),
+        "meth": PhpXRefRole(fix_parens=False),
+        "attr": PhpXRefRole(),
+        "const": PhpXRefRole(),
+        "ns": PhpXRefRole(),
+        "obj": PhpXRefRole(),
+        "interface": PhpXRefRole(),
+        "trait": PhpXRefRole(),
+        "enum": PhpXRefRole(),
+        "case": PhpXRefRole(),
     }
 
     initial_data = {
-        'objects': {},  # fullname -> docname, objtype
-        'namespaces': {},  # namespace -> docname, synopsis
+        "objects": {},  # fullname -> docname, objtype
+        "namespaces": {},  # namespace -> docname, synopsis
     }
     indices = [
         PhpNamespaceIndex,
     ]
 
     def clear_doc(self, docname):
-        for fullname, (fn, _l) in list(self.data['objects'].items()):
+        for fullname, (fn, _l) in list(self.data["objects"].items()):
             if fn == docname:
-                del self.data['objects'][fullname]
-        for ns, (fn, _x, _x) in list(self.data['namespaces'].items()):
+                del self.data["objects"][fullname]
+        for ns, (fn, _x, _x) in list(self.data["namespaces"].items()):
             if fn == docname:
-                del self.data['namespaces'][ns]
+                del self.data["namespaces"][ns]
 
     def merge_domaindata(self, docnames, otherdata):
-        for fullname, (fn, objtype) in otherdata['objects'].items():
+        for fullname, (fn, objtype) in otherdata["objects"].items():
             if fn in docnames:
-                self.data['objects'][fullname] = (fn, objtype)
-        for namespace, data in otherdata['namespaces'].items():
+                self.data["objects"][fullname] = (fn, objtype)
+        for namespace, data in otherdata["namespaces"].items():
             if data[0] in docnames:
-                self.data['namespaces'][namespace] = data
+                self.data["namespaces"][namespace] = data
 
-    def resolve_any_xref(self, env, fromdocname, builder,
-                         target, node, contnode):
+    def resolve_any_xref(self, env, fromdocname, builder, target, node, contnode):
         for typ in self.roles:
-            resolve = self.resolve_xref(env, fromdocname, builder,
-                                        typ, target, node, contnode)
+            resolve = self.resolve_xref(
+                env, fromdocname, builder, typ, target, node, contnode
+            )
             if resolve:
-                return [('php:%s' % typ, resolve)]
+                return [("php:%s" % typ, resolve)]
         return []
 
-    def resolve_xref(self, env, fromdocname, builder,
-                     typ, target, node, contnode):
-        if (typ == 'ns' or
-                typ == 'obj' and target in self.data['namespaces']):
-            docname, synopsis, deprecated = self.data['namespaces'].get(
-                target,
-                ('', '', '')
+    def resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
+        if typ == "ns" or typ == "obj" and target in self.data["namespaces"]:
+            docname, synopsis, deprecated = self.data["namespaces"].get(
+                target, ("", "", "")
             )
             if not docname:
                 return None
             else:
-                title = '%s%s' % (synopsis,
-                                  (deprecated and ' (deprecated)' or ''))
+                title = "%s%s" % (synopsis, (deprecated and " (deprecated)" or ""))
                 return make_refnode(
                     builder,
                     fromdocname,
                     docname,
-                    'namespace-' + target,
+                    "namespace-" + target,
                     contnode,
-                    title)
+                    title,
+                )
         else:
-            namespace = node.get('php:namespace')
-            clsname = node.get('php:class')
-            name, obj = self.find_obj(env, node, namespace, clsname,
-                                      target, typ)
+            namespace = node.get("php:namespace")
+            clsname = node.get("php:class")
+            name, obj = self.find_obj(env, node, namespace, clsname, target, typ)
             if not obj:
                 return None
             else:
-                return make_refnode(builder, fromdocname, obj[0], name,
-                                    contnode, name)
+                return make_refnode(builder, fromdocname, obj[0], name, contnode, name)
 
     def find_obj(self, env, fromdocnode, namespace, classname, name, type):
         """
         Find a PHP object for "name", using the given namespace and classname.
         """
         # strip parenthesis
-        if name[-2:] == '()':
+        if name[-2:] == "()":
             name = name[:-2]
 
-        objects = self.data['objects']
+        objects = self.data["objects"]
 
         if name.startswith(NS):
             absname = name[1:]
@@ -786,32 +837,62 @@ class PhpDomain(Domain):
             if absname not in objects and name in objects:
                 # constants/functions can be namespaced, but allow fallback to global namespace the same way as PHP does
                 name_type = objects[name][1]
-                if (name_type == 'function' or name_type == 'const') and NS not in name and '::' not in name:
+                if (
+                    (name_type == "function" or name_type == "const")
+                    and NS not in name
+                    and "::" not in name
+                ):
                     absname = name
                 else:
                     if namespace and name.startswith(namespace + NS):
-                        log_info(fromdocnode, f"Target {absname} not found - did you mean {name[len(namespace + NS):]}?")
+                        log_info(
+                            fromdocnode,
+                            f"Target {absname} not found - did you mean {name[len(namespace + NS):]}?",
+                        )
                     else:
-                        log_info(fromdocnode, f"Target {absname} not found - did you mean {NS + name}?")
-                    absname = name # fallback for BC, might be removed in the next major release
+                        log_info(
+                            fromdocnode,
+                            f"Target {absname} not found - did you mean {NS + name}?",
+                        )
+                    absname = name  # fallback for BC, might be removed in the next major release
 
         if absname in objects:
             return absname, objects[absname]
 
         # PHP reserved words are never resolved using NS and ignore them when not defined
-        if name not in ['array', 'bool', 'callable', 'false', 'float', 'int', 'iterable', 'mixed', 'never', 'null', 'numeric', 'object', 'parent', 'resource', 'self', 'static', 'string', 'true', 'void']:
+        if name not in [
+            "array",
+            "bool",
+            "callable",
+            "false",
+            "float",
+            "int",
+            "iterable",
+            "mixed",
+            "never",
+            "null",
+            "numeric",
+            "object",
+            "parent",
+            "resource",
+            "self",
+            "static",
+            "string",
+            "true",
+            "void",
+        ]:
             log_info(fromdocnode, f"Target {absname} not found")
 
         return None, None
 
     def get_objects(self):
-        for ns, info in self.data['namespaces'].items():
-            yield (ns, ns, 'namespace', info[0], 'namespace-' + ns, 0)
-        for refname, (docname, type) in self.data['objects'].items():
+        for ns, info in self.data["namespaces"].items():
+            yield (ns, ns, "namespace", info[0], "namespace-" + ns, 0)
+        for refname, (docname, type) in self.data["objects"].items():
             yield (refname, refname, type, docname, refname, 1)
 
 
 def setup(app):
     app.add_domain(PhpDomain)
 
-    return {'version': sphinx_version, 'parallel_read_safe': True}
+    return {"version": sphinx_version, "parallel_read_safe": True}
