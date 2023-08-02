@@ -56,13 +56,13 @@ def log_assert(
 php_sig_re = re.compile(
     r'''^ (public\ |protected\ |private\ )? # visibility
           (final\ |abstract\ |static\ )?    # modifiers
-          ([\w\\]+\:\:)?                    # class name(s)
-          (\$?[\w\\]+)  \s*                 # thing name
+          ((?:\\?(?!\d)\w+)\:\:)?           # class name
+          (\$?(?:\\?(?!\d)\w+)+) \s*        # thing name
           (?:
               \((.*)\)                      # optional: arguments
-              (?:\s* -> \s* (.*))?          # return annotation
+              (?: \s* -> \s* (.*))?         # return annotation
           )?
-          (?:\s* : \s* (.*))?               # backed enum type / case value
+          (?: \s* : \s* (.*))?              # backed enum type / case value
           $                                 # and nothing more
           ''', re.VERBOSE)
 
