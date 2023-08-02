@@ -70,18 +70,19 @@ php_sig_re = re.compile(
 NS = '\\'
 
 separators = {
+  'global': None,
+  'namespace': None,
+  'function': None,
+  'interface': None,
+  'class': None,
+  'trait': None,
+  'enum': None,
+  'exception': None,
+  
   'method': '::',
-  'function': NS,
-  'class': NS,
-  'namespace': NS,
-  'global': '',
   'const': '::',
   'attr': '::$',
-  'exception': '',
   'staticmethod': '::',
-  'interface': NS,
-  'trait': NS,
-  'enum': NS,
   'case': '::',
 }
 
@@ -399,7 +400,7 @@ class PhpNamespacelevel(PhpObject):
 class PhpClasslike(PhpObject):
     """
     Description of a class-like object
-    (classes, exceptions, interfaces, traits, enums).
+    (classes, interfaces, traits, enums).
     """
 
     def get_signature_prefix(self, sig):
@@ -438,7 +439,7 @@ class PhpClasslike(PhpObject):
 
 class PhpClassmember(PhpObject):
     """
-    Description of a class member (methods, attributes).
+    Description of a class member (methods, properties).
     """
 
     def get_signature_prefix(self, sig):
