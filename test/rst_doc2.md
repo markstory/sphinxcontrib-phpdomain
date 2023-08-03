@@ -8,7 +8,7 @@ namespace ``Imagine\Draw``
 
 .. php:class:: DrawerInterface
 
-Instance of this interface is returned by :php:meth:`\\Imagine\\Image\\ImageInterface::draw`.
+Instance of this interface is returned by :php:method:`\\Imagine\\Image\\ImageInterface::draw`.
 
 .. php:method:: arc(PointInterface $center, BoxInterface $size, $start, $end, Color $color)
 

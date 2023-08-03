@@ -186,11 +186,11 @@ matching directive is found:
    
      :php:class:`LibraryName\\ClassName`
 
-.. rst:role:: php:meth
+.. rst:role:: php:method
 
    Reference a method of a class/interface/trait::
    
-     :php:meth:`DateTime::setDate`
+     :php:method:`DateTime::setDate`
 
 .. rst:role:: php:attr
 

@@ -73,10 +73,10 @@ From other place, you can create cross reference like that:
 
 .. code:: rst
 
-   You can modify a DateTime's date using :php:meth:`DateTime::setDate`.
+   You can modify a DateTime's date using :php:method:`DateTime::setDate`.
 
 Result
 -----------
 
-You can modify a DateTime's date using :php:meth:`DateTime::setDate`.
+You can modify a DateTime's date using :php:method:`DateTime::setDate`.
 

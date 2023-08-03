@@ -156,29 +156,29 @@ Test Case - Global symbols with no namespaces
 
 :php:class:`DateTime`
 
-:php:meth:`DateTime::setTime()`
+:php:method:`DateTime::setTime()`
 
-:php:meth:`DateTime::getLastErrors()`
+:php:method:`DateTime::getLastErrors()`
 
-:php:meth:`DateTime::setDate()`
+:php:method:`DateTime::setDate()`
 
 :php:const:`DateTime::ATOM`
 
 :php:attr:`DateTime::$testattr`
 
-:php:meth:`OtherClass::update`
+:php:method:`OtherClass::update`
 
 :php:attr:`OtherClass::$nonIndentedAttribute`
 
 :php:const:`OtherClass::NO_INDENT`
 
-:php:meth:`OtherClass2::update()`
+:php:method:`OtherClass2::update()`
 
 :php:interface:`DateTimeInterface`
 
-:php:meth:`DateTimeInterface::setTime()`
+:php:method:`DateTimeInterface::setTime()`
 
-:php:meth:`~DateTimeInterface::setDate()`
+:php:method:`~DateTimeInterface::setDate()`
 
 :php:const:`DateTimeInterface::ATOM`
 
@@ -188,14 +188,14 @@ Test Case - Global symbols with no namespaces
 
 :php:trait:`LogTrait`
 
-:php:meth:`LogTrait::log()`
+:php:method:`LogTrait::log()`
 
 Test Case - Prefix less links
 -----------------------------
 
 The following links should not be prefixed with a classname.
 
-:php:meth:`~DateTime::setDate()`
+:php:method:`~DateTime::setDate()`
 
 :php:attr:`~DateTime::$testattr`
 
@@ -326,19 +326,19 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:const:`NamespaceClass::NAMESPACE_CONST`
 
-:php:meth:`NamespaceClass2::update()`
+:php:method:`NamespaceClass2::update()`
 
 :php:class:`LibraryClassFinal`
 
-:php:meth:`LibraryClassFinal::firstMethod`
+:php:method:`LibraryClassFinal::firstMethod`
 
-:php:meth:`LibraryClassFinal::secondMethod`
+:php:method:`LibraryClassFinal::secondMethod`
 
-:php:meth:`LibraryClassFinal::thirdMethod`
+:php:method:`LibraryClassFinal::thirdMethod`
 
-:php:meth:`LibraryClassFinal::fourthMethod`
+:php:method:`LibraryClassFinal::fourthMethod`
 
-:php:meth:`LibraryClassFinal::fifthMethod`
+:php:method:`LibraryClassFinal::fifthMethod`
 
 :php:interface:`LibraryInterface`
 
@@ -346,7 +346,7 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:trait:`TemplateTrait`
 
-:php:meth:`TemplateTrait::render()`
+:php:method:`TemplateTrait::render()`
 
 Test Case - Links with prefix trimming
 --------------------------------------
@@ -585,9 +585,9 @@ Links to Advanced Enumeration Example
 
 :php:case:`Suit::Spades`
 
-:php:meth:`Suit::color`
+:php:method:`Suit::color`
 
-:php:meth:`Suit::values`
+:php:method:`Suit::values`
 
 :php:const:`Suit::Roses`
 

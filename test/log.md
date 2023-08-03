@@ -22,14 +22,14 @@
 
 - {php:class}`Foo\Aa`
 
-- {php:meth}`Foo\A::simplifyy`
+- {php:method}`Foo\A::simplifyy`
 
 :::{php:namespace} Foo
 :::
 
-- {php:meth}`Foo\A::simplify`
+- {php:method}`Foo\A::simplify`
 
 :::{php:namespace} Fooo
 :::
 
-- {php:meth}`Foo\A::simplify`
+- {php:method}`Foo\A::simplify`

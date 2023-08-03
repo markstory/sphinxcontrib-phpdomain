@@ -749,7 +749,7 @@ class PhpDomain(Domain):
         "function": ObjType(_("function"), "function", "obj"),
         "global": ObjType(_("global variable"), "global", "obj"),
         "const": ObjType(_("const"), "const", "obj"),
-        "method": ObjType(_("method"), "meth", "obj"),
+        "method": ObjType(_("method"), "method", "obj"),
         "class": ObjType(_("class"), "class", "obj"),
         "attr": ObjType(_("attribute"), "attr", "obj"),
         "exception": ObjType(_("exception"), "exc", "obj"),
@@ -784,7 +784,8 @@ class PhpDomain(Domain):
         "global": PhpXRefRole(),
         "class": PhpXRefRole(),
         "exc": PhpXRefRole(),
-        "meth": PhpXRefRole(fix_parens=False),
+        "method": PhpXRefRole(fix_parens=False),
+        "meth": PhpXRefRole(fix_parens=False),  # deprecated, use "method"
         "attr": PhpXRefRole(),
         "const": PhpXRefRole(),
         "namespace": PhpXRefRole(),
