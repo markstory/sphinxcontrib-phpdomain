@@ -79,6 +79,7 @@ separators = {
     "exception": None,
     "method": "::",
     "const": "::",
+    "property": "::$",
     "attr": "::$",
     "staticmethod": "::",
     "case": "::",
@@ -367,7 +368,8 @@ class PhpObject(ObjectDescription):
             return name + parens
         if config.toc_object_entries_show_parents == "all":
             if (
-                objtype in {"method", "const", "attr", "staticmethod", "case"}
+                objtype
+                in {"method", "const", "property", "attr", "staticmethod", "case"}
                 and len(parents) > 0
             ):
                 name = parents.pop() + "::" + name
@@ -381,7 +383,11 @@ class PhpObject(ObjectDescription):
         raise NotImplementedError("must be implemented in subclasses")
 
     def _is_class_member(self):
-        return self.objtype.startswith("method") or self.objtype.startswith("attr")
+        return (
+            self.objtype.startswith("method")
+            or self.objtype.startswith("property")
+            or self.objtype.startswith("attr")
+        )
 
     def add_target_and_index(self, name_cls, sig, signode):
         if self.objtype == "global":
@@ -513,7 +519,7 @@ class PhpClassmember(PhpObject):
     """
 
     def get_signature_prefix(self, sig):
-        if self.objtype == "attr":
+        if self.objtype == "property" or self.objtype == "attr":
             return _("property ")
         if self.objtype == "staticmethod":
             return _("static ")
@@ -529,6 +535,7 @@ class PhpClassmember(PhpObject):
 
         if (
             self.objtype.endswith("method")
+            or self.objtype == "property"
             or self.objtype == "attr"
             or self.objtype == "case"
         ):
@@ -545,7 +552,7 @@ class PhpClassmember(PhpObject):
                 return _("%s() (%s\\%s method)") % (propname, namespace, clsname)
             else:
                 return _("%s() (%s method)") % (propname, clsname)
-        elif self.objtype == "attr":
+        elif self.objtype == "property" or self.objtype == "attr":
             if namespace and clsname is None:
                 return _("%s (in namespace %s)") % (name, namespace)
             elif namespace and self.env.config.add_module_names:
@@ -751,6 +758,7 @@ class PhpDomain(Domain):
         "const": ObjType(_("const"), "const", "obj"),
         "method": ObjType(_("method"), "method", "obj"),
         "class": ObjType(_("class"), "class", "obj"),
+        "property": ObjType(_("attribute"), "property", "obj"),
         "attr": ObjType(_("attribute"), "attr", "obj"),
         "exception": ObjType(_("exception"), "exc", "obj"),
         "namespace": ObjType(_("namespace"), "namespace", "obj"),
@@ -767,7 +775,8 @@ class PhpDomain(Domain):
         "class": PhpClasslike,
         "method": PhpClassmember,
         "staticmethod": PhpClassmember,  # deprecated, use "method" with "static" modifier, methods in PHP are exclusively static or non-static
-        "attr": PhpClassmember,
+        "property": PhpClassmember,
+        "attr": PhpClassmember,  # deprecated, use "property"
         "case": PhpClassmember,
         "exception": PhpClasslike,  # deprecated, use "class", exceptions in PHP are regular classes
         "interface": PhpClasslike,
@@ -786,6 +795,7 @@ class PhpDomain(Domain):
         "exc": PhpXRefRole(),
         "method": PhpXRefRole(fix_parens=False),
         "meth": PhpXRefRole(fix_parens=False),  # deprecated, use "method"
+        "property": PhpXRefRole(),
         "attr": PhpXRefRole(),
         "const": PhpXRefRole(),
         "namespace": PhpXRefRole(),

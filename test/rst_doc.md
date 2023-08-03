@@ -59,9 +59,9 @@ Classes
 
         Y-m-d\TH:i:sP
 
-    .. php:attr:: testattr
+    .. php:property:: testprop
 
-        Value of some attribute
+        Value of some property
 
 .. php:class:: OtherClass
 
@@ -71,9 +71,9 @@ Classes
 
     Update something.
 
-.. php:attr:: nonIndentedAttribute
+.. php:property:: nonIndentedProperty
 
-    This attribute wasn't indented
+    This property wasn't indented
 
 .. php:const:: NO_INDENT
 
@@ -110,9 +110,9 @@ Interfaces
 
         Y-m-d\TH:i:sP
 
-    .. php:attr:: testattr
+    .. php:property:: testprop
 
-        Value of some attribute
+        Value of some property
 
 .. php:interface:: OtherInterface
 
@@ -164,11 +164,11 @@ Test Case - Global symbols with no namespaces
 
 :php:const:`DateTime::ATOM`
 
-:php:attr:`DateTime::$testattr`
+:php:property:`DateTime::$testprop`
 
 :php:method:`OtherClass::update`
 
-:php:attr:`OtherClass::$nonIndentedAttribute`
+:php:property:`OtherClass::$nonIndentedProperty`
 
 :php:const:`OtherClass::NO_INDENT`
 
@@ -182,7 +182,7 @@ Test Case - Global symbols with no namespaces
 
 :php:const:`DateTimeInterface::ATOM`
 
-:php:attr:`DateTimeInterface::$testattr`
+:php:property:`DateTimeInterface::$testprop`
 
 :php:interface:`OtherInterface`
 
@@ -197,7 +197,7 @@ The following links should not be prefixed with a classname.
 
 :php:method:`~DateTime::setDate()`
 
-:php:attr:`~DateTime::$testattr`
+:php:property:`~DateTime::$testprop`
 
 
 Namespaced elements
@@ -228,7 +228,7 @@ Namespaced elements
 
         Test constant
 
-    .. php:attr:: property
+    .. php:property:: property
 
         A property!
 
@@ -240,7 +240,7 @@ Namespaced elements
 
     A normal instance method.
 
-.. php:attr:: property
+.. php:property:: property
 
     A property
 
@@ -312,7 +312,7 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:function:`LibraryClass::instanceMethod`
 
-:php:attr:`LibraryClass::$property`
+:php:property:`LibraryClass::$property`
 
 :php:const:`LibraryClass::TEST_CONST`
 
@@ -322,7 +322,7 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:function:`NamespaceClass::firstMethod`
 
-:php:attr:`NamespaceClass::$property`
+:php:property:`NamespaceClass::$property`
 
 :php:const:`NamespaceClass::NAMESPACE_CONST`
 
@@ -365,7 +365,7 @@ All of the following links should not be prefixed with a classname.
 
 :php:const:`~LibraryClass::TEST_CONST`
 
-:php:attr:`~LibraryClass::$property`
+:php:property:`~LibraryClass::$property`
 
 
 Test Case - global access
@@ -381,9 +381,9 @@ Test Case - global access
 
 :php:function:`in_array()`
 
-:php:attr:`\\LibraryName\\LibraryClass::$property`
+:php:property:`\\LibraryName\\LibraryClass::$property`
 
-:php:attr:`~\\LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
+:php:property:`~\\LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
 
 :php:const:`\\LibraryName\\LibraryClass::TEST_CONST`
 

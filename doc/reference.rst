@@ -103,7 +103,7 @@ Each directive populates the index, and or the namespace index.
 
 .. rst:directive:: .. php:class:: name
 
-   Describes a class.  Methods, attributes, and constants belonging to the class
+   Describes a class.  Methods, properties, and constants belonging to the class
    should be inside this directive's body::
 
         .. php:class:: MyClass
@@ -115,7 +115,7 @@ Each directive populates the index, and or the namespace index.
            Method description
 
 
-   Attributes, methods and constants don't need to be nested.  They can also just 
+   Properties, methods and constants don't need to be nested.  They can also just 
    follow the class declaration::
 
         .. php:class:: MyClass
@@ -128,7 +128,7 @@ Each directive populates the index, and or the namespace index.
         
 
    .. seealso:: :rst:dir:`php:method`
-                :rst:dir:`php:attr`
+                :rst:dir:`php:property`
                 :rst:dir:`php:const`
 
 .. rst:directive:: .. php:method:: name(signature)
@@ -145,9 +145,9 @@ Each directive populates the index, and or the namespace index.
         
            This is an instance method.
 
-.. rst:directive:: .. php:attr:: name
+.. rst:directive:: .. php:property:: name
 
-   Describe an property/attribute on a class.
+   Describe a property on a class.
 
 Cross Referencing
 =================
@@ -192,11 +192,11 @@ matching directive is found:
    
      :php:method:`DateTime::setDate`
 
-.. rst:role:: php:attr
+.. rst:role:: php:property
 
    Reference a property on an object::
    
-      :php:attr:`ClassName::$propertyName`
+      :php:property:`ClassName::$propertyName`
 
 .. rst:role:: php:interface
 
