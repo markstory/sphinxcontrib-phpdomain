@@ -28,7 +28,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "sphinxcontrib-phpdomain"
-copyright = "2011, Mark Story"
+copyright = "2011 - 2023, Mark Story and Michael Voříšek"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -169,7 +169,7 @@ latex_documents = [
         "index",
         "sphinxcontrib-phpdomain.tex",
         "sphinxcontrib-phpdomain Documentation",
-        "Mark Story",
+        "Mark Story and Michael Voříšek",
         "manual",
     ),
 ]
@@ -201,7 +201,7 @@ man_pages = [
         "index",
         "sphinxcontrib-phpdomain",
         "sphinxcontrib-phpdomain Documentation",
-        ["Mark Story"],
+        ["Mark Story and Michael Voříšek"],
         1,
     )
 ]

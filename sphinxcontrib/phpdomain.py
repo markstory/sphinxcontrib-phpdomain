@@ -1,7 +1,7 @@
 """
     Sphinx PHP domain.
 
-    :copyright: Copyright 2023 by Mark Story
+    :copyright: Copyright 2011 - 2023 by Mark Story and Michael Voříšek
     :license: BSD, see LICENSE for details.
 """
 import re

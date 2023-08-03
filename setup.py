@@ -33,7 +33,7 @@ setup(
     url="https://github.com/markstory/sphinxcontrib-phpdomain",
     download_url="http://pypi.python.org/pypi/sphinxcontrib-phpdomain",
     license="BSD",
-    author="Mark Story",
+    author="Mark Story and Michael Voříšek",
     author_email="mark@mark-story.com",
     description="Sphinx extension to enable documenting PHP code",
     long_description=long_desc,
