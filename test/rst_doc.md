@@ -163,17 +163,17 @@ Test Case - Global symbols with no namespaces
 
 :php:class:`DateTime`
 
-:php:func:`DateTime::setTime()`
+:php:meth:`DateTime::setTime()`
 
-:php:func:`DateTime::getLastErrors()`
+:php:meth:`DateTime::getLastErrors()`
 
-:php:func:`DateTime::setDate()`
+:php:meth:`DateTime::setDate()`
 
-:php:func:`DateTime::ATOM`
+:php:const:`DateTime::ATOM`
 
-:php:func:`DateTime::$testattr`
+:php:attr:`DateTime::$testattr`
 
-:php:func:`OtherClass::update`
+:php:meth:`OtherClass::update`
 
 :php:attr:`OtherClass::$nonIndentedAttribute`
 
@@ -185,26 +185,26 @@ Test Case - Global symbols with no namespaces
 
 :php:interface:`DateTimeInterface`
 
-:php:func:`DateTimeInterface::setTime()`
+:php:meth:`DateTimeInterface::setTime()`
 
-:php:func:`~DateTimeInterface::setDate()`
+:php:meth:`~DateTimeInterface::setDate()`
 
-:php:func:`DateTimeInterface::ATOM`
+:php:const:`DateTimeInterface::ATOM`
 
-:php:func:`DateTimeInterface::$testattr`
+:php:attr:`DateTimeInterface::$testattr`
 
-:php:func:`OtherInterface`
+:php:interface:`OtherInterface`
 
 :php:trait:`LogTrait`
 
-:php:func:`LogTrait::log()`
+:php:meth:`LogTrait::log()`
 
 Test Case - Prefix less links
 -----------------------------
 
 The following links should not be prefixed with a classname.
 
-:php:func:`~DateTime::setDate()`
+:php:meth:`~DateTime::setDate()`
 
 :php:attr:`~DateTime::$testattr`
 
@@ -369,7 +369,7 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:trait:`TemplateTrait`
 
-:php:func:`TemplateTrait::render()`
+:php:meth:`TemplateTrait::render()`
 
 Test Case - Links with prefix trimming
 --------------------------------------
