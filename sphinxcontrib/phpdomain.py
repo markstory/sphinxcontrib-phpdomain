@@ -218,48 +218,81 @@ class PhpObject(ObjectDescription):
         if m is None:
             throw_if_false(signode, False, "Invalid signature")
 
-        visibility, modifiers, name_prefix, name, arglist, retann, enumtype = m.groups()
+        visibility, modifiers, classname, name, arglist, retann, enumtype = m.groups()
 
-        if not name_prefix:
-            name_prefix = ""
-
-        # determine namespace and class name (if applicable), as well as full name
-        namespace = self.options.get(
+        # parse & resolve classname and name
+        env_namespace = self.options.get(
             "namespace", self.env.temp_data.get("php:namespace")
         )
+        env_class = self.env.temp_data.get("php:class")
         separator = separators[self.objtype]
+        if (
+            self.objtype == "const"
+            and not classname
+            and (not env_class or name.startswith(NS))
+        ):
+            separator = None
+        type_in_class = separator != None
 
-        if "::" in name_prefix:
-            classname = name_prefix.rstrip("::")
+        if not classname:
+            # throw_if_false(signode, not name.startswith('$'))
+            if name.startswith("$"):
+                name = name[1:]
+            if type_in_class:
+                throw_if_false(signode, env_class, "In-class type requires class")
+                classname = NS + env_class
+            else:
+                classname = name
+                name = None
         else:
-            classname = self.env.temp_data.get("php:class")
+            throw_if_false(
+                signode, type_in_class, "Unexpected name in non in-class type"
+            )
+            throw_if_false(
+                signode,
+                classname.endswith("::"),
+                "Separator between class and name is required",
+            )
+            classname = classname[:-2]
+            # throw_if_false(signode, name.startswith('$') == (separator and separator.endswith('$'))) # not strictly needed
+            if name.startswith("$"):
+                name = name[1:]
 
         if self.objtype == "global":
-            namespace = None
+            name = "$" + classname
             classname = None
+        elif classname.startswith(NS):
+            classname = classname[1:]
+        elif env_namespace:
+            classname = env_namespace + NS + classname
+
+        if not type_in_class and self.objtype != "global":
+            name = classname.split(NS)[-1]
+            classname = ""
+        elif classname and env_namespace and classname.startswith(env_namespace + NS):
+            classname = classname[len(env_namespace + NS) :]
+
+        if not classname:
             fullname = name
+        elif not name:
+            fullname = classname
         else:
-            if name_prefix:
-                fullname = name_prefix + name
+            fullname = classname + separator + name
 
-            # Currently in a class, but not creating another class,
-            elif classname and not self.objtype in [
-                "class",
-                "exception",
-                "interface",
-                "trait",
-                "enum",
-                "function",
-            ]:
-                if not self.env.temp_data["php:in_class"]:
-                    name_prefix = classname + separator
-
-                fullname = classname + separator + name
+        name_prefix = classname
+        if not name_prefix:
+            name_prefix = None
+        # elif type_in_class and not self.env.temp_data['php:in_class']:
+        elif type_in_class:
+            if not self.env.temp_data.get("php:in_class", False):
+                name_prefix = name_prefix + separator
             else:
-                classname = ""
-                fullname = name
+                name_prefix = None
 
-        signode["namespace"] = namespace
+        print([env_namespace, classname, name, fullname, name_prefix])
+        print()
+
+        signode["namespace"] = env_namespace
         signode["class"] = self.class_name = classname
         signode["fullname"] = fullname
 
@@ -275,16 +308,16 @@ class PhpObject(ObjectDescription):
             signode += addnodes.desc_annotation(sig_prefix, sig_prefix)
 
         if name_prefix:
-            if namespace and not self.env.temp_data["php:in_class"]:
-                name_prefix = namespace + NS + name_prefix
+            if env_namespace and not self.env.temp_data["php:in_class"]:
+                name_prefix = env_namespace + NS + name_prefix
             signode += addnodes.desc_addname(name_prefix, name_prefix)
 
         elif (
-            namespace
+            env_namespace
             and not self.env.temp_data.get("php:in_class", False)
             and self.env.config.add_module_names
         ):
-            nodetext = namespace + NS
+            nodetext = env_namespace + NS
             signode += addnodes.desc_addname(nodetext, nodetext)
 
         signode += addnodes.desc_name(name, name)
