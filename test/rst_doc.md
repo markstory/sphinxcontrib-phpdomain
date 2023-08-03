@@ -302,7 +302,7 @@ Test Case - not including namespace
 
 Within a namespace context you don't need to include the namespace in links.
 
-:php:ns:`LibraryName`
+:php:namespace:`LibraryName`
 
 :php:func:`namespaced_function()`
 
@@ -416,9 +416,9 @@ Nested namespaces
 Test Case - Test subpackage links
 ---------------------------------
 
-:php:ns:`LibraryName\\SubPackage`
+:php:namespace:`LibraryName\\SubPackage`
 
-:php:ns:`\\LibraryName\\SubPackage`
+:php:namespace:`\\LibraryName\\SubPackage`
 
 :php:class:`SubpackageClass`
 

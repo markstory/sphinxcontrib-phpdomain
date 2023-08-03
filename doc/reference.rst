@@ -155,12 +155,12 @@ Cross Referencing
 The following roles refer to php objects and are links are generated if a 
 matching directive is found:
 
-.. rst:role:: php:ns
+.. rst:role:: php:namespace
 
    Reference a namespace. Nested namespaces need to be separated by two \\ due 
    to the syntax of ReST::
    
-      .. php:ns:`LibraryName\\SubPackage` will work correctly.
+      .. php:namespace:`LibraryName\\SubPackage` will work correctly.
 
 .. rst:role:: php:func
 

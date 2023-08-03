@@ -753,7 +753,7 @@ class PhpDomain(Domain):
         "class": ObjType(_("class"), "class", "obj"),
         "attr": ObjType(_("attribute"), "attr", "obj"),
         "exception": ObjType(_("exception"), "exc", "obj"),
-        "namespace": ObjType(_("namespace"), "ns", "obj"),
+        "namespace": ObjType(_("namespace"), "namespace", "obj"),
         "interface": ObjType(_("interface"), "interface", "obj"),
         "trait": ObjType(_("trait"), "trait", "obj"),
         "enum": ObjType(_("enum"), "enum", "obj"),
@@ -786,7 +786,8 @@ class PhpDomain(Domain):
         "meth": PhpXRefRole(fix_parens=False),
         "attr": PhpXRefRole(),
         "const": PhpXRefRole(),
-        "ns": PhpXRefRole(),
+        "namespace": PhpXRefRole(),
+        "ns": PhpXRefRole(),  # deprecated, use "namespace"
         "obj": PhpXRefRole(),
         "interface": PhpXRefRole(),
         "trait": PhpXRefRole(),
@@ -828,7 +829,12 @@ class PhpDomain(Domain):
         return []
 
     def resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
-        if typ == "ns" or typ == "obj" and target in self.data["namespaces"]:
+        if (
+            typ == "namespace"
+            or typ == "ns"
+            or typ == "obj"
+            and target in self.data["namespaces"]
+        ):
             docname, synopsis, deprecated = self.data["namespaces"].get(
                 target, ("", "", "")
             )
