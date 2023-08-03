@@ -859,7 +859,7 @@ class PhpDomain(Domain):
         if absname in objects:
             return absname, objects[absname]
 
-        # PHP reserved words are never resolved using NS and ignore them when not defined
+        # PHP reserved keywords are never resolved using NS and ignore them when not defined
         if name not in [
             "array",
             "bool",
@@ -871,7 +871,6 @@ class PhpDomain(Domain):
             "mixed",
             "never",
             "null",
-            "numeric",
             "object",
             "parent",
             "resource",
