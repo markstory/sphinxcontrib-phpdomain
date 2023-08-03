@@ -23,10 +23,10 @@ from sphinx import __version__ as sphinx_version
 
 def log_info(fromdocnode, message: str):
     """
-    Log informative message. Should have no affect on exit code.
+    Log informative message. Should have no effect on exit code.
     """
     logger = logging.getLogger(__name__)
-    logger.info(f"[phpdomain.info] {message}", location=fromdocnode)
+    logger.info(f"[phpdomain] {message}", location=fromdocnode)
 
 
 def log_warning(fromdocnode, message: str):
@@ -34,32 +34,32 @@ def log_warning(fromdocnode, message: str):
     Log warning. Should set exit code to non-zero.
     """
     logger = logging.getLogger(__name__)
-    logger.warning(f"[phpdomain.warning] {message}", location=fromdocnode)
+    logger.warning(f"[phpdomain] {message}", location=fromdocnode, type="phpdomain")
 
 
-#
-def log_assert(fromdocnode, value: bool):
+def throw_if_false(fromdocnode, value, message: str):
     """
-    Log assertion. Should set exit code to non-zero.
+    Log warning if the value is not true and throw ValueError. Should set exit code to non-zero.
     """
     if not value:
-        caller = inspect.getframeinfo(inspect.stack()[1][0])
-        logger = logging.getLogger(__name__)
-        logger.warning(f"[phpdomain.assert] line {caller.lineno}", location=fromdocnode)
+        log_warning(fromdocnode, message)
+        raise ValueError
 
 
 php_sig_re = re.compile(
-    r"""^ (public\ |protected\ |private\ )? # visibility
-          (final\ |abstract\ |static\ )?    # modifiers
-          ((?:\\?(?!\d)\w+)\:\:)?           # class name
-          (\$?(?:\\?(?!\d)\w+)+) \s*        # thing name
-          (?:
-              \((.*)\)                      # optional: arguments
-              (?: \s* -> \s* (.*))?         # return annotation
-          )?
-          (?: \s* : \s* (.*))?              # backed enum type / case value
-          $                                 # and nothing more
-          """,
+    r"""
+    ^
+    (public\ |protected\ |private\ )? # visibility
+    (final\ |abstract\ |static\ )?    # modifiers
+    ((?:\\?(?!\d)\w+)\:\:)?           # class name
+    (\$?(?:\\?(?!\d)\w+)+) \s*        # thing name
+    (?:
+        \((.*)\)                      # optional: arguments
+        (?: \s* -> \s* (.*))?         # return annotation
+    )?
+    (?: \s* : \s* (.*))?              # backed enum type / case value
+    $                                 # and nothing more
+    """,
     re.VERBOSE,
 )
 
@@ -214,8 +214,7 @@ class PhpObject(ObjectDescription):
         """
         m = php_sig_re.match(sig)
         if m is None:
-            log_warning(signode, "Invalid signature: " + sig)
-            raise ValueError
+            throw_if_false(signode, False, "Invalid signature")
 
         visibility, modifiers, name_prefix, name, arglist, retann, enumtype = m.groups()
 
@@ -847,12 +846,12 @@ class PhpDomain(Domain):
                     if namespace and name.startswith(namespace + NS):
                         log_info(
                             fromdocnode,
-                            f"Target {absname} not found - did you mean {name[len(namespace + NS):]}?",
+                            f"Target {absname} not found - did you mean to write {name[len(namespace + NS):]}?",
                         )
                     else:
                         log_info(
                             fromdocnode,
-                            f"Target {absname} not found - did you mean {NS + name}?",
+                            f"Target {absname} not found - did you mean to write {NS + name}?",
                         )
                     absname = name  # fallback for BC, might be removed in the next major release
 

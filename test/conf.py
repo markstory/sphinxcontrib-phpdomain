@@ -9,9 +9,9 @@ extensions = [
 
 myst_enable_extensions = ["colon_fence"]
 
-source_suffix = ".rst"
+source_suffix = ".md"
 master_doc = "index"
 
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "log.md"]
 
 html_theme = "default"

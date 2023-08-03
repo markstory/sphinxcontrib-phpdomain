@@ -40,10 +40,14 @@ jobs:
       run: |
         cd test
         find . -name '*.html' -exec rm {} \;
-        make html SPHINXOPTS='-W' | tee log.txt
+
+        sed -i 's~, "log\.md"~~' conf.py
+        make html SPHINXOPTS='' 2>&1 | tee log.txt
+        git restore conf.py
+
         (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
         (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
-        sed -i -r 's~.*/(test/.* \[phpdomain)~\1~;t;d' log.txt
+        sed -i -r 's~.*/(test/)~\1~;t;d' log.txt
 
     - name: Apply Coding Style
       if: matrix.python == '3.11'
@@ -68,6 +72,15 @@ jobs:
         commit_user_name: Bot
         commit_user_email: bot@example.com
         commit_author: Bot <bot@example.com>
+
+    - name: Build Unit Tests with '-W' option
+      run: |
+        cd test
+        make html SPHINXOPTS='-W'
+
+        sed -i 's~, "log\.md"~~' conf.py
+        ! make html SPHINXOPTS='-W' || (echo 'Unexpected zero exit code'; false)
+        git restore conf.py
 
     - name: Build Unit Tests with toc show_parents=hide
       run: |
