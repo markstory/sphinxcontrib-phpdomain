@@ -318,8 +318,6 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:class:`OtherClass`
 
-:php:class:`ThirdClass`
-
 :php:class:`NamespaceClass`
 
 :php:func:`NamespaceClass::firstMethod`

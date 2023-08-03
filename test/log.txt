@@ -9,7 +9,7 @@ test/log.md:35: [phpdomain] Target Fooo\Foo\A::simplify not found - did you mean
 test/ns.md:59: [phpdomain] Target A::simplify not found
 test/ns.md:69: [phpdomain] Target A2::simplify not found
 test/ns.md:74: [phpdomain] Target Bar2\A::simplify not found
-test/rst_doc.md:470: [phpdomain] Target OtherLibrary\int|string|ReturnedClass|\LibraryName\SubPackage\SubpackageInterface|null not found
+test/rst_doc.md:468: [phpdomain] Target OtherLibrary\int|string|ReturnedClass|\LibraryName\SubPackage\SubpackageInterface|null not found
 test/rst_doc2.md:11: [phpdomain] Target Imagine\Image\ImageInterface::draw not found
 test/rst_doc2.md:17: [phpdomain] Target Imagine\Image\PointInterface not found
 test/rst_doc2.md:17: [phpdomain] Target Imagine\Image\BoxInterface not found

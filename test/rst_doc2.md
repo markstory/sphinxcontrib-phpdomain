@@ -27,14 +27,6 @@ Instance of this interface is returned by :php:meth:`\\Imagine\\Image\\ImageInte
 Re-used namespace
 =================
 
-.. php:currentmodule:: LibraryName
-
-No indexing errors or links should point to this namespace.
-
-.. php:class:: ThirdClass
-
-    Another class in a currentmodule block
-
 .. php:currentnamespace:: LibraryName
 
 No indexing errors or links should point to this namespace.

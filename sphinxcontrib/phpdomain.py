@@ -774,7 +774,7 @@ class PhpDomain(Domain):
         "trait": PhpClasslike,
         "enum": PhpClasslike,
         "namespace": PhpNamespace,
-        "currentmodule": PhpCurrentNamespace,
+        "currentmodule": PhpCurrentNamespace,  # deprecated, use "currentnamespace"
         "currentnamespace": PhpCurrentNamespace,
     }
 
