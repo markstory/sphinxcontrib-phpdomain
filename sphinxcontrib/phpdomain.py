@@ -769,7 +769,7 @@ class PhpDomain(Domain):
         "staticmethod": PhpClassmember,  # deprecated, use "method" with "static" modifier, methods in PHP are exclusively static or non-static
         "attr": PhpClassmember,
         "case": PhpClassmember,
-        "exception": PhpClasslike,
+        "exception": PhpClasslike,  # deprecated, use "class", exceptions in PHP are regular classes
         "interface": PhpClasslike,
         "trait": PhpClasslike,
         "enum": PhpClasslike,

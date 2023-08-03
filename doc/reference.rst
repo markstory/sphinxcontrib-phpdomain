@@ -34,11 +34,6 @@ Each directive populates the index, and or the namespace index.
 
    This directive declares a new PHP constant, you can also used it nested 
    inside a class directive to create class constants.
-   
-.. rst:directive:: .. php:exception:: name
-
-   This directive declares a new Exception in the current namespace. The 
-   signature can include constructor arguments.
 
 .. rst:directive:: .. php:interface:: name
 
@@ -202,10 +197,6 @@ matching directive is found:
    Reference a property on an object::
    
       :php:attr:`ClassName::$propertyName`
-
-.. rst:role:: php:exc
-
-   Reference an exception.  A namespaced name may be used.
 
 .. rst:role:: php:interface
 

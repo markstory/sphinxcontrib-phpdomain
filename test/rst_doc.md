@@ -83,13 +83,6 @@ Classes
 
     A method without explicitly declared class block.
 
-Exceptions
-==========
-
-.. php:exception:: InvalidArgumentException
-
-    Throw when you get an argument that is bad.
-
 Interfaces
 ==========
 
@@ -181,8 +174,6 @@ Test Case - Global symbols with no namespaces
 
 :php:meth:`OtherClass2::update()`
 
-:php:exc:`InvalidArgumentException`
-
 :php:interface:`DateTimeInterface`
 
 :php:meth:`DateTimeInterface::setTime()`
@@ -224,12 +215,6 @@ Namespaced elements
 .. php:const:: NS_CONST
 
        A constant in a namespace
-
-
-.. php:exception:: NamespaceException
-
-    This exception is in a namespace.
-
 
 .. php:class:: LibraryClass
 
@@ -361,8 +346,6 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:func:`LibraryInterface::instanceMethod`
 
-:php:exc:`NamespaceException`
-
 :php:trait:`TemplateTrait`
 
 :php:meth:`TemplateTrait::render()`
@@ -377,8 +360,6 @@ All of the following links should not be prefixed with a namespace.
 :php:class:`~LibraryClass`
 
 :php:trait:`~TemplateTrait`
-
-:php:exc:`~NamespaceException`
 
 All of the following links should not be prefixed with a classname.
 
@@ -426,10 +407,6 @@ Nested namespaces
 
 .. php:namespace:: LibraryName\SubPackage
 
-.. php:exception:: NestedNamespaceException
-
-    In a package
-
 .. php:class:: SubpackageClass
 
     A class in a subpackage
@@ -452,10 +429,6 @@ Test Case - Test subpackage links
 :php:interface:`SubpackageInterface`
 
 :php:class:`\\LibraryName\\SubPackage\\SubpackageInterface`
-
-:php:exc:`NestedNamespaceException`
-
-:php:exc:`\\LibraryName\\SubPackage\\NestedNamespaceException`
 
 Return Types
 ============
@@ -485,11 +458,6 @@ Return Types
 
         :returns: The value of a specific global constant. # TODO link is not working without "\\"
         :returntype: SOME_CONSTANT
-
-    .. php:method:: returnExceptionInstance()
-
-        :returns: An instance of an exception.
-        :returntype: \\InvalidArgumentException
 
     .. php:method:: returnScalarType()
 
