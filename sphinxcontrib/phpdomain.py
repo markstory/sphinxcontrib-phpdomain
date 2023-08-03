@@ -746,7 +746,7 @@ class PhpDomain(Domain):
     name = "php"
     label = "PHP"
     object_types = {
-        "function": ObjType(_("function"), "func", "obj"),
+        "function": ObjType(_("function"), "function", "obj"),
         "global": ObjType(_("global variable"), "global", "obj"),
         "const": ObjType(_("const"), "const", "obj"),
         "method": ObjType(_("method"), "meth", "obj"),
@@ -779,7 +779,8 @@ class PhpDomain(Domain):
     }
 
     roles = {
-        "func": PhpXRefRole(fix_parens=False),
+        "function": PhpXRefRole(fix_parens=False),
+        "func": PhpXRefRole(fix_parens=False),  # deprecated, use "function"
         "global": PhpXRefRole(),
         "class": PhpXRefRole(),
         "exc": PhpXRefRole(),

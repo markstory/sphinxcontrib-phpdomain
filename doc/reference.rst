@@ -162,7 +162,7 @@ matching directive is found:
    
       .. php:namespace:`LibraryName\\SubPackage` will work correctly.
 
-.. rst:role:: php:func
+.. rst:role:: php:function
 
    Reference a PHP function either in a namespace or out. If the function is in
    a namespace, be sure to include the namespace, unless you are currently 

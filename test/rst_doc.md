@@ -150,9 +150,9 @@ Test Case - Global symbols with no namespaces
 
 :php:const:`SOME_CONSTANT`
 
-:php:func:`in_array`
+:php:function:`in_array`
 
-:php:func:`strpos`
+:php:function:`strpos`
 
 :php:class:`DateTime`
 
@@ -304,13 +304,13 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:namespace:`LibraryName`
 
-:php:func:`namespaced_function()`
+:php:function:`namespaced_function()`
 
 :php:const:`NS_CONST`
 
 :php:class:`LibraryClass`
 
-:php:func:`LibraryClass::instanceMethod`
+:php:function:`LibraryClass::instanceMethod`
 
 :php:attr:`LibraryClass::$property`
 
@@ -320,7 +320,7 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:class:`NamespaceClass`
 
-:php:func:`NamespaceClass::firstMethod`
+:php:function:`NamespaceClass::firstMethod`
 
 :php:attr:`NamespaceClass::$property`
 
@@ -342,7 +342,7 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:interface:`LibraryInterface`
 
-:php:func:`LibraryInterface::instanceMethod`
+:php:function:`LibraryInterface::instanceMethod`
 
 :php:trait:`TemplateTrait`
 
@@ -361,7 +361,7 @@ All of the following links should not be prefixed with a namespace.
 
 All of the following links should not be prefixed with a classname.
 
-:php:func:`~LibraryClass::instanceMethod`
+:php:function:`~LibraryClass::instanceMethod`
 
 :php:const:`~LibraryClass::TEST_CONST`
 
@@ -373,13 +373,13 @@ Test Case - global access
 
 :php:class:`\\DateTime`
 
-:php:func:`\\DateTime::setTime()`
+:php:function:`\\DateTime::setTime()`
 
 :php:global:`$global_var`
 
 :php:const:`SOME_CONSTANT`
 
-:php:func:`in_array()`
+:php:function:`in_array()`
 
 :php:attr:`\\LibraryName\\LibraryClass::$property`
 
@@ -391,7 +391,7 @@ Test Case - global access
 
 :php:interface:`\\DateTimeInterface`
 
-:php:func:`\\DateTimeInterface::setTime()`
+:php:function:`\\DateTimeInterface::setTime()`
 
 Any Cross Ref
 =============
