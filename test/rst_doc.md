@@ -79,9 +79,9 @@ Classes
 
     This class constant wasn't indented
 
-.. php:staticmethod:: OtherClass::staticMethod()
+.. php:method:: OtherClass2::update($arg = '')
 
-    A static method.
+    A method without explicitly declared class block.
 
 Exceptions
 ==========
@@ -179,7 +179,7 @@ Test Case - Global symbols with no namespaces
 
 :php:const:`OtherClass::NO_INDENT`
 
-:php:func:`OtherClass::staticMethod`
+:php:meth:`OtherClass2::update()`
 
 :php:exc:`InvalidArgumentException`
 
@@ -247,10 +247,6 @@ Namespaced elements
 
         A property!
 
-.. php:staticmethod:: LibraryClass::staticMethod()
-
-    A static method in a namespace
-
 .. php:class:: NamespaceClass
 
     A class in the namespace, no indenting on children
@@ -267,9 +263,9 @@ Namespaced elements
 
     Const on class in namespace
 
-.. php:staticmethod:: namespaceStatic($foo)
+.. php:method:: NamespaceClass2::update($foo)
 
-    A static method here.
+    A method without explicitly declared class block in a namespace
 
 .. php:class:: final LibraryClassFinal
 
@@ -331,8 +327,6 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:func:`LibraryClass::instanceMethod`
 
-:php:func:`LibraryClass::staticMethod()`
-
 :php:attr:`LibraryClass::$property`
 
 :php:const:`LibraryClass::TEST_CONST`
@@ -348,6 +342,8 @@ Within a namespace context you don't need to include the namespace in links.
 :php:attr:`NamespaceClass::$property`
 
 :php:const:`NamespaceClass::NAMESPACE_CONST`
+
+:php:meth:`NamespaceClass2::update()`
 
 :php:class:`LibraryClassFinal`
 
@@ -561,7 +557,7 @@ Advanced Enumerations
 
         Returns "red" for hearts and diamonds, "black" for clubs and spades.
 
-    .. php:staticmethod:: values() -> string[]
+    .. php:method:: static values() -> string[]
 
         Returns an array of the values of all the cases on this enum.
 

@@ -150,11 +150,6 @@ Each directive populates the index, and or the namespace index.
         
            This is an instance method.
 
-.. rst:directive:: .. php:staticmethod:: ClassName::methodName(signature)
-
-    Describe a static method, its arguments, return value and exceptions,
-    see :rst:dir:`php:method` for options.
-
 .. rst:directive:: .. php:attr:: name
 
    Describe an property/attribute on a class.
@@ -198,11 +193,9 @@ matching directive is found:
 
 .. rst:role:: php:meth
 
-   Reference a method of a class/interface/trait. This role supports
-   both kinds of methods::
+   Reference a method of a class/interface/trait::
    
      :php:meth:`DateTime::setDate`
-     :php:meth:`Classname::staticMethod`
 
 .. rst:role:: php:attr
 

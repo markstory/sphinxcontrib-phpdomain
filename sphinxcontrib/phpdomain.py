@@ -766,7 +766,7 @@ class PhpDomain(Domain):
         "const": PhpNamespacelevel,
         "class": PhpClasslike,
         "method": PhpClassmember,
-        "staticmethod": PhpClassmember,
+        "staticmethod": PhpClassmember,  # deprecated, use "method" with "static" modifier, methods in PHP are exclusively static or non-static
         "attr": PhpClassmember,
         "case": PhpClassmember,
         "exception": PhpClasslike,

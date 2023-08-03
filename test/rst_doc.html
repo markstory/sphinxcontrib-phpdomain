@@ -244,21 +244,25 @@
           <p>This class constant wasn&#x2019;t indented</p>
         </dd>
       </dl>
-      <dl class="php staticmethod">
-        <dt class="sig sig-object php" id="OtherClass::staticMethod">
-          <em class="property">
-            <span class="pre">static</span>
-          </em>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="OtherClass2::update">
           <span class="sig-prename descclassname">
-            <span class="pre">OtherClass::</span>
+            <span class="pre">OtherClass2::</span>
           </span>
           <span class="sig-name descname">
-            <span class="pre">staticMethod</span>
+            <span class="pre">update</span>
           </span>
-          <a class="headerlink" href="#OtherClass::staticMethod" title="Permalink to this definition">&#xB6;</a>
+          <span class="sig-paren">(</span>
+          <em class="sig-param">
+            <span class="pre">$arg</span>
+            <span class="pre">=</span>
+            <span class="pre">''</span>
+          </em>
+          <span class="sig-paren">)</span>
+          <a class="headerlink" href="#OtherClass2::update" title="Permalink to this definition">&#xB6;</a>
         </dt>
         <dd>
-          <p>A static method.</p>
+          <p>A method without explicitly declared class block.</p>
         </dd>
       </dl>
     </section>
@@ -525,9 +529,9 @@
           </a>
         </p>
         <p>
-          <a class="reference internal" href="#OtherClass::staticMethod" title="OtherClass::staticMethod">
-            <code class="xref php php-func docutils literal notranslate">
-              <span class="pre">OtherClass::staticMethod</span>
+          <a class="reference internal" href="#OtherClass2::update" title="OtherClass2::update">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">OtherClass2::update()</span>
             </code>
           </a>
         </p>
@@ -731,23 +735,6 @@
           </dl>
         </dd>
       </dl>
-      <dl class="php staticmethod">
-        <dt class="sig sig-object php" id="LibraryName\LibraryClass::staticMethod">
-          <em class="property">
-            <span class="pre">static</span>
-          </em>
-          <span class="sig-prename descclassname">
-            <span class="pre">LibraryName\LibraryClass::</span>
-          </span>
-          <span class="sig-name descname">
-            <span class="pre">staticMethod</span>
-          </span>
-          <a class="headerlink" href="#LibraryName\LibraryClass::staticMethod" title="Permalink to this definition">&#xB6;</a>
-        </dt>
-        <dd>
-          <p>A static method in a namespace</p>
-        </dd>
-      </dl>
       <dl class="php class">
         <dt class="sig sig-object php" id="LibraryName\NamespaceClass">
           <em class="property">
@@ -805,26 +792,23 @@
           <p>Const on class in namespace</p>
         </dd>
       </dl>
-      <dl class="php staticmethod">
-        <dt class="sig sig-object php" id="LibraryName\NamespaceClass::namespaceStatic">
-          <em class="property">
-            <span class="pre">static</span>
-          </em>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="LibraryName\NamespaceClass2::update">
           <span class="sig-prename descclassname">
-            <span class="pre">LibraryName\NamespaceClass::</span>
+            <span class="pre">LibraryName\NamespaceClass2::</span>
           </span>
           <span class="sig-name descname">
-            <span class="pre">namespaceStatic</span>
+            <span class="pre">update</span>
           </span>
           <span class="sig-paren">(</span>
           <em class="sig-param">
             <span class="pre">$foo</span>
           </em>
           <span class="sig-paren">)</span>
-          <a class="headerlink" href="#LibraryName\NamespaceClass::namespaceStatic" title="Permalink to this definition">&#xB6;</a>
+          <a class="headerlink" href="#LibraryName\NamespaceClass2::update" title="Permalink to this definition">&#xB6;</a>
         </dt>
         <dd>
-          <p>A static method here.</p>
+          <p>A method without explicitly declared class block in a namespace</p>
         </dd>
       </dl>
       <dl class="php class">
@@ -1000,13 +984,6 @@
           </a>
         </p>
         <p>
-          <a class="reference internal" href="#LibraryName\LibraryClass::staticMethod" title="LibraryName\LibraryClass::staticMethod">
-            <code class="xref php php-func docutils literal notranslate">
-              <span class="pre">LibraryClass::staticMethod()</span>
-            </code>
-          </a>
-        </p>
-        <p>
           <a class="reference internal" href="#LibraryName\LibraryClass::$property" title="LibraryName\LibraryClass::$property">
             <code class="xref php php-attr docutils literal notranslate">
               <span class="pre">LibraryClass::$property</span>
@@ -1059,6 +1036,13 @@
           <a class="reference internal" href="#LibraryName\NamespaceClass::NAMESPACE_CONST" title="LibraryName\NamespaceClass::NAMESPACE_CONST">
             <code class="xref php php-const docutils literal notranslate">
               <span class="pre">NamespaceClass::NAMESPACE_CONST</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NamespaceClass2::update" title="LibraryName\NamespaceClass2::update">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">NamespaceClass2::update()</span>
             </code>
           </a>
         </p>
@@ -1930,7 +1914,7 @@ deck are divided.</p>
                 <p>Returns &#x201C;red&#x201D; for hearts and diamonds, &#x201C;black&#x201D; for clubs and spades.</p>
               </dd>
             </dl>
-            <dl class="php staticmethod">
+            <dl class="php method">
               <dt class="sig sig-object php" id="Example\Advanced\Suit::values">
                 <em class="property">
                   <span class="pre">static</span>
@@ -1938,6 +1922,8 @@ deck are divided.</p>
                 <span class="sig-name descname">
                   <span class="pre">values</span>
                 </span>
+                <span class="sig-paren">(</span>
+                <span class="sig-paren">)</span>
                 <span class="sig-return">
                   <span class="sig-return-icon">&#x2192;</span>
                   <span class="sig-return-typehint">
