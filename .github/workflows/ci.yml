@@ -48,13 +48,13 @@ jobs:
         cd test
         find . -name '*.html' -exec rm {} \;
 
-        sed -i 's~, "log\.md"~~' conf.py
-        make html SPHINXOPTS='' 2>&1 | tee log.txt
+        sed -i 's~, "logging\.md"~~' conf.py
+        make html SPHINXOPTS='' 2>&1 | tee baseline.txt
         git restore conf.py
 
         (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
         (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
-        sed -i -r 's~.*/(test/)~\1~;t;d' log.txt
+        sed -i -r 's~[^:]*/(test/)~\1~;t;d' baseline.txt
 
     - name: Apply Coding Style
       if: matrix.python == 'latest'
@@ -86,7 +86,7 @@ jobs:
         cd test
         make html SPHINXOPTS='-W'
 
-        sed -i 's~, "log\.md"~~' conf.py
+        sed -i 's~, "logging\.md"~~' conf.py
         ! make html SPHINXOPTS='-W' || (echo 'Unexpected zero exit code'; false)
         git restore conf.py
 
