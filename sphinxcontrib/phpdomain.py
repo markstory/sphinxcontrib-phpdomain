@@ -1,7 +1,9 @@
 """
     Sphinx PHP domain.
+    
+    The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
 
-    :copyright: Copyright 2011 - 2023 by Mark Story and Michael Voříšek
+    :copyright: Copyright 2016 by Mark Story
     :license: BSD, see LICENSE for details.
 """
 import re

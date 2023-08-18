@@ -28,14 +28,14 @@ PHP Domain supports following objects:
 """
 
 setup(
-    name="sphinxcontrib-phpdomain",
-    version="0.11.1",
-    url="https://github.com/markstory/sphinxcontrib-phpdomain",
-    download_url="http://pypi.python.org/pypi/sphinxcontrib-phpdomain",
-    license="BSD",
-    author="Mark Story and Michael Voříšek",
-    author_email="mark@mark-story.com",
-    description="Sphinx extension to enable documenting PHP code",
+    name='sphinxcontrib-phpdomain',
+    version='0.11.2',
+    url='https://github.com/markstory/sphinxcontrib-phpdomain',
+    download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
+    license='BSD',
+    author='Mark Story',
+    author_email='mark@mark-story.com',
+    description='Sphinx extension to enable documenting PHP code',
     long_description=long_desc,
     project_urls={
         "Documentation": "https://markstory.github.io/sphinxcontrib-phpdomain/",
