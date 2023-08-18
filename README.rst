@@ -2,6 +2,7 @@ PHP Domain for Sphinx
 #####################
 
 :author: Mark Story <mark at mark-story.com>
+:author: Michael Voříšek
 
 About
 =====

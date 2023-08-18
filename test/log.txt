@@ -1,0 +1,13 @@
+test/log.md:3: WARNING: Unknown directive type: 'php:namespacee' [myst.directive_unknown]
+test/log.md:8: WARNING: [phpdomain] Invalid signature
+test/log.md:13: [phpdomain] Target Foo\Aa not found
+test/log.md:15: [phpdomain] Target Foo\A::simplifyy not found
+test/log.md:20: [phpdomain] Target Foo\Foo\A::simplify not found - did you mean to write A::simplify?
+test/log.md:25: [phpdomain] Target Fooo\Foo\A::simplify not found - did you mean to write \Foo\A::simplify?
+test/ns.md:48: [phpdomain] Target A2::simplify not found
+test/ns.md:53: [phpdomain] Target Bar2\A::simplify not found
+test/rst_doc.md:506: [phpdomain] Target OtherLibrary\int|string|ReturnedClass|\LibraryName\SubPackage\SubpackageInterface|null not found
+test/rst_doc2.md:11: [phpdomain] Target Imagine\Image\ImageInterface::draw not found
+test/rst_doc2.md:17: [phpdomain] Target Imagine\Image\PointInterface not found
+test/rst_doc2.md:17: [phpdomain] Target Imagine\Image\BoxInterface not found
+test/rst_doc2.md:17: [phpdomain] Target Imagine\Image\Color not found

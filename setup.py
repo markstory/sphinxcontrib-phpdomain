@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 import os
 from setuptools import setup, find_packages
 
-with open(os.path.join(os.path.dirname(__file__),
-                       'requirements.txt'), 'r') as f:
+with open(os.path.join(os.path.dirname(__file__), "requirements.txt"), "r") as f:
     requirements = f.read()
 
-long_desc = '''
+long_desc = """
 This package provides a Sphinx extension for documenting PHP projects.
 
 PHP Domain supports following objects:
@@ -27,7 +25,7 @@ PHP Domain supports following objects:
     * Properties
 
 * Enums
-'''
+"""
 
 setup(
     name='sphinxcontrib-phpdomain',
@@ -40,22 +38,22 @@ setup(
     description='Sphinx extension to enable documenting PHP code',
     long_description=long_desc,
     project_urls={
-        'Documentation': 'https://markstory.github.io/sphinxcontrib-phpdomain/',
+        "Documentation": "https://markstory.github.io/sphinxcontrib-phpdomain/",
     },
     classifiers=[
-        'Environment :: Console',
-        'Environment :: Web Environment',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Topic :: Documentation',
-        'Topic :: Utilities',
+        "Environment :: Console",
+        "Environment :: Web Environment",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Topic :: Documentation",
+        "Topic :: Utilities",
     ],
-    platforms='any',
+    platforms="any",
     dependency_links=[],
-    namespace_packages=['sphinxcontrib'],
-    packages=find_packages(exclude=['test*']),
+    namespace_packages=["sphinxcontrib"],
+    packages=find_packages(exclude=["test*"]),
     include_package_data=True,
     install_requires=requirements,
     zip_safe=False,

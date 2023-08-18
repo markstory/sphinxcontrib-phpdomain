@@ -1,0 +1,2201 @@
+<?xml version="1.0"?>
+<div class="body" role="main">
+  <section id="acceptance-tests-for-phpdomain">
+    <h1>Acceptance tests for PHPdomain<a class="headerlink" href="#acceptance-tests-for-phpdomain" title="Permalink to this heading">&#xB6;</a></h1>
+    <section id="globals">
+      <h2>Globals<a class="headerlink" href="#globals" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php global">
+        <dt class="sig sig-object php" id="$global_var">
+          <span class="sig-name descname">
+            <span class="pre">$global_var</span>
+          </span>
+          <a class="headerlink" href="#$global_var" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A global variable</p>
+        </dd>
+      </dl>
+      <dl class="php const">
+        <dt class="sig sig-object php" id="SOME_CONSTANT">
+          <em class="property">
+            <span class="pre">constant</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">SOME_CONSTANT</span>
+          </span>
+          <a class="headerlink" href="#SOME_CONSTANT" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A global constant</p>
+        </dd>
+      </dl>
+      <dl class="php const">
+        <dt class="sig sig-object php" id="VALUE">
+          <em class="property">
+            <span class="pre">constant</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">VALUE</span>
+          </span>
+          <a class="headerlink" href="#VALUE" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A global constant</p>
+        </dd>
+      </dl>
+      <dl class="php function">
+        <dt class="sig sig-object php" id="in_array"><span class="sig-name descname"><span class="pre">in_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">needle</span></em>, <em class="sig-param"><span class="pre">haystack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#in_array" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>Checks for needle in haystack.</p>
+          <dl class="field-list simple">
+            <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+            <dd class="field-odd">
+              <ul class="simple">
+                <li>
+                  <p><strong>needle</strong> &#x2013; The element to search for.</p>
+                </li>
+                <li>
+                  <p><strong>haystack</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) &#x2013; The array to search.</p>
+                </li>
+              </ul>
+            </dd>
+            <dt class="field-even">Returns<span class="colon">:</span></dt>
+            <dd class="field-even">
+              <p>Element exists in array.</p>
+            </dd>
+            <dt class="field-odd">Return type<span class="colon">:</span></dt>
+            <dd class="field-odd">
+              <p>
+                <span>
+                  <code class="xref php php-obj docutils literal notranslate">
+                    <span class="pre">bool</span>
+                  </code>
+                </span>
+              </p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+    </section>
+    <section id="classes">
+      <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="DateTime">
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">DateTime</span>
+          </span>
+          <a class="headerlink" href="#DateTime" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>Datetime class</p>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="DateTime::setDate"><span class="sig-name descname"><span class="pre">setDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$year</span></em>, <em class="sig-param"><span class="pre">$month</span></em>, <em class="sig-param"><span class="pre">$day</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DateTime::setDate" title="Permalink to this definition">&#xB6;</a></dt>
+            <dd>
+              <p>Set the date in the datetime object</p>
+              <dl class="field-list simple">
+                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <ul class="simple">
+                    <li>
+                      <p><strong>$year</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The year.</p>
+                    </li>
+                    <li>
+                      <p><strong>$month</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The month.</p>
+                    </li>
+                    <li>
+                      <p><strong>$day</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The day.</p>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="DateTime::setTime"><span class="sig-name descname"><span class="pre">setTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$hour</span></em>, <em class="sig-param"><span class="pre">$minute</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$second</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#DateTime::setTime" title="Permalink to this definition">&#xB6;</a></dt>
+            <dd>
+              <p>Set the time</p>
+              <dl class="field-list simple">
+                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <ul class="simple">
+                    <li>
+                      <p><strong>$hour</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The hour</p>
+                    </li>
+                    <li>
+                      <p><strong>$minute</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The minute</p>
+                    </li>
+                    <li>
+                      <p><strong>$second</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The second</p>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="DateTime::getLastErrors">
+              <em class="property">
+                <span class="pre">public</span>
+              </em>
+              <em class="property">
+                <span class="pre">static</span>
+              </em>
+              <span class="sig-name descname">
+                <span class="pre">getLastErrors</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#DateTime::getLastErrors" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>Returns the warnings and errors</p>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>array Returns array containing info about warnings and errors.</p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php const">
+            <dt class="sig sig-object php" id="DateTime::ATOM">
+              <em class="property">
+                <span class="pre">constant</span>
+              </em>
+              <span class="sig-name descname">
+                <span class="pre">ATOM</span>
+              </span>
+              <a class="headerlink" href="#DateTime::ATOM" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>Y-m-dTH:i:sP</p>
+            </dd>
+          </dl>
+          <dl class="php attr">
+            <dt class="sig sig-object php" id="DateTime::$testattr">
+              <em class="property">
+                <span class="pre">property</span>
+              </em>
+              <span class="sig-name descname">
+                <span class="pre">testattr</span>
+              </span>
+              <a class="headerlink" href="#DateTime::$testattr" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>Value of some attribute</p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="OtherClass">
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">OtherClass</span>
+          </span>
+          <a class="headerlink" href="#OtherClass" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>Another class</p>
+        </dd>
+      </dl>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="OtherClass::update"><span class="sig-prename descclassname"><span class="pre">OtherClass::</span></span><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$arg</span><span class="pre">=</span><span class="pre">''</span></em>, <em class="sig-param"><span class="pre">$arg2</span><span class="pre">=</span><span class="pre">[]</span></em>, <em class="sig-param"><span class="pre">$arg3</span><span class="pre">=</span><span class="pre">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#OtherClass::update" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>Update something.</p>
+        </dd>
+      </dl>
+      <dl class="php attr">
+        <dt class="sig sig-object php" id="OtherClass::$nonIndentedAttribute">
+          <em class="property">
+            <span class="pre">property</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">OtherClass::$</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">nonIndentedAttribute</span>
+          </span>
+          <a class="headerlink" href="#OtherClass::$nonIndentedAttribute" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>This attribute wasn&#x2019;t indented</p>
+        </dd>
+      </dl>
+      <dl class="php const">
+        <dt class="sig sig-object php" id="OtherClass::NO_INDENT">
+          <em class="property">
+            <span class="pre">constant</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">OtherClass::</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">NO_INDENT</span>
+          </span>
+          <a class="headerlink" href="#OtherClass::NO_INDENT" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>This class constant wasn&#x2019;t indented</p>
+        </dd>
+      </dl>
+      <dl class="php staticmethod">
+        <dt class="sig sig-object php" id="OtherClass::staticMethod">
+          <em class="property">
+            <span class="pre">static</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">OtherClass::</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">staticMethod</span>
+          </span>
+          <a class="headerlink" href="#OtherClass::staticMethod" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A static method.</p>
+        </dd>
+      </dl>
+    </section>
+    <section id="exceptions">
+      <h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php exception">
+        <dt class="sig sig-object php" id="InvalidArgumentException">
+          <em class="property">
+            <span class="pre">exception</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">InvalidArgumentException</span>
+          </span>
+          <a class="headerlink" href="#InvalidArgumentException" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>Throw when you get an argument that is bad.</p>
+        </dd>
+      </dl>
+    </section>
+    <section id="interfaces">
+      <h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php interface">
+        <dt class="sig sig-object php" id="DateTimeInterface">
+          <em class="property">
+            <span class="pre">interface</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">DateTimeInterface</span>
+          </span>
+          <a class="headerlink" href="#DateTimeInterface" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>Datetime interface</p>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="DateTimeInterface::setDate"><span class="sig-name descname"><span class="pre">setDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$year</span></em>, <em class="sig-param"><span class="pre">$month</span></em>, <em class="sig-param"><span class="pre">$day</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DateTimeInterface::setDate" title="Permalink to this definition">&#xB6;</a></dt>
+            <dd>
+              <p>Set the date in the datetime object</p>
+              <dl class="field-list simple">
+                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <ul class="simple">
+                    <li>
+                      <p><strong>$year</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The year.</p>
+                    </li>
+                    <li>
+                      <p><strong>$month</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The month.</p>
+                    </li>
+                    <li>
+                      <p><strong>$day</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The day.</p>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="DateTimeInterface::setTime"><span class="sig-name descname"><span class="pre">setTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$hour</span></em>, <em class="sig-param"><span class="pre">$minute</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$second</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#DateTimeInterface::setTime" title="Permalink to this definition">&#xB6;</a></dt>
+            <dd>
+              <p>Set the time</p>
+              <dl class="field-list simple">
+                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <ul class="simple">
+                    <li>
+                      <p><strong>$hour</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The hour</p>
+                    </li>
+                    <li>
+                      <p><strong>$minute</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The minute</p>
+                    </li>
+                    <li>
+                      <p><strong>$second</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) &#x2013; The second</p>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php const">
+            <dt class="sig sig-object php" id="DateTimeInterface::ATOM">
+              <em class="property">
+                <span class="pre">constant</span>
+              </em>
+              <span class="sig-name descname">
+                <span class="pre">ATOM</span>
+              </span>
+              <a class="headerlink" href="#DateTimeInterface::ATOM" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>Y-m-dTH:i:sP</p>
+            </dd>
+          </dl>
+          <dl class="php attr">
+            <dt class="sig sig-object php" id="DateTimeInterface::$testattr">
+              <em class="property">
+                <span class="pre">property</span>
+              </em>
+              <span class="sig-name descname">
+                <span class="pre">testattr</span>
+              </span>
+              <a class="headerlink" href="#DateTimeInterface::$testattr" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>Value of some attribute</p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+      <dl class="php interface">
+        <dt class="sig sig-object php" id="OtherInterface">
+          <em class="property">
+            <span class="pre">interface</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">OtherInterface</span>
+          </span>
+          <a class="headerlink" href="#OtherInterface" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>Another interface</p>
+        </dd>
+      </dl>
+    </section>
+    <section id="traits">
+      <h2>Traits<a class="headerlink" href="#traits" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php trait">
+        <dt class="sig sig-object php" id="LogTrait">
+          <em class="property">
+            <span class="pre">trait</span>
+          </em>
+          <span class="sig-name descname">
+            <span class="pre">LogTrait</span>
+          </span>
+          <a class="headerlink" href="#LogTrait" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A logging trait</p>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="LogTrait::log"><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$level</span></em>, <em class="sig-param"><span class="pre">$string</span></em><span class="sig-paren">)</span><a class="headerlink" href="#LogTrait::log" title="Permalink to this definition">&#xB6;</a></dt>
+            <dd>
+              <p>A method description.</p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+    </section>
+    <section id="more-globals-after-classes">
+      <h2>More globals after classes<a class="headerlink" href="#more-globals-after-classes" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php global">
+        <dt class="sig sig-object php" id="$other_global_var">
+          <span class="sig-name descname">
+            <span class="pre">$other_global_var</span>
+          </span>
+          <a class="headerlink" href="#$other_global_var" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A global variable</p>
+        </dd>
+      </dl>
+      <dl class="php function">
+        <dt class="sig sig-object php" id="strpos"><span class="sig-name descname"><span class="pre">strpos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$needle</span></em>, <em class="sig-param"><span class="pre">$haystack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#strpos" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>Position of needle in haystack</p>
+        </dd>
+      </dl>
+      <section id="test-case-global-symbols-with-no-namespaces">
+        <h3>Test Case - Global symbols with no namespaces<a class="headerlink" href="#test-case-global-symbols-with-no-namespaces" title="Permalink to this heading">&#xB6;</a></h3>
+        <p>
+          <a class="reference internal" href="#$global_var" title="$global_var">
+            <code class="xref php php-global docutils literal notranslate">
+              <span class="pre">$global_var</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#$other_global_var" title="$other_global_var">
+            <code class="xref php php-global docutils literal notranslate">
+              <span class="pre">$other_global_var</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#SOME_CONSTANT" title="SOME_CONSTANT">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">SOME_CONSTANT</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#in_array" title="in_array">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">in_array</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#strpos" title="strpos">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">strpos</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime" title="DateTime">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">DateTime</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime::setTime" title="DateTime::setTime">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">DateTime::setTime()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime::getLastErrors" title="DateTime::getLastErrors">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">DateTime::getLastErrors()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime::setDate" title="DateTime::setDate">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">DateTime::setDate()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime::ATOM" title="DateTime::ATOM">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">DateTime::ATOM</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime::$testattr" title="DateTime::$testattr">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">DateTime::$testattr</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#OtherClass::update" title="OtherClass::update">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">OtherClass::update</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#OtherClass::$nonIndentedAttribute" title="OtherClass::$nonIndentedAttribute">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">OtherClass::$nonIndentedAttribute</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#OtherClass::NO_INDENT" title="OtherClass::NO_INDENT">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">OtherClass::NO_INDENT</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#OtherClass::staticMethod" title="OtherClass::staticMethod">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">OtherClass::staticMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#InvalidArgumentException" title="InvalidArgumentException">
+            <code class="xref php php-exc docutils literal notranslate">
+              <span class="pre">InvalidArgumentException</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTimeInterface" title="DateTimeInterface">
+            <code class="xref php php-interface docutils literal notranslate">
+              <span class="pre">DateTimeInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTimeInterface::setTime" title="DateTimeInterface::setTime">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">DateTimeInterface::setTime()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTimeInterface::setDate" title="DateTimeInterface::setDate">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">setDate()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTimeInterface::ATOM" title="DateTimeInterface::ATOM">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">DateTimeInterface::ATOM</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTimeInterface::$testattr" title="DateTimeInterface::$testattr">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">DateTimeInterface::$testattr</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#OtherInterface" title="OtherInterface">
+            <code class="xref php php-interface docutils literal notranslate">
+              <span class="pre">OtherInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LogTrait" title="LogTrait">
+            <code class="xref php php-trait docutils literal notranslate">
+              <span class="pre">LogTrait</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LogTrait::log" title="LogTrait::log">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">LogTrait::log()</span>
+            </code>
+          </a>
+        </p>
+      </section>
+      <section id="test-case-prefix-less-links">
+        <h3>Test Case - Prefix less links<a class="headerlink" href="#test-case-prefix-less-links" title="Permalink to this heading">&#xB6;</a></h3>
+        <p>The following links should not be prefixed with a classname.</p>
+        <p>
+          <a class="reference internal" href="#DateTime::setDate" title="DateTime::setDate">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">setDate()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime::$testattr" title="DateTime::$testattr">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">$testattr</span>
+            </code>
+          </a>
+        </p>
+      </section>
+    </section>
+    <section id="namespace-LibraryName">
+      <span id="namespaced-elements"/>
+      <h2>Namespaced elements<a class="headerlink" href="#namespace-LibraryName" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php function">
+        <dt class="sig sig-object php" id="LibraryName\namespaced_function"><span class="sig-prename descclassname"><span class="pre">LibraryName\</span></span><span class="sig-name descname"><span class="pre">namespaced_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$two</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\namespaced_function" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>A function in a namespace</p>
+          <dl class="field-list simple">
+            <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+            <dd class="field-odd">
+              <ul class="simple">
+                <li>
+                  <p><strong>$one</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) &#x2013; First parameter.</p>
+                </li>
+                <li>
+                  <p><strong>$two</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) &#x2013; Second parameter.</p>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+      <dl class="php const">
+        <dt class="sig sig-object php" id="LibraryName\NS_CONST">
+          <em class="property">
+            <span class="pre">constant</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">NS_CONST</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\NS_CONST" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A constant in a namespace</p>
+        </dd>
+      </dl>
+      <dl class="php exception">
+        <dt class="sig sig-object php" id="LibraryName\NamespaceException">
+          <em class="property">
+            <span class="pre">exception</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">NamespaceException</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\NamespaceException" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>This exception is in a namespace.</p>
+        </dd>
+      </dl>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClass">
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">LibraryClass</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\LibraryClass" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A class in a namespace</p>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="LibraryName\LibraryClass::instanceMethod">
+              <span class="sig-prename descclassname">
+                <span class="pre">LibraryClass::</span>
+              </span>
+              <span class="sig-name descname">
+                <span class="pre">instanceMethod</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <em class="sig-param">
+                <span class="pre">$foo</span>
+              </em>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#LibraryName\LibraryClass::instanceMethod" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>An instance method</p>
+            </dd>
+          </dl>
+          <dl class="php const">
+            <dt class="sig sig-object php" id="LibraryName\LibraryClass::TEST_CONST">
+              <em class="property">
+                <span class="pre">constant</span>
+              </em>
+              <span class="sig-name descname">
+                <span class="pre">TEST_CONST</span>
+              </span>
+              <a class="headerlink" href="#LibraryName\LibraryClass::TEST_CONST" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>Test constant</p>
+            </dd>
+          </dl>
+          <dl class="php attr">
+            <dt class="sig sig-object php" id="LibraryName\LibraryClass::$property">
+              <em class="property">
+                <span class="pre">property</span>
+              </em>
+              <span class="sig-name descname">
+                <span class="pre">property</span>
+              </span>
+              <a class="headerlink" href="#LibraryName\LibraryClass::$property" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <p>A property!</p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+      <dl class="php staticmethod">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClass::staticMethod">
+          <em class="property">
+            <span class="pre">static</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\LibraryClass::</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">staticMethod</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\LibraryClass::staticMethod" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A static method in a namespace</p>
+        </dd>
+      </dl>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="LibraryName\NamespaceClass">
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">NamespaceClass</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\NamespaceClass" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A class in the namespace, no indenting on children</p>
+        </dd>
+      </dl>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="LibraryName\NamespaceClass::firstMethod"><span class="sig-prename descclassname"><span class="pre">LibraryName\NamespaceClass::</span></span><span class="sig-name descname"><span class="pre">firstMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em>, <em class="sig-param"><span class="pre">$two</span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\NamespaceClass::firstMethod" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>A normal instance method.</p>
+        </dd>
+      </dl>
+      <dl class="php attr">
+        <dt class="sig sig-object php" id="LibraryName\NamespaceClass::$property">
+          <em class="property">
+            <span class="pre">property</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\NamespaceClass::$</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">property</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\NamespaceClass::$property" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A property</p>
+        </dd>
+      </dl>
+      <dl class="php const">
+        <dt class="sig sig-object php" id="LibraryName\NamespaceClass::NAMESPACE_CONST">
+          <em class="property">
+            <span class="pre">constant</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\NamespaceClass::</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">NAMESPACE_CONST</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\NamespaceClass::NAMESPACE_CONST" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>Const on class in namespace</p>
+        </dd>
+      </dl>
+      <dl class="php staticmethod">
+        <dt class="sig sig-object php" id="LibraryName\NamespaceClass::namespaceStatic">
+          <em class="property">
+            <span class="pre">static</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\NamespaceClass::</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">namespaceStatic</span>
+          </span>
+          <span class="sig-paren">(</span>
+          <em class="sig-param">
+            <span class="pre">$foo</span>
+          </em>
+          <span class="sig-paren">)</span>
+          <a class="headerlink" href="#LibraryName\NamespaceClass::namespaceStatic" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A static method here.</p>
+        </dd>
+      </dl>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClassFinal">
+          <em class="property">
+            <span class="pre">final</span>
+          </em>
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">LibraryClassFinal</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\LibraryClassFinal" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A final class</p>
+        </dd>
+      </dl>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClassFinal::firstMethod"><em class="property"><span class="pre">public</span></em><span class="sig-prename descclassname"><span class="pre">LibraryName\LibraryClassFinal::</span></span><span class="sig-name descname"><span class="pre">firstMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em>, <em class="sig-param"><span class="pre">$two</span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\LibraryClassFinal::firstMethod" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>A public instance method.</p>
+        </dd>
+      </dl>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClassFinal::secondMethod"><em class="property"><span class="pre">protected</span></em><span class="sig-prename descclassname"><span class="pre">LibraryName\LibraryClassFinal::</span></span><span class="sig-name descname"><span class="pre">secondMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em>, <em class="sig-param"><span class="pre">$two</span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\LibraryClassFinal::secondMethod" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>A protected instance method.</p>
+        </dd>
+      </dl>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClassFinal::thirdMethod"><em class="property"><span class="pre">private</span></em><span class="sig-prename descclassname"><span class="pre">LibraryName\LibraryClassFinal::</span></span><span class="sig-name descname"><span class="pre">thirdMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em>, <em class="sig-param"><span class="pre">$two</span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\LibraryClassFinal::thirdMethod" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>A private instance method.</p>
+        </dd>
+      </dl>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClassFinal::fourthMethod"><em class="property"><span class="pre">static</span></em><span class="sig-prename descclassname"><span class="pre">LibraryName\LibraryClassFinal::</span></span><span class="sig-name descname"><span class="pre">fourthMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em>, <em class="sig-param"><span class="pre">$two</span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\LibraryClassFinal::fourthMethod" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>A static method.</p>
+        </dd>
+      </dl>
+      <dl class="php method">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClassFinal::fifthMethod"><em class="property"><span class="pre">protected</span></em><em class="property"><span class="pre">final</span></em><span class="sig-prename descclassname"><span class="pre">LibraryName\LibraryClassFinal::</span></span><span class="sig-name descname"><span class="pre">fifthMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$one</span></em>, <em class="sig-param"><span class="pre">$two</span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibraryName\LibraryClassFinal::fifthMethod" title="Permalink to this definition">&#xB6;</a></dt>
+        <dd>
+          <p>A protected final method.</p>
+        </dd>
+      </dl>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="LibraryName\LibraryClassAbstract">
+          <em class="property">
+            <span class="pre">abstract</span>
+          </em>
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">LibraryClassAbstract</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\LibraryClassAbstract" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>An abstract class</p>
+        </dd>
+      </dl>
+      <dl class="php interface">
+        <dt class="sig sig-object php" id="LibraryName\LibraryInterface">
+          <em class="property">
+            <span class="pre">interface</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">LibraryInterface</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\LibraryInterface" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A interface in a namespace</p>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="LibraryName\LibraryInterface::instanceMethod">
+              <span class="sig-name descname">
+                <span class="pre">instanceMethod</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <em class="sig-param">
+                <span class="pre">$foo</span>
+              </em>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#LibraryName\LibraryInterface::instanceMethod" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd/>
+          </dl>
+          <p>An instance method</p>
+        </dd>
+      </dl>
+      <dl class="php trait">
+        <dt class="sig sig-object php" id="LibraryName\TemplateTrait">
+          <em class="property">
+            <span class="pre">trait</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">TemplateTrait</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\TemplateTrait" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A trait in a namespace</p>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="LibraryName\TemplateTrait::render">
+              <span class="sig-name descname">
+                <span class="pre">render</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <em class="sig-param">
+                <span class="pre">$template</span>
+              </em>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#LibraryName\TemplateTrait::render" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd/>
+          </dl>
+          <p>Render a template.</p>
+        </dd>
+      </dl>
+      <section id="test-case-not-including-namespace">
+        <h3>Test Case - not including namespace<a class="headerlink" href="#test-case-not-including-namespace" title="Permalink to this heading">&#xB6;</a></h3>
+        <p>Within a namespace context you don&#x2019;t need to include the namespace in links.</p>
+        <p>
+          <a class="reference internal" href="#namespace-LibraryName">
+            <code class="xref php php-ns docutils literal notranslate">
+              <span class="pre">LibraryName</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\namespaced_function" title="LibraryName\namespaced_function">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">namespaced_function()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NS_CONST" title="LibraryName\NS_CONST">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">NS_CONST</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass" title="LibraryName\LibraryClass">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">LibraryClass</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::instanceMethod" title="LibraryName\LibraryClass::instanceMethod">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">LibraryClass::instanceMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::staticMethod" title="LibraryName\LibraryClass::staticMethod">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">LibraryClass::staticMethod()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::$property" title="LibraryName\LibraryClass::$property">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">LibraryClass::$property</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::TEST_CONST" title="LibraryName\LibraryClass::TEST_CONST">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">LibraryClass::TEST_CONST</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="rst_doc2.html#LibraryName\OtherClass" title="LibraryName\OtherClass">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">OtherClass</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="rst_doc2.html#LibraryName\ThirdClass" title="LibraryName\ThirdClass">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">ThirdClass</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NamespaceClass" title="LibraryName\NamespaceClass">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">NamespaceClass</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NamespaceClass::firstMethod" title="LibraryName\NamespaceClass::firstMethod">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">NamespaceClass::firstMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NamespaceClass::$property" title="LibraryName\NamespaceClass::$property">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">NamespaceClass::$property</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NamespaceClass::NAMESPACE_CONST" title="LibraryName\NamespaceClass::NAMESPACE_CONST">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">NamespaceClass::NAMESPACE_CONST</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClassFinal" title="LibraryName\LibraryClassFinal">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">LibraryClassFinal</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClassFinal::firstMethod" title="LibraryName\LibraryClassFinal::firstMethod">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">LibraryClassFinal::firstMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClassFinal::secondMethod" title="LibraryName\LibraryClassFinal::secondMethod">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">LibraryClassFinal::secondMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClassFinal::thirdMethod" title="LibraryName\LibraryClassFinal::thirdMethod">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">LibraryClassFinal::thirdMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClassFinal::fourthMethod" title="LibraryName\LibraryClassFinal::fourthMethod">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">LibraryClassFinal::fourthMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClassFinal::fifthMethod" title="LibraryName\LibraryClassFinal::fifthMethod">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">LibraryClassFinal::fifthMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryInterface" title="LibraryName\LibraryInterface">
+            <code class="xref php php-interface docutils literal notranslate">
+              <span class="pre">LibraryInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryInterface::instanceMethod" title="LibraryName\LibraryInterface::instanceMethod">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">LibraryInterface::instanceMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NamespaceException" title="LibraryName\NamespaceException">
+            <code class="xref php php-exc docutils literal notranslate">
+              <span class="pre">NamespaceException</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\TemplateTrait" title="LibraryName\TemplateTrait">
+            <code class="xref php php-trait docutils literal notranslate">
+              <span class="pre">TemplateTrait</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\TemplateTrait::render" title="LibraryName\TemplateTrait::render">
+            <code class="xref php php-meth docutils literal notranslate">
+              <span class="pre">TemplateTrait::render()</span>
+            </code>
+          </a>
+        </p>
+      </section>
+      <section id="test-case-links-with-prefix-trimming">
+        <h3>Test Case - Links with prefix trimming<a class="headerlink" href="#test-case-links-with-prefix-trimming" title="Permalink to this heading">&#xB6;</a></h3>
+        <p>All of the following links should not be prefixed with a namespace.</p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryInterface" title="LibraryName\LibraryInterface">
+            <code class="xref php php-interface docutils literal notranslate">
+              <span class="pre">LibraryInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass" title="LibraryName\LibraryClass">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">LibraryClass</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\TemplateTrait" title="LibraryName\TemplateTrait">
+            <code class="xref php php-trait docutils literal notranslate">
+              <span class="pre">TemplateTrait</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NamespaceException" title="LibraryName\NamespaceException">
+            <code class="xref php php-exc docutils literal notranslate">
+              <span class="pre">NamespaceException</span>
+            </code>
+          </a>
+        </p>
+        <p>All of the following links should not be prefixed with a classname.</p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::instanceMethod" title="LibraryName\LibraryClass::instanceMethod">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">instanceMethod</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::TEST_CONST" title="LibraryName\LibraryClass::TEST_CONST">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">TEST_CONST</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::$property" title="LibraryName\LibraryClass::$property">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">$property</span>
+            </code>
+          </a>
+        </p>
+      </section>
+      <section id="test-case-global-access">
+        <h3>Test Case - global access<a class="headerlink" href="#test-case-global-access" title="Permalink to this heading">&#xB6;</a></h3>
+        <p>
+          <a class="reference internal" href="#DateTime" title="DateTime">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">DateTime</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTime::setTime" title="DateTime::setTime">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">DateTime::setTime()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#$global_var" title="$global_var">
+            <code class="xref php php-global docutils literal notranslate">
+              <span class="pre">$global_var</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#SOME_CONSTANT" title="SOME_CONSTANT">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">SOME_CONSTANT</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#in_array" title="in_array">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">in_array()</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::$property" title="LibraryName\LibraryClass::$property">
+            <code class="xref php php-attr docutils literal notranslate">
+              <span class="pre">LibraryName\LibraryClass::$property</span>
+            </code>
+          </a>
+        </p>
+        <p><a class="reference internal" href="#LibraryName\LibraryClass::$property" title="LibraryName\LibraryClass::$property"><code class="xref php php-attr docutils literal notranslate"><span class="pre">$property</span></code></a> Should not be prefixed with classname.</p>
+        <p>
+          <a class="reference internal" href="#LibraryName\LibraryClass::TEST_CONST" title="LibraryName\LibraryClass::TEST_CONST">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">LibraryName\LibraryClass::TEST_CONST</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\NS_CONST" title="LibraryName\NS_CONST">
+            <code class="xref php php-const docutils literal notranslate">
+              <span class="pre">LibraryName\NS_CONST</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTimeInterface" title="DateTimeInterface">
+            <code class="xref php php-interface docutils literal notranslate">
+              <span class="pre">DateTimeInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#DateTimeInterface::setTime" title="DateTimeInterface::setTime">
+            <code class="xref php php-func docutils literal notranslate">
+              <span class="pre">DateTimeInterface::setTime()</span>
+            </code>
+          </a>
+        </p>
+      </section>
+    </section>
+    <section id="any-cross-ref">
+      <h2>Any Cross Ref<a class="headerlink" href="#any-cross-ref" title="Permalink to this heading">&#xB6;</a></h2>
+      <p>
+        <a class="reference internal" href="#LibraryName\NS_CONST" title="LibraryName\NS_CONST">
+          <code class="xref any php php-func docutils literal notranslate">
+            <span class="pre">LibraryName\NS_CONST</span>
+          </code>
+        </a>
+      </p>
+      <p>
+        <a class="reference internal" href="#DateTimeInterface::setTime" title="DateTimeInterface::setTime">
+          <code class="xref any php php-func docutils literal notranslate">
+            <span class="pre">DateTimeInterface::setTime()</span>
+          </code>
+        </a>
+      </p>
+    </section>
+    <section id="namespace-LibraryName\SubPackage">
+      <span id="nested-namespaces"/>
+      <h2>Nested namespaces<a class="headerlink" href="#namespace-LibraryName\SubPackage" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php exception">
+        <dt class="sig sig-object php" id="LibraryName\SubPackage\NestedNamespaceException">
+          <em class="property">
+            <span class="pre">exception</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\SubPackage\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">NestedNamespaceException</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\SubPackage\NestedNamespaceException" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>In a package</p>
+        </dd>
+      </dl>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="LibraryName\SubPackage\SubpackageClass">
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\SubPackage\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">SubpackageClass</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\SubPackage\SubpackageClass" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A class in a subpackage</p>
+        </dd>
+      </dl>
+      <dl class="php interface">
+        <dt class="sig sig-object php" id="LibraryName\SubPackage\SubpackageInterface">
+          <em class="property">
+            <span class="pre">interface</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">LibraryName\SubPackage\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">SubpackageInterface</span>
+          </span>
+          <a class="headerlink" href="#LibraryName\SubPackage\SubpackageInterface" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A class in a subpackage</p>
+        </dd>
+      </dl>
+      <section id="test-case-test-subpackage-links">
+        <h3>Test Case - Test subpackage links<a class="headerlink" href="#test-case-test-subpackage-links" title="Permalink to this heading">&#xB6;</a></h3>
+        <p>
+          <a class="reference internal" href="#namespace-LibraryName\SubPackage">
+            <code class="xref php php-ns docutils literal notranslate">
+              <span class="pre">LibraryName\SubPackage</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <code class="xref php php-ns docutils literal notranslate">
+            <span class="pre">LibraryName\SubPackage</span>
+          </code>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\SubPackage\SubpackageClass" title="LibraryName\SubPackage\SubpackageClass">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">SubpackageClass</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\SubPackage\SubpackageClass" title="LibraryName\SubPackage\SubpackageClass">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">LibraryName\SubPackage\SubpackageClass</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\SubPackage\SubpackageInterface" title="LibraryName\SubPackage\SubpackageInterface">
+            <code class="xref php php-interface docutils literal notranslate">
+              <span class="pre">SubpackageInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\SubPackage\SubpackageInterface" title="LibraryName\SubPackage\SubpackageInterface">
+            <code class="xref php php-class docutils literal notranslate">
+              <span class="pre">LibraryName\SubPackage\SubpackageInterface</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\SubPackage\NestedNamespaceException" title="LibraryName\SubPackage\NestedNamespaceException">
+            <code class="xref php php-exc docutils literal notranslate">
+              <span class="pre">NestedNamespaceException</span>
+            </code>
+          </a>
+        </p>
+        <p>
+          <a class="reference internal" href="#LibraryName\SubPackage\NestedNamespaceException" title="LibraryName\SubPackage\NestedNamespaceException">
+            <code class="xref php php-exc docutils literal notranslate">
+              <span class="pre">LibraryName\SubPackage\NestedNamespaceException</span>
+            </code>
+          </a>
+        </p>
+      </section>
+    </section>
+    <section id="namespace-OtherLibrary">
+      <span id="return-types"/>
+      <h2>Return Types<a class="headerlink" href="#namespace-OtherLibrary" title="Permalink to this heading">&#xB6;</a></h2>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="OtherLibrary\ReturningClass">
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">OtherLibrary\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">ReturningClass</span>
+          </span>
+          <a class="headerlink" href="#OtherLibrary\ReturningClass" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A class to do some returning.</p>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="OtherLibrary\ReturningClass::returnClassFromSameNamespace">
+              <span class="sig-name descname">
+                <span class="pre">returnClassFromSameNamespace</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#OtherLibrary\ReturningClass::returnClassFromSameNamespace" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>An object instance of a class from the same namespace.</p>
+                </dd>
+                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                <dd class="field-even">
+                  <p>
+                    <span>
+                      <a class="reference internal" href="#OtherLibrary\ReturnedClass" title="OtherLibrary\ReturnedClass">
+                        <code class="xref php php-obj docutils literal notranslate">
+                          <span class="pre">ReturnedClass</span>
+                        </code>
+                      </a>
+                    </span>
+                  </p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="OtherLibrary\ReturningClass::returnClassFromOtherNamespace">
+              <span class="sig-name descname">
+                <span class="pre">returnClassFromOtherNamespace</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#OtherLibrary\ReturningClass::returnClassFromOtherNamespace" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>An object instance of a class from another namespace.</p>
+                </dd>
+                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                <dd class="field-even">
+                  <p>
+                    <span>
+                      <a class="reference internal" href="#LibraryName\SubPackage\SubpackageInterface" title="LibraryName\SubPackage\SubpackageInterface">
+                        <code class="xref php php-obj docutils literal notranslate">
+                          <span class="pre">LibraryName\SubPackage\SubpackageInterface</span>
+                        </code>
+                      </a>
+                    </span>
+                  </p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="OtherLibrary\ReturningClass::returnClassConstant">
+              <span class="sig-name descname">
+                <span class="pre">returnClassConstant</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#OtherLibrary\ReturningClass::returnClassConstant" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>The value of a specific class constant.</p>
+                </dd>
+                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                <dd class="field-even">
+                  <p>
+                    <span>
+                      <a class="reference internal" href="#LibraryName\NamespaceClass::NAMESPACE_CONST" title="LibraryName\NamespaceClass::NAMESPACE_CONST">
+                        <code class="xref php php-obj docutils literal notranslate">
+                          <span class="pre">LibraryName\NamespaceClass::NAMESPACE_CONST</span>
+                        </code>
+                      </a>
+                    </span>
+                  </p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="OtherLibrary\ReturningClass::returnGlobalConstant">
+              <span class="sig-name descname">
+                <span class="pre">returnGlobalConstant</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#OtherLibrary\ReturningClass::returnGlobalConstant" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>The value of a specific global constant. # TODO link is not working without &#x201C;\&#x201D;</p>
+                </dd>
+                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                <dd class="field-even">
+                  <p>
+                    <span>
+                      <a class="reference internal" href="#SOME_CONSTANT" title="SOME_CONSTANT">
+                        <code class="xref php php-obj docutils literal notranslate">
+                          <span class="pre">SOME_CONSTANT</span>
+                        </code>
+                      </a>
+                    </span>
+                  </p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="OtherLibrary\ReturningClass::returnExceptionInstance">
+              <span class="sig-name descname">
+                <span class="pre">returnExceptionInstance</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#OtherLibrary\ReturningClass::returnExceptionInstance" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>An instance of an exception.</p>
+                </dd>
+                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                <dd class="field-even">
+                  <p>
+                    <span>
+                      <a class="reference internal" href="#InvalidArgumentException" title="InvalidArgumentException">
+                        <code class="xref php php-obj docutils literal notranslate">
+                          <span class="pre">InvalidArgumentException</span>
+                        </code>
+                      </a>
+                    </span>
+                  </p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="OtherLibrary\ReturningClass::returnScalarType">
+              <span class="sig-name descname">
+                <span class="pre">returnScalarType</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#OtherLibrary\ReturningClass::returnScalarType" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>A scalar string type.</p>
+                </dd>
+                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                <dd class="field-even">
+                  <p>
+                    <span>
+                      <code class="xref php php-obj docutils literal notranslate">
+                        <span class="pre">string</span>
+                      </code>
+                    </span>
+                  </p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+          <dl class="php method">
+            <dt class="sig sig-object php" id="OtherLibrary\ReturningClass::returnUnionType">
+              <span class="sig-name descname">
+                <span class="pre">returnUnionType</span>
+              </span>
+              <span class="sig-paren">(</span>
+              <span class="sig-paren">)</span>
+              <a class="headerlink" href="#OtherLibrary\ReturningClass::returnUnionType" title="Permalink to this definition">&#xB6;</a>
+            </dt>
+            <dd>
+              <dl class="field-list simple">
+                <dt class="field-odd">Returns<span class="colon">:</span></dt>
+                <dd class="field-odd">
+                  <p>Any of a whole bunch of things specified with a PHP 8 union type.</p>
+                </dd>
+                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                <dd class="field-even">
+                  <p>
+                    <span>
+                      <code class="xref php php-obj docutils literal notranslate">
+                        <span class="pre">int|string|ReturnedClass|\LibraryName\SubPackage\SubpackageInterface|null</span>
+                      </code>
+                    </span>
+                  </p>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+      <dl class="php class">
+        <dt class="sig sig-object php" id="OtherLibrary\ReturnedClass">
+          <em class="property">
+            <span class="pre">class</span>
+          </em>
+          <span class="sig-prename descclassname">
+            <span class="pre">OtherLibrary\</span>
+          </span>
+          <span class="sig-name descname">
+            <span class="pre">ReturnedClass</span>
+          </span>
+          <a class="headerlink" href="#OtherLibrary\ReturnedClass" title="Permalink to this definition">&#xB6;</a>
+        </dt>
+        <dd>
+          <p>A class to return.</p>
+        </dd>
+      </dl>
+    </section>
+    <section id="enums">
+      <h2>Enums<a class="headerlink" href="#enums" title="Permalink to this heading">&#xB6;</a></h2>
+      <section id="namespace-Example\Basic">
+        <span id="basic-enumerations"/>
+        <h3>Basic Enumerations<a class="headerlink" href="#namespace-Example\Basic" title="Permalink to this heading">&#xB6;</a></h3>
+        <dl class="php enum">
+          <dt class="sig sig-object php" id="Example\Basic\Suit">
+            <em class="property">
+              <span class="pre">enum</span>
+            </em>
+            <span class="sig-prename descclassname">
+              <span class="pre">Example\Basic\</span>
+            </span>
+            <span class="sig-name descname">
+              <span class="pre">Suit</span>
+            </span>
+            <a class="headerlink" href="#Example\Basic\Suit" title="Permalink to this definition">&#xB6;</a>
+          </dt>
+          <dd>
+            <p>In playing cards, a suit is one of the categories into which the cards of a
+deck are divided.</p>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Basic\Suit::Hearts">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Hearts</span>
+                </span>
+                <a class="headerlink" href="#Example\Basic\Suit::Hearts" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Basic\Suit::Diamonds">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Diamonds</span>
+                </span>
+                <a class="headerlink" href="#Example\Basic\Suit::Diamonds" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Basic\Suit::Clubs">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Clubs</span>
+                </span>
+                <a class="headerlink" href="#Example\Basic\Suit::Clubs" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Basic\Suit::Spades">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Spades</span>
+                </span>
+                <a class="headerlink" href="#Example\Basic\Suit::Spades" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+          </dd>
+        </dl>
+      </section>
+      <section id="namespace-Example\Backed">
+        <span id="backed-enumerations"/>
+        <h3>Backed Enumerations<a class="headerlink" href="#namespace-Example\Backed" title="Permalink to this heading">&#xB6;</a></h3>
+        <dl class="php enum">
+          <dt class="sig sig-object php" id="Example\Backed\Suit">
+            <em class="property">
+              <span class="pre">enum</span>
+            </em>
+            <span class="sig-prename descclassname">
+              <span class="pre">Example\Backed\</span>
+            </span>
+            <span class="sig-name descname">
+              <span class="pre">Suit</span>
+            </span>
+            <span class="sig-return">
+              <span class="sig-return-icon">&#x2192;</span>
+              <span class="sig-return-typehint">
+                <span class="pre">string</span>
+              </span>
+            </span>
+            <a class="headerlink" href="#Example\Backed\Suit" title="Permalink to this definition">&#xB6;</a>
+          </dt>
+          <dd>
+            <p>In playing cards, a suit is one of the categories into which the cards of a
+deck are divided.</p>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Backed\Suit::Hearts">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Hearts</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'H'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Backed\Suit::Hearts" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Backed\Suit::Diamonds">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Diamonds</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'D'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Backed\Suit::Diamonds" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Backed\Suit::Clubs">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Clubs</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'C'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Backed\Suit::Clubs" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Backed\Suit::Spades">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Spades</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'S'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Backed\Suit::Spades" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+          </dd>
+        </dl>
+      </section>
+      <section id="namespace-Example\Advanced">
+        <span id="advanced-enumerations"/>
+        <h3>Advanced Enumerations<a class="headerlink" href="#namespace-Example\Advanced" title="Permalink to this heading">&#xB6;</a></h3>
+        <dl class="php enum">
+          <dt class="sig sig-object php" id="Example\Advanced\Suit">
+            <em class="property">
+              <span class="pre">enum</span>
+            </em>
+            <span class="sig-prename descclassname">
+              <span class="pre">Example\Advanced\</span>
+            </span>
+            <span class="sig-name descname">
+              <span class="pre">Suit</span>
+            </span>
+            <span class="sig-return">
+              <span class="sig-return-icon">&#x2192;</span>
+              <span class="sig-return-typehint">
+                <span class="pre">string</span>
+              </span>
+            </span>
+            <a class="headerlink" href="#Example\Advanced\Suit" title="Permalink to this definition">&#xB6;</a>
+          </dt>
+          <dd>
+            <p>In playing cards, a suit is one of the categories into which the cards of a
+deck are divided.</p>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Hearts">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Hearts</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'H'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Hearts" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Diamonds">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Diamonds</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'D'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Diamonds" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Clubs">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Clubs</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'C'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Clubs" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php case">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Spades">
+                <em class="property">
+                  <span class="pre">case</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Spades</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">'S'</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Spades" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd/>
+            </dl>
+            <dl class="php method">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::color">
+                <span class="sig-name descname">
+                  <span class="pre">color</span>
+                </span>
+                <span class="sig-paren">(</span>
+                <span class="sig-paren">)</span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">string</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::color" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd>
+                <p>Returns &#x201C;red&#x201D; for hearts and diamonds, &#x201C;black&#x201D; for clubs and spades.</p>
+              </dd>
+            </dl>
+            <dl class="php staticmethod">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::values">
+                <em class="property">
+                  <span class="pre">static</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">values</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">string[]</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::values" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd>
+                <p>Returns an array of the values of all the cases on this enum.</p>
+              </dd>
+            </dl>
+            <dl class="php const">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Roses">
+                <em class="property">
+                  <span class="pre">constant</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Roses</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">Hearts</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Roses" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Hearts" title="Example\Advanced\Suit::Hearts"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Hearts</span></code></a>.</p>
+              </dd>
+            </dl>
+            <dl class="php const">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Bells">
+                <em class="property">
+                  <span class="pre">constant</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Bells</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">Diamonds</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Bells" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Diamonds" title="Example\Advanced\Suit::Diamonds"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Diamonds</span></code></a>.</p>
+              </dd>
+            </dl>
+            <dl class="php const">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Acorns">
+                <em class="property">
+                  <span class="pre">constant</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Acorns</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">Clubs</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Acorns" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Clubs" title="Example\Advanced\Suit::Clubs"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Clubs</span></code></a>.</p>
+              </dd>
+            </dl>
+            <dl class="php const">
+              <dt class="sig sig-object php" id="Example\Advanced\Suit::Shields">
+                <em class="property">
+                  <span class="pre">constant</span>
+                </em>
+                <span class="sig-name descname">
+                  <span class="pre">Shields</span>
+                </span>
+                <span class="sig-return">
+                  <span class="sig-return-icon">&#x2192;</span>
+                  <span class="sig-return-typehint">
+                    <span class="pre">Spades</span>
+                  </span>
+                </span>
+                <a class="headerlink" href="#Example\Advanced\Suit::Shields" title="Permalink to this definition">&#xB6;</a>
+              </dt>
+              <dd>
+                <p>An alias for <a class="reference internal" href="#Example\Advanced\Suit::Spades" title="Example\Advanced\Suit::Spades"><code class="xref php php-case docutils literal notranslate"><span class="pre">Suit::Spades</span></code></a>.</p>
+              </dd>
+            </dl>
+          </dd>
+        </dl>
+      </section>
+      <section id="enumeration-links">
+        <h3>Enumeration Links<a class="headerlink" href="#enumeration-links" title="Permalink to this heading">&#xB6;</a></h3>
+        <section id="links-to-basic-enumeration-example">
+          <h4>Links to Basic Enumeration Example<a class="headerlink" href="#links-to-basic-enumeration-example" title="Permalink to this heading">&#xB6;</a></h4>
+          <p>
+            <a class="reference internal" href="#Example\Basic\Suit" title="Example\Basic\Suit">
+              <code class="xref php php-enum docutils literal notranslate">
+                <span class="pre">Example\Basic\Suit</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Basic\Suit::Hearts" title="Example\Basic\Suit::Hearts">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Basic\Suit::Hearts</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Basic\Suit::Diamonds" title="Example\Basic\Suit::Diamonds">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Basic\Suit::Diamonds</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Basic\Suit::Clubs" title="Example\Basic\Suit::Clubs">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Basic\Suit::Clubs</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Basic\Suit::Spades" title="Example\Basic\Suit::Spades">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Basic\Suit::Spades</span>
+              </code>
+            </a>
+          </p>
+        </section>
+        <section id="links-to-backed-enumeration-example">
+          <h4>Links to Backed Enumeration Example<a class="headerlink" href="#links-to-backed-enumeration-example" title="Permalink to this heading">&#xB6;</a></h4>
+          <p>
+            <a class="reference internal" href="#Example\Backed\Suit" title="Example\Backed\Suit">
+              <code class="xref php php-enum docutils literal notranslate">
+                <span class="pre">Example\Backed\Suit</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Backed\Suit::Hearts" title="Example\Backed\Suit::Hearts">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Backed\Suit::Hearts</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Backed\Suit::Diamonds" title="Example\Backed\Suit::Diamonds">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Backed\Suit::Diamonds</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Backed\Suit::Clubs" title="Example\Backed\Suit::Clubs">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Backed\Suit::Clubs</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Backed\Suit::Spades" title="Example\Backed\Suit::Spades">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Example\Backed\Suit::Spades</span>
+              </code>
+            </a>
+          </p>
+        </section>
+        <section id="links-to-advanced-enumeration-example">
+          <h4>Links to Advanced Enumeration Example<a class="headerlink" href="#links-to-advanced-enumeration-example" title="Permalink to this heading">&#xB6;</a></h4>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit" title="Example\Advanced\Suit">
+              <code class="xref php php-enum docutils literal notranslate">
+                <span class="pre">Suit</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Hearts" title="Example\Advanced\Suit::Hearts">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Suit::Hearts</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Diamonds" title="Example\Advanced\Suit::Diamonds">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Suit::Diamonds</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Clubs" title="Example\Advanced\Suit::Clubs">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Suit::Clubs</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Spades" title="Example\Advanced\Suit::Spades">
+              <code class="xref php php-case docutils literal notranslate">
+                <span class="pre">Suit::Spades</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::color" title="Example\Advanced\Suit::color">
+              <code class="xref php php-meth docutils literal notranslate">
+                <span class="pre">Suit::color</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::values" title="Example\Advanced\Suit::values">
+              <code class="xref php php-meth docutils literal notranslate">
+                <span class="pre">Suit::values</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Roses" title="Example\Advanced\Suit::Roses">
+              <code class="xref php php-const docutils literal notranslate">
+                <span class="pre">Suit::Roses</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Bells" title="Example\Advanced\Suit::Bells">
+              <code class="xref php php-const docutils literal notranslate">
+                <span class="pre">Suit::Bells</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Acorns" title="Example\Advanced\Suit::Acorns">
+              <code class="xref php php-const docutils literal notranslate">
+                <span class="pre">Suit::Acorns</span>
+              </code>
+            </a>
+          </p>
+          <p>
+            <a class="reference internal" href="#Example\Advanced\Suit::Shields" title="Example\Advanced\Suit::Shields">
+              <code class="xref php php-const docutils literal notranslate">
+                <span class="pre">Suit::Shields</span>
+              </code>
+            </a>
+          </p>
+        </section>
+      </section>
+    </section>
+  </section>
+  <div class="clearer"/>
+</div>
