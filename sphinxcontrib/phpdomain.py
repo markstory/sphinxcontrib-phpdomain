@@ -5,7 +5,7 @@
 
     The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
 
-    :copyright: Copyright 2017 by Mark Story
+    :copyright: Copyright 2016 by Mark Story
     :license: BSD, see LICENSE for details.
 """
 import re
