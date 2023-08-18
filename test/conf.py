@@ -12,6 +12,6 @@ myst_enable_extensions = ["colon_fence"]
 source_suffix = ".md"
 master_doc = "index"
 
-exclude_patterns = ["_build", "log.md"]
+exclude_patterns = ["_build", "cli-warning.md"]
 
 html_theme = "default"

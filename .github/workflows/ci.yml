@@ -48,7 +48,7 @@ jobs:
         cd test
         find . -name '*.html' -exec rm {} \;
 
-        sed -i 's~, "log\.md"~~' conf.py
+        sed -i 's~, "cli-warning\.md"~~' conf.py
         make html SPHINXOPTS='' 2>&1 | tee log.txt
         git restore conf.py
 
@@ -86,7 +86,7 @@ jobs:
         cd test
         make html SPHINXOPTS='-W'
 
-        sed -i 's~, "log\.md"~~' conf.py
+        sed -i 's~, "cli-warning\.md"~~' conf.py
         ! make html SPHINXOPTS='-W' || (echo 'Unexpected zero exit code'; false)
         git restore conf.py
 
