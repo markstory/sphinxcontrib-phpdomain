@@ -31,7 +31,7 @@ PHP Domain supports following objects:
 
 setup(
     name='sphinxcontrib-phpdomain',
-    version='0.11.2',
+    version='0.11.1',
     url='https://github.com/markstory/sphinxcontrib-phpdomain',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-phpdomain',
     license='BSD',
