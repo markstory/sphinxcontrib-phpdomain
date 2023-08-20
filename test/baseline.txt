@@ -1,9 +1,10 @@
-test/logging.md:3: WARNING: Unknown directive type: 'php:namespacee' [myst.directive_unknown]
-test/logging.md:8: WARNING: [phpdomain] Invalid signature
-test/logging.md:13: [phpdomain] Target Foo\Aa not found
-test/logging.md:15: [phpdomain] Target Foo\A::simplifyy not found
-test/logging.md:20: [phpdomain] Target Foo\Foo\A::simplify not found - did you mean to write A::simplify?
-test/logging.md:25: [phpdomain] Target Fooo\Foo\A::simplify not found - did you mean to write \Foo\A::simplify?
+test/logging.md:8: WARNING: [phpdomain] In-class type requires class
+test/logging.md:13: WARNING: [phpdomain] Unexpected name in non in-class type
+test/logging.md:18: WARNING: [phpdomain] Invalid signature
+test/logging.md:23: [phpdomain] Target Foo\Aa not found
+test/logging.md:25: [phpdomain] Target Foo\A::simplifyy not found
+test/logging.md:30: [phpdomain] Target Foo\Foo\A::simplify not found - did you mean to write A::simplify?
+test/logging.md:35: [phpdomain] Target Fooo\Foo\A::simplify not found - did you mean to write \Foo\A::simplify?
 test/ns.md:59: [phpdomain] Target A::simplify not found
 test/ns.md:69: [phpdomain] Target A2::simplify not found
 test/ns.md:74: [phpdomain] Target Bar2\A::simplify not found
