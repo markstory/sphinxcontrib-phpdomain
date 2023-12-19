@@ -43,6 +43,7 @@ setup(
     classifiers=[
         "Environment :: Console",
         "Environment :: Web Environment",
+        "Framework :: Sphinx :: Domain",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
