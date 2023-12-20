@@ -3,6 +3,16 @@
 :::{php:namespacee} Foo
 :::
 
+# In-class type without class
+
+:::{php:method} x()
+:::
+
+# Not In-class type with class
+
+:::{php:class} A::A
+:::
+
 # Invalid signature
 
 :::{php:method} x();

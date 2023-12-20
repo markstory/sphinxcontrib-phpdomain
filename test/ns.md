@@ -39,6 +39,27 @@
 - {php:meth}`\Foo\Bar\A::simplify`
 - {php:meth}`\Bar\A::simplify`
 
+# Leading `\` implies absolute class name
+
+:::{php:class} \A
+:::
+
+:::{php:method} simplify()
+:::
+
+:::{php:class} A2
+:::
+
+:::{php:method} simplify()
+:::
+
+## Cross linking
+
+- {php:meth}`A::simplify`
+- {php:meth}`\A::simplify`
+- {php:meth}`A2::simplify`
+- {php:meth}`\Bar\A2::simplify`
+
 # NS must not be guessed
 
 :::note

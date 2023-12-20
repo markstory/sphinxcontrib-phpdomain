@@ -487,7 +487,7 @@ Return Types
 
     .. php:method:: returnGlobalConstant()
 
-        :returns: The value of a specific global constant. # TODO link is not working without "\\"
+        :returns: The value of a specific global constant.
         :returntype: SOME_CONSTANT
 
     .. php:method:: returnExceptionInstance()
