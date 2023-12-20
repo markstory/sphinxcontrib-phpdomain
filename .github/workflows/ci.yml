@@ -10,9 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Builds are failing with py3.9+ because sphinx templates are different.
-        # python: ['3.7', '3.8', '3.9', '3.10', '3.11']
-        python: ['3.7', '3.8']
+        python:
+          - '3.7'
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - 'latest' # hardcoded below as '3.11'
+          - 'beta' # hardcoded below as '3.12'
       fail-fast: false
 
     permissions:
@@ -23,7 +27,8 @@ jobs:
 
     - uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python }}
+        python-version: ${{ matrix.python == 'latest' && '3.11' || (matrix.python == 'beta' && '3.12' || matrix.python) }}
+        allow-prereleases: true
 
     - name: Install tools
       run: |
@@ -41,28 +46,29 @@ jobs:
         cd test
         find . -name '*.html' -exec rm {} \;
 
-        sed -i 's~, "log\.md"~~' conf.py
-        make html SPHINXOPTS='' 2>&1 | tee log.txt
+        sed -i 's~, "logging\.md"~~' conf.py
+        make html SPHINXOPTS='' 2>&1 | tee baseline.txt
         git restore conf.py
 
         (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
         (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
-        sed -i -r 's~.*/(test/)~\1~;t;d' log.txt
+        sed -i -r 's~[^:]*/(test/)~\1~;t;d' baseline.txt
 
     - name: Apply Coding Style
-      if: matrix.python == '3.11'
+      if: matrix.python == 'latest'
       run: |
         pip install black
         python -m black .
 
     - name: Diff Unit Tests Output and Coding Style
+      if: matrix.python == 'latest'
       run: |
         cd test
         rm -r _build
         git add . -N && git diff --exit-code
 
     - name: Push Unit Tests Output
-      if: failure() && github.repository_owner != 'markstory' && matrix.python == '3.11'
+      if: failure() && github.repository_owner != 'markstory' && matrix.python == 'latest'
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         branch: ${{ github.head_ref || github.ref_name }}.changes
@@ -78,7 +84,7 @@ jobs:
         cd test
         make html SPHINXOPTS='-W'
 
-        sed -i 's~, "log\.md"~~' conf.py
+        sed -i 's~, "logging\.md"~~' conf.py
         ! make html SPHINXOPTS='-W' || (echo 'Unexpected zero exit code'; false)
         git restore conf.py
 

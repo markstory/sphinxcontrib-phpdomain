@@ -1,6 +1,6 @@
 """
     Sphinx PHP domain.
-    
+
     The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
 
     :copyright: Copyright 2016 by Mark Story
