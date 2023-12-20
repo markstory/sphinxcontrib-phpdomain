@@ -79,6 +79,7 @@ separators = {
     "exception": None,
     "method": "::",
     "const": "::",
+    "property": "::$",
     "attr": "::$",
     "staticmethod": "::",
     "case": "::",
@@ -218,48 +219,81 @@ class PhpObject(ObjectDescription):
         if m is None:
             throw_if_false(signode, False, "Invalid signature")
 
-        visibility, modifiers, name_prefix, name, arglist, retann, enumtype = m.groups()
+        visibility, modifiers, classname, name, arglist, retann, enumtype = m.groups()
 
-        if not name_prefix:
-            name_prefix = ""
-
-        # determine namespace and class name (if applicable), as well as full name
-        namespace = self.options.get(
+        # parse & resolve classname and name
+        env_namespace = self.options.get(
             "namespace", self.env.temp_data.get("php:namespace")
         )
+        env_class = self.env.temp_data.get("php:class")
         separator = separators[self.objtype]
+        if (
+            self.objtype == "const"
+            and not classname
+            and (not env_class or name.startswith(NS))
+        ):
+            separator = None
+        type_in_class = separator != None
 
-        if "::" in name_prefix:
-            classname = name_prefix.rstrip("::")
+        if not classname:
+            # throw_if_false(signode, not name.startswith('$'))
+            if name.startswith("$"):
+                name = name[1:]
+            if type_in_class:
+                throw_if_false(signode, env_class, "In-class type requires class")
+                classname = NS + env_class
+            else:
+                classname = name
+                name = None
         else:
-            classname = self.env.temp_data.get("php:class")
+            throw_if_false(
+                signode, type_in_class, "Unexpected name in non in-class type"
+            )
+            throw_if_false(
+                signode,
+                classname.endswith("::"),
+                "Separator between class and name is required",
+            )
+            classname = classname[:-2]
+            # throw_if_false(signode, name.startswith('$') == (separator and separator.endswith('$'))) # not strictly needed
+            if name.startswith("$"):
+                name = name[1:]
 
         if self.objtype == "global":
-            namespace = None
+            name = "$" + classname
             classname = None
+        elif classname.startswith(NS):
+            classname = classname[1:]
+        elif env_namespace:
+            classname = env_namespace + NS + classname
+
+        if not type_in_class and self.objtype != "global":
+            name = classname.split(NS)[-1]
+            classname = ""
+        elif classname and env_namespace and classname.startswith(env_namespace + NS):
+            classname = classname[len(env_namespace + NS) :]
+
+        if not classname:
             fullname = name
+        elif not name:
+            fullname = classname
         else:
-            if name_prefix:
-                fullname = name_prefix + name
+            fullname = classname + separator + name
 
-            # Currently in a class, but not creating another class,
-            elif classname and not self.objtype in [
-                "class",
-                "exception",
-                "interface",
-                "trait",
-                "enum",
-                "function",
-            ]:
-                if not self.env.temp_data["php:in_class"]:
-                    name_prefix = classname + separator
-
-                fullname = classname + separator + name
+        name_prefix = classname
+        if not name_prefix:
+            name_prefix = None
+        # elif type_in_class and not self.env.temp_data['php:in_class']:
+        elif type_in_class:
+            if not self.env.temp_data.get("php:in_class", False):
+                name_prefix = name_prefix + separator
             else:
-                classname = ""
-                fullname = name
+                name_prefix = None
 
-        signode["namespace"] = namespace
+        print([env_namespace, classname, name, fullname, name_prefix])
+        print()
+
+        signode["namespace"] = env_namespace
         signode["class"] = self.class_name = classname
         signode["fullname"] = fullname
 
@@ -275,16 +309,16 @@ class PhpObject(ObjectDescription):
             signode += addnodes.desc_annotation(sig_prefix, sig_prefix)
 
         if name_prefix:
-            if namespace and not self.env.temp_data["php:in_class"]:
-                name_prefix = namespace + NS + name_prefix
+            if env_namespace and not self.env.temp_data["php:in_class"]:
+                name_prefix = env_namespace + NS + name_prefix
             signode += addnodes.desc_addname(name_prefix, name_prefix)
 
         elif (
-            namespace
+            env_namespace
             and not self.env.temp_data.get("php:in_class", False)
             and self.env.config.add_module_names
         ):
-            nodetext = namespace + NS
+            nodetext = env_namespace + NS
             signode += addnodes.desc_addname(nodetext, nodetext)
 
         signode += addnodes.desc_name(name, name)
@@ -334,7 +368,8 @@ class PhpObject(ObjectDescription):
             return name + parens
         if config.toc_object_entries_show_parents == "all":
             if (
-                objtype in {"method", "const", "attr", "staticmethod", "case"}
+                objtype
+                in {"method", "const", "property", "attr", "staticmethod", "case"}
                 and len(parents) > 0
             ):
                 name = parents.pop() + "::" + name
@@ -348,7 +383,11 @@ class PhpObject(ObjectDescription):
         raise NotImplementedError("must be implemented in subclasses")
 
     def _is_class_member(self):
-        return self.objtype.startswith("method") or self.objtype.startswith("attr")
+        return (
+            self.objtype.startswith("method")
+            or self.objtype.startswith("property")
+            or self.objtype.startswith("attr")
+        )
 
     def add_target_and_index(self, name_cls, sig, signode):
         if self.objtype == "global":
@@ -480,7 +519,7 @@ class PhpClassmember(PhpObject):
     """
 
     def get_signature_prefix(self, sig):
-        if self.objtype == "attr":
+        if self.objtype == "property" or self.objtype == "attr":
             return _("property ")
         if self.objtype == "staticmethod":
             return _("static ")
@@ -496,6 +535,7 @@ class PhpClassmember(PhpObject):
 
         if (
             self.objtype.endswith("method")
+            or self.objtype == "property"
             or self.objtype == "attr"
             or self.objtype == "case"
         ):
@@ -512,7 +552,7 @@ class PhpClassmember(PhpObject):
                 return _("%s() (%s\\%s method)") % (propname, namespace, clsname)
             else:
                 return _("%s() (%s method)") % (propname, clsname)
-        elif self.objtype == "attr":
+        elif self.objtype == "property" or self.objtype == "attr":
             if namespace and clsname is None:
                 return _("%s (in namespace %s)") % (name, namespace)
             elif namespace and self.env.config.add_module_names:
@@ -713,14 +753,15 @@ class PhpDomain(Domain):
     name = "php"
     label = "PHP"
     object_types = {
-        "function": ObjType(_("function"), "func", "obj"),
+        "function": ObjType(_("function"), "function", "obj"),
         "global": ObjType(_("global variable"), "global", "obj"),
         "const": ObjType(_("const"), "const", "obj"),
-        "method": ObjType(_("method"), "meth", "obj"),
+        "method": ObjType(_("method"), "method", "obj"),
         "class": ObjType(_("class"), "class", "obj"),
+        "property": ObjType(_("attribute"), "property", "obj"),
         "attr": ObjType(_("attribute"), "attr", "obj"),
         "exception": ObjType(_("exception"), "exc", "obj"),
-        "namespace": ObjType(_("namespace"), "ns", "obj"),
+        "namespace": ObjType(_("namespace"), "namespace", "obj"),
         "interface": ObjType(_("interface"), "interface", "obj"),
         "trait": ObjType(_("trait"), "trait", "obj"),
         "enum": ObjType(_("enum"), "enum", "obj"),
@@ -733,27 +774,32 @@ class PhpDomain(Domain):
         "const": PhpNamespacelevel,
         "class": PhpClasslike,
         "method": PhpClassmember,
-        "staticmethod": PhpClassmember,
-        "attr": PhpClassmember,
+        "staticmethod": PhpClassmember,  # deprecated, use "method" with "static" modifier, methods in PHP are exclusively static or non-static
+        "property": PhpClassmember,
+        "attr": PhpClassmember,  # deprecated, use "property"
         "case": PhpClassmember,
-        "exception": PhpClasslike,
+        "exception": PhpClasslike,  # deprecated, use "class", exceptions in PHP are regular classes
         "interface": PhpClasslike,
         "trait": PhpClasslike,
         "enum": PhpClasslike,
         "namespace": PhpNamespace,
-        "currentmodule": PhpCurrentNamespace,
+        "currentmodule": PhpCurrentNamespace,  # deprecated, use "currentnamespace"
         "currentnamespace": PhpCurrentNamespace,
     }
 
     roles = {
-        "func": PhpXRefRole(fix_parens=False),
+        "function": PhpXRefRole(fix_parens=False),
+        "func": PhpXRefRole(fix_parens=False),  # deprecated, use "function"
         "global": PhpXRefRole(),
         "class": PhpXRefRole(),
         "exc": PhpXRefRole(),
-        "meth": PhpXRefRole(fix_parens=False),
+        "method": PhpXRefRole(fix_parens=False),
+        "meth": PhpXRefRole(fix_parens=False),  # deprecated, use "method"
+        "property": PhpXRefRole(),
         "attr": PhpXRefRole(),
         "const": PhpXRefRole(),
-        "ns": PhpXRefRole(),
+        "namespace": PhpXRefRole(),
+        "ns": PhpXRefRole(),  # deprecated, use "namespace"
         "obj": PhpXRefRole(),
         "interface": PhpXRefRole(),
         "trait": PhpXRefRole(),
@@ -795,7 +841,12 @@ class PhpDomain(Domain):
         return []
 
     def resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
-        if typ == "ns" or typ == "obj" and target in self.data["namespaces"]:
+        if (
+            typ == "namespace"
+            or typ == "ns"
+            or typ == "obj"
+            and target in self.data["namespaces"]
+        ):
             docname, synopsis, deprecated = self.data["namespaces"].get(
                 target, ("", "", "")
             )

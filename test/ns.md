@@ -11,7 +11,7 @@
 
 ## Cross linking
 
-- {php:meth}`A::simplify`
+- {php:method}`A::simplify`
 
 # NS can be changed
 
@@ -35,9 +35,30 @@
 
 ## Cross linking
 
+- {php:method}`A::simplify`
+- {php:method}`\Foo\Bar\A::simplify`
+- {php:method}`\Bar\A::simplify`
+
+# Leading `\` implies absolute class name
+
+:::{php:class} \A
+:::
+
+:::{php:method} simplify()
+:::
+
+:::{php:class} A2
+:::
+
+:::{php:method} simplify()
+:::
+
+## Cross linking
+
 - {php:meth}`A::simplify`
-- {php:meth}`\Foo\Bar\A::simplify`
-- {php:meth}`\Bar\A::simplify`
+- {php:meth}`\A::simplify`
+- {php:meth}`A2::simplify`
+- {php:meth}`\Bar\A2::simplify`
 
 # NS must not be guessed
 
@@ -45,9 +66,9 @@
 These cross references must not have a link as the target methods are not defined.
 :::
 
-- {php:meth}`\A2::simplify`
+- {php:method}`\A2::simplify`
 
 :::{php:namespace} Bar2
 :::
 
-- {php:meth}`A::simplify`
+- {php:method}`A::simplify`

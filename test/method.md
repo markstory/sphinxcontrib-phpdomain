@@ -14,4 +14,4 @@ Simple test method.
 
 ## Cross linking
 
-- {php:meth}`Foo::test()`
+- {php:method}`Foo::test()`

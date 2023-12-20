@@ -59,9 +59,9 @@ Classes
 
         Y-m-d\TH:i:sP
 
-    .. php:attr:: testattr
+    .. php:property:: testprop
 
-        Value of some attribute
+        Value of some property
 
 .. php:class:: OtherClass
 
@@ -71,24 +71,17 @@ Classes
 
     Update something.
 
-.. php:attr:: nonIndentedAttribute
+.. php:property:: nonIndentedProperty
 
-    This attribute wasn't indented
+    This property wasn't indented
 
 .. php:const:: NO_INDENT
 
     This class constant wasn't indented
 
-.. php:staticmethod:: OtherClass::staticMethod()
+.. php:method:: OtherClass2::update($arg = '')
 
-    A static method.
-
-Exceptions
-==========
-
-.. php:exception:: InvalidArgumentException
-
-    Throw when you get an argument that is bad.
+    A method without explicitly declared class block.
 
 Interfaces
 ==========
@@ -117,9 +110,9 @@ Interfaces
 
         Y-m-d\TH:i:sP
 
-    .. php:attr:: testattr
+    .. php:property:: testprop
 
-        Value of some attribute
+        Value of some property
 
 .. php:interface:: OtherInterface
 
@@ -157,56 +150,54 @@ Test Case - Global symbols with no namespaces
 
 :php:const:`SOME_CONSTANT`
 
-:php:func:`in_array`
+:php:function:`in_array`
 
-:php:func:`strpos`
+:php:function:`strpos`
 
 :php:class:`DateTime`
 
-:php:meth:`DateTime::setTime()`
+:php:method:`DateTime::setTime()`
 
-:php:meth:`DateTime::getLastErrors()`
+:php:method:`DateTime::getLastErrors()`
 
-:php:meth:`DateTime::setDate()`
+:php:method:`DateTime::setDate()`
 
 :php:const:`DateTime::ATOM`
 
-:php:attr:`DateTime::$testattr`
+:php:property:`DateTime::$testprop`
 
-:php:meth:`OtherClass::update`
+:php:method:`OtherClass::update`
 
-:php:attr:`OtherClass::$nonIndentedAttribute`
+:php:property:`OtherClass::$nonIndentedProperty`
 
 :php:const:`OtherClass::NO_INDENT`
 
-:php:func:`OtherClass::staticMethod`
-
-:php:exc:`InvalidArgumentException`
+:php:method:`OtherClass2::update()`
 
 :php:interface:`DateTimeInterface`
 
-:php:meth:`DateTimeInterface::setTime()`
+:php:method:`DateTimeInterface::setTime()`
 
-:php:meth:`~DateTimeInterface::setDate()`
+:php:method:`~DateTimeInterface::setDate()`
 
 :php:const:`DateTimeInterface::ATOM`
 
-:php:attr:`DateTimeInterface::$testattr`
+:php:property:`DateTimeInterface::$testprop`
 
 :php:interface:`OtherInterface`
 
 :php:trait:`LogTrait`
 
-:php:meth:`LogTrait::log()`
+:php:method:`LogTrait::log()`
 
 Test Case - Prefix less links
 -----------------------------
 
 The following links should not be prefixed with a classname.
 
-:php:meth:`~DateTime::setDate()`
+:php:method:`~DateTime::setDate()`
 
-:php:attr:`~DateTime::$testattr`
+:php:property:`~DateTime::$testprop`
 
 
 Namespaced elements
@@ -225,12 +216,6 @@ Namespaced elements
 
        A constant in a namespace
 
-
-.. php:exception:: NamespaceException
-
-    This exception is in a namespace.
-
-
 .. php:class:: LibraryClass
 
     A class in a namespace
@@ -243,13 +228,9 @@ Namespaced elements
 
         Test constant
 
-    .. php:attr:: property
+    .. php:property:: property
 
         A property!
-
-.. php:staticmethod:: LibraryClass::staticMethod()
-
-    A static method in a namespace
 
 .. php:class:: NamespaceClass
 
@@ -259,7 +240,7 @@ Namespaced elements
 
     A normal instance method.
 
-.. php:attr:: property
+.. php:property:: property
 
     A property
 
@@ -267,9 +248,9 @@ Namespaced elements
 
     Const on class in namespace
 
-.. php:staticmethod:: namespaceStatic($foo)
+.. php:method:: NamespaceClass2::update($foo)
 
-    A static method here.
+    A method without explicitly declared class block in a namespace
 
 .. php:class:: final LibraryClassFinal
 
@@ -321,55 +302,51 @@ Test Case - not including namespace
 
 Within a namespace context you don't need to include the namespace in links.
 
-:php:ns:`LibraryName`
+:php:namespace:`LibraryName`
 
-:php:func:`namespaced_function()`
+:php:function:`namespaced_function()`
 
 :php:const:`NS_CONST`
 
 :php:class:`LibraryClass`
 
-:php:func:`LibraryClass::instanceMethod`
+:php:function:`LibraryClass::instanceMethod`
 
-:php:func:`LibraryClass::staticMethod()`
-
-:php:attr:`LibraryClass::$property`
+:php:property:`LibraryClass::$property`
 
 :php:const:`LibraryClass::TEST_CONST`
 
 :php:class:`OtherClass`
 
-:php:class:`ThirdClass`
-
 :php:class:`NamespaceClass`
 
-:php:func:`NamespaceClass::firstMethod`
+:php:function:`NamespaceClass::firstMethod`
 
-:php:attr:`NamespaceClass::$property`
+:php:property:`NamespaceClass::$property`
 
 :php:const:`NamespaceClass::NAMESPACE_CONST`
 
+:php:method:`NamespaceClass2::update()`
+
 :php:class:`LibraryClassFinal`
 
-:php:meth:`LibraryClassFinal::firstMethod`
+:php:method:`LibraryClassFinal::firstMethod`
 
-:php:meth:`LibraryClassFinal::secondMethod`
+:php:method:`LibraryClassFinal::secondMethod`
 
-:php:meth:`LibraryClassFinal::thirdMethod`
+:php:method:`LibraryClassFinal::thirdMethod`
 
-:php:meth:`LibraryClassFinal::fourthMethod`
+:php:method:`LibraryClassFinal::fourthMethod`
 
-:php:meth:`LibraryClassFinal::fifthMethod`
+:php:method:`LibraryClassFinal::fifthMethod`
 
 :php:interface:`LibraryInterface`
 
-:php:func:`LibraryInterface::instanceMethod`
-
-:php:exc:`NamespaceException`
+:php:function:`LibraryInterface::instanceMethod`
 
 :php:trait:`TemplateTrait`
 
-:php:meth:`TemplateTrait::render()`
+:php:method:`TemplateTrait::render()`
 
 Test Case - Links with prefix trimming
 --------------------------------------
@@ -382,15 +359,13 @@ All of the following links should not be prefixed with a namespace.
 
 :php:trait:`~TemplateTrait`
 
-:php:exc:`~NamespaceException`
-
 All of the following links should not be prefixed with a classname.
 
-:php:func:`~LibraryClass::instanceMethod`
+:php:function:`~LibraryClass::instanceMethod`
 
 :php:const:`~LibraryClass::TEST_CONST`
 
-:php:attr:`~LibraryClass::$property`
+:php:property:`~LibraryClass::$property`
 
 
 Test Case - global access
@@ -398,17 +373,17 @@ Test Case - global access
 
 :php:class:`\\DateTime`
 
-:php:func:`\\DateTime::setTime()`
+:php:function:`\\DateTime::setTime()`
 
 :php:global:`$global_var`
 
 :php:const:`SOME_CONSTANT`
 
-:php:func:`in_array()`
+:php:function:`in_array()`
 
-:php:attr:`\\LibraryName\\LibraryClass::$property`
+:php:property:`\\LibraryName\\LibraryClass::$property`
 
-:php:attr:`~\\LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
+:php:property:`~\\LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
 
 :php:const:`\\LibraryName\\LibraryClass::TEST_CONST`
 
@@ -416,7 +391,7 @@ Test Case - global access
 
 :php:interface:`\\DateTimeInterface`
 
-:php:func:`\\DateTimeInterface::setTime()`
+:php:function:`\\DateTimeInterface::setTime()`
 
 Any Cross Ref
 =============
@@ -430,10 +405,6 @@ Nested namespaces
 
 .. php:namespace:: LibraryName\SubPackage
 
-.. php:exception:: NestedNamespaceException
-
-    In a package
-
 .. php:class:: SubpackageClass
 
     A class in a subpackage
@@ -445,9 +416,9 @@ Nested namespaces
 Test Case - Test subpackage links
 ---------------------------------
 
-:php:ns:`LibraryName\\SubPackage`
+:php:namespace:`LibraryName\\SubPackage`
 
-:php:ns:`\\LibraryName\\SubPackage`
+:php:namespace:`\\LibraryName\\SubPackage`
 
 :php:class:`SubpackageClass`
 
@@ -456,10 +427,6 @@ Test Case - Test subpackage links
 :php:interface:`SubpackageInterface`
 
 :php:class:`\\LibraryName\\SubPackage\\SubpackageInterface`
-
-:php:exc:`NestedNamespaceException`
-
-:php:exc:`\\LibraryName\\SubPackage\\NestedNamespaceException`
 
 Return Types
 ============
@@ -489,11 +456,6 @@ Return Types
 
         :returns: The value of a specific global constant. # TODO link is not working without "\\"
         :returntype: SOME_CONSTANT
-
-    .. php:method:: returnExceptionInstance()
-
-        :returns: An instance of an exception.
-        :returntype: \\InvalidArgumentException
 
     .. php:method:: returnScalarType()
 
@@ -561,7 +523,7 @@ Advanced Enumerations
 
         Returns "red" for hearts and diamonds, "black" for clubs and spades.
 
-    .. php:staticmethod:: values() -> string[]
+    .. php:method:: static values() -> string[]
 
         Returns an array of the values of all the cases on this enum.
 
@@ -623,9 +585,9 @@ Links to Advanced Enumeration Example
 
 :php:case:`Suit::Spades`
 
-:php:meth:`Suit::color`
+:php:method:`Suit::color`
 
-:php:meth:`Suit::values`
+:php:method:`Suit::values`
 
 :php:const:`Suit::Roses`
 

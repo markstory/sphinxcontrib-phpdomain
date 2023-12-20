@@ -8,7 +8,7 @@ namespace ``Imagine\Draw``
 
 .. php:class:: DrawerInterface
 
-Instance of this interface is returned by :php:meth:`\\Imagine\\Image\\ImageInterface::draw`.
+Instance of this interface is returned by :php:method:`\\Imagine\\Image\\ImageInterface::draw`.
 
 .. php:method:: arc(PointInterface $center, BoxInterface $size, $start, $end, Color $color)
 
@@ -26,14 +26,6 @@ Instance of this interface is returned by :php:meth:`\\Imagine\\Image\\ImageInte
 
 Re-used namespace
 =================
-
-.. php:currentmodule:: LibraryName
-
-No indexing errors or links should point to this namespace.
-
-.. php:class:: ThirdClass
-
-    Another class in a currentmodule block
 
 .. php:currentnamespace:: LibraryName
 

@@ -28,10 +28,10 @@ PHP Domain supports following objects:
 
 .. note::
 
-   This domain expresses methods and attribute names like this::
+   This domain expresses methods and properties like this::
 
       Class::method_name
-      Class::$attribute_name
+      Class::$prop_name
 
    You address classes/functions in namespaces using \\ syntax as you would in PHP::
 

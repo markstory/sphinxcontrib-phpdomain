@@ -34,11 +34,6 @@ Each directive populates the index, and or the namespace index.
 
    This directive declares a new PHP constant, you can also used it nested 
    inside a class directive to create class constants.
-   
-.. rst:directive:: .. php:exception:: name
-
-   This directive declares a new Exception in the current namespace. The 
-   signature can include constructor arguments.
 
 .. rst:directive:: .. php:interface:: name
 
@@ -108,7 +103,7 @@ Each directive populates the index, and or the namespace index.
 
 .. rst:directive:: .. php:class:: name
 
-   Describes a class.  Methods, attributes, and constants belonging to the class
+   Describes a class.  Methods, properties, and constants belonging to the class
    should be inside this directive's body::
 
         .. php:class:: MyClass
@@ -120,7 +115,7 @@ Each directive populates the index, and or the namespace index.
            Method description
 
 
-   Attributes, methods and constants don't need to be nested.  They can also just 
+   Properties, methods and constants don't need to be nested.  They can also just 
    follow the class declaration::
 
         .. php:class:: MyClass
@@ -133,7 +128,7 @@ Each directive populates the index, and or the namespace index.
         
 
    .. seealso:: :rst:dir:`php:method`
-                :rst:dir:`php:attr`
+                :rst:dir:`php:property`
                 :rst:dir:`php:const`
 
 .. rst:directive:: .. php:method:: name(signature)
@@ -150,14 +145,9 @@ Each directive populates the index, and or the namespace index.
         
            This is an instance method.
 
-.. rst:directive:: .. php:staticmethod:: ClassName::methodName(signature)
+.. rst:directive:: .. php:property:: name
 
-    Describe a static method, its arguments, return value and exceptions,
-    see :rst:dir:`php:method` for options.
-
-.. rst:directive:: .. php:attr:: name
-
-   Describe an property/attribute on a class.
+   Describe a property on a class.
 
 Cross Referencing
 =================
@@ -165,14 +155,14 @@ Cross Referencing
 The following roles refer to php objects and are links are generated if a 
 matching directive is found:
 
-.. rst:role:: php:ns
+.. rst:role:: php:namespace
 
    Reference a namespace. Nested namespaces need to be separated by two \\ due 
    to the syntax of ReST::
    
-      .. php:ns:`LibraryName\\SubPackage` will work correctly.
+      .. php:namespace:`LibraryName\\SubPackage` will work correctly.
 
-.. rst:role:: php:func
+.. rst:role:: php:function
 
    Reference a PHP function either in a namespace or out. If the function is in
    a namespace, be sure to include the namespace, unless you are currently 
@@ -196,23 +186,17 @@ matching directive is found:
    
      :php:class:`LibraryName\\ClassName`
 
-.. rst:role:: php:meth
+.. rst:role:: php:method
 
-   Reference a method of a class/interface/trait. This role supports
-   both kinds of methods::
+   Reference a method of a class/interface/trait::
    
-     :php:meth:`DateTime::setDate`
-     :php:meth:`Classname::staticMethod`
+     :php:method:`DateTime::setDate`
 
-.. rst:role:: php:attr
+.. rst:role:: php:property
 
    Reference a property on an object::
    
-      :php:attr:`ClassName::$propertyName`
-
-.. rst:role:: php:exc
-
-   Reference an exception.  A namespaced name may be used.
+      :php:property:`ClassName::$propertyName`
 
 .. rst:role:: php:interface
 
