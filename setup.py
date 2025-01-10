@@ -29,7 +29,7 @@ PHP Domain supports following objects:
 
 setup(
     name="sphinxcontrib-phpdomain",
-    version="0.11.2",
+    version="0.12.0",
     url="https://github.com/markstory/sphinxcontrib-phpdomain",
     download_url="http://pypi.python.org/pypi/sphinxcontrib-phpdomain",
     license="BSD",
@@ -43,6 +43,7 @@ setup(
     classifiers=[
         "Environment :: Console",
         "Environment :: Web Environment",
+        "Framework :: Sphinx :: Domain",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
