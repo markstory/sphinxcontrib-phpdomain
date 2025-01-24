@@ -39,27 +39,15 @@ jobs:
     - name: Build Unit Tests
       run: |
         cd test
-        find . -name '*.html' -exec rm {} \;
-
-        sed -i 's~, "log\.md"~~' conf.py
-        make html SPHINXOPTS='' 2>&1 | tee log.txt
-        git restore conf.py
-
-        (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
-        (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
-        sed -i -r 's~.*/(test/)~\1~;t;d' log.txt
+        make clean
+        make html SPHINXOPTS='-W'
+        make comparehtml
 
     - name: Apply Coding Style
       if: matrix.python == '3.11'
       run: |
         pip install black
-        python -m black .
-
-    - name: Diff Unit Tests Output and Coding Style
-      run: |
-        cd test
-        rm -r _build
-        git add . -N && git diff --exit-code
+        python -m black --diff --check .
 
     - name: Push Unit Tests Output
       if: failure() && github.repository_owner != 'markstory' && matrix.python == '3.11'
