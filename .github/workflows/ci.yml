@@ -33,7 +33,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install -r test/requirements.txt
+        pip install -r requirements-test.txt
         pip install .
 
     - name: Build Unit Tests
@@ -61,9 +61,14 @@ jobs:
         commit_user_email: bot@example.com
         commit_author: Bot <bot@example.com>
 
+    - name: Build myst integration tests
+      run: |
+        cd test/myst
+        make html SPHINXOPTS='-W'
+
     - name: Build Unit Tests with '-W' option
       run: |
-        cd test
+        cd test/unit
         make html SPHINXOPTS='-W'
 
         sed -i 's~, "log\.md"~~' conf.py
@@ -72,15 +77,15 @@ jobs:
 
     - name: Build Unit Tests with toc show_parents=hide
       run: |
-        cd test
+        cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=hide'
 
     - name: Build Unit Tests with toc show_parents=domain
       run: |
-        cd test
+        cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=domain'
 
     - name: Build Unit Tests with toc show_parents=all
       run: |
-        cd test
+        cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
