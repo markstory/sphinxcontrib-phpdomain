@@ -38,7 +38,7 @@ jobs:
 
     - name: Build Unit Tests
       run: |
-        cd test
+        cd test/unit
         make clean
         make html SPHINXOPTS='-W'
         make comparehtml

@@ -42,7 +42,7 @@ Classes
 
     .. php:method:: setTime($hour, $minute[, $second])
 
-        Set the time
+        Set the time. See :php:func:`setDate()` for changing the date.
 
         :param int $hour: The hour
         :param int $minute: The minute
@@ -224,11 +224,9 @@ Namespaced elements
 
        A constant in a namespace
 
-
 .. php:exception:: NamespaceException
 
     This exception is in a namespace.
-
 
 .. php:class:: LibraryClass
 
