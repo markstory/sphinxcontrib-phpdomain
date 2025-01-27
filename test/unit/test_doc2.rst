@@ -42,3 +42,16 @@ No indexing errors or links should point to this namespace.
 
     Another class in a reused namespace
 
+
+.. php:class:: \Foo\Data\Thing
+
+    A class is with an absolute namespace.
+
+
+Test link generation
+====================
+
+:php:class:`Imagine\\Draw\\DrawerInterface`
+:php:class:`LibraryName\\OtherClass`
+:php:class:`LibraryName\\ThirdClass`
+:php:class:`Foo\\Data\\Thing`

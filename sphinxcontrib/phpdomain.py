@@ -269,6 +269,14 @@ class PhpObject(ObjectDescription):
                 classname = ""
                 fullname = name
 
+            # A leading \ means the name is fully qualified
+            # and should not inherit the current namespace.
+            if fullname.startswith(NS) and namespace:
+                add_module = False
+                name = name[1:]
+                fullname = fullname[1:]
+                namespace = None
+
         signode["namespace"] = namespace
         signode["class"] = self.class_name = classname
         signode["fullname"] = fullname
@@ -302,6 +310,7 @@ class PhpObject(ObjectDescription):
                     signode += addnodes.desc_addname(nodetext, nodetext)   
 
         signode += addnodes.desc_name(name, name)
+
         if not arglist:
             if self.needs_arglist():
                 # for callables, add an empty parameter list
