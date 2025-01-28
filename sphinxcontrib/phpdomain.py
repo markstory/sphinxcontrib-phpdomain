@@ -6,6 +6,7 @@ The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
 :copyright: Copyright 2016 by Mark Story
 :license: BSD, see LICENSE for details.
 """
+
 import re
 import inspect
 
@@ -242,7 +243,7 @@ class PhpObject(ObjectDescription):
         else:
             add_module = True
             if name_prefix:
-                classname = classname.rstrip('::')
+                classname = classname.rstrip("::")
                 fullname = name_prefix + name
 
             # Currently in a class, but not creating another class,
@@ -291,16 +292,17 @@ class PhpObject(ObjectDescription):
             signode += addnodes.desc_addname(name_prefix, name_prefix)
 
         elif add_module and self.env.config.add_module_names:
-            if self.objtype == 'global':
-                nodetext = ''
+            if self.objtype == "global":
+                nodetext = ""
                 signode += addnodes.desc_addname(nodetext, nodetext)
             else:
                 namespace = self.options.get(
-                    'namespace', self.env.temp_data.get('php:namespace'))
+                    "namespace", self.env.temp_data.get("php:namespace")
+                )
 
-                if namespace and not self.env.temp_data.get('php:in_class', False):
+                if namespace and not self.env.temp_data.get("php:in_class", False):
                     nodetext = namespace + NS
-                    signode += addnodes.desc_addname(nodetext, nodetext)   
+                    signode += addnodes.desc_addname(nodetext, nodetext)
 
         signode += addnodes.desc_name(name, name)
 
@@ -621,10 +623,10 @@ class PhpXRefRole(XRefRole):
         if not has_explicit_title:
             if title.startswith("::"):
                 title = title[2:]
-            target = target.lstrip('~')  # only has a meaning for the title
+            target = target.lstrip("~")  # only has a meaning for the title
 
             # If the first char is ~ don't display the leading namespace & class.
-            if title.startswith('~'):
+            if title.startswith("~"):
                 m = re.search(r"(?:.+[:]{2}|(?:.*?\\{1,2})+)?(.*)\Z", title)
                 if m:
                     title = m.group(1)
@@ -823,13 +825,17 @@ class PhpDomain(Domain):
             namespace = node.get("php:namespace")
             clsname = node.get("php:class")
             searchorder = node.hasattr("refspecific") and 1 or 0
-            name, obj = self.find_obj(env, node, namespace, clsname, target, typ, searchorder)
+            name, obj = self.find_obj(
+                env, node, namespace, clsname, target, typ, searchorder
+            )
             if not obj:
                 return None
             else:
                 return make_refnode(builder, fromdocname, obj[0], name, contnode, name)
 
-    def find_obj(self, env, fromdocnode, namespace, classname, name, type, searchorder=0):
+    def find_obj(
+        self, env, fromdocnode, namespace, classname, name, type, searchorder=0
+    ):
         """
         Find a PHP object for "name", using the given namespace and classname.
         """
@@ -840,42 +846,54 @@ class PhpDomain(Domain):
         if not name:
             return None, None
 
-        objects = self.data['objects']
+        objects = self.data["objects"]
 
         newname = None
         if searchorder == 1:
-            if namespace and classname and \
-                     namespace + NS + classname + '::' + name in objects:
-                newname = namespace + NS + classname + '::' + name
+            if (
+                namespace
+                and classname
+                and namespace + NS + classname + "::" + name in objects
+            ):
+                newname = namespace + NS + classname + "::" + name
             elif namespace and namespace + NS + name in objects:
                 newname = namespace + NS + name
             elif namespace and namespace + NS + name in objects:
                 newname = namespace + NS + name
-            elif classname and classname + '::' + name in objects:
-                newname = classname + '.' + name
-            elif classname and classname + '::$' + name in objects:
-                newname = classname + '::$' + name
+            elif classname and classname + "::" + name in objects:
+                newname = classname + "." + name
+            elif classname and classname + "::$" + name in objects:
+                newname = classname + "::$" + name
             elif name in objects:
                 newname = name
         else:
             if name in objects:
                 newname = name
-            elif classname and classname + '::' + name in objects:
-                newname = classname + '::' + name
-            elif classname and classname + '::$' + name in objects:
-                newname = classname + '::$' + name
+            elif classname and classname + "::" + name in objects:
+                newname = classname + "::" + name
+            elif classname and classname + "::$" + name in objects:
+                newname = classname + "::$" + name
             elif namespace and namespace + NS + name in objects:
                 newname = namespace + NS + name
-            elif namespace and classname and \
-                    namespace + NS + classname + '::' + name in objects:
-                newname = namespace + NS + classname + '::' + name
-            elif namespace and classname and \
-                    namespace + NS + classname + '::$' + name in objects:
-                newname = namespace + NS + classname + '::$' + name
+            elif (
+                namespace
+                and classname
+                and namespace + NS + classname + "::" + name in objects
+            ):
+                newname = namespace + NS + classname + "::" + name
+            elif (
+                namespace
+                and classname
+                and namespace + NS + classname + "::$" + name in objects
+            ):
+                newname = namespace + NS + classname + "::$" + name
             # special case: object methods
-            elif type in ('func', 'meth') and '::' not in name and \
-                    'object::' + name in objects:
-                newname = 'object::' + name
+            elif (
+                type in ("func", "meth")
+                and "::" not in name
+                and "object::" + name in objects
+            ):
+                newname = "object::" + name
         if newname is None:
             return None, None
         return newname, objects[newname]
