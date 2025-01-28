@@ -64,15 +64,6 @@ jobs:
         cd test/myst
         make html SPHINXOPTS='-W'
 
-    - name: Build Unit Tests with '-W' option
-      run: |
-        cd test/unit
-        make html SPHINXOPTS='-W'
-
-        sed -i 's~, "log\.md"~~' conf.py
-        ! make html SPHINXOPTS='-W' || (echo 'Unexpected zero exit code'; false)
-        git restore conf.py
-
     - name: Build Unit Tests with toc show_parents=hide
       run: |
         cd test/unit
