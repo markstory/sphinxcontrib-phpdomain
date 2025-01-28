@@ -344,25 +344,9 @@ Within a namespace context you don't need to include the namespace in links.
 
 :php:attr:`NamespaceClass::$property`
 
-:php:const:`NamespaceClass::NAMESPACE_CONST`
+:php:interface:`LibraryName\\LibraryInterface`
 
-:php:class:`LibraryClassFinal`
-
-:php:meth:`LibraryClassFinal::firstMethod`
-
-:php:meth:`LibraryClassFinal::secondMethod`
-
-:php:meth:`LibraryClassFinal::thirdMethod`
-
-:php:meth:`LibraryClassFinal::fourthMethod`
-
-:php:meth:`LibraryClassFinal::fifthMethod`
-
-:php:interface:`LibraryInterface`
-
-:php:func:`LibraryInterface::instanceMethod`
-
-:php:exc:`NamespaceException`
+:php:exc:`LibraryName\\NamespaceException`
 
 :php:trait:`TemplateTrait`
 
@@ -403,10 +387,6 @@ Test Case - global access
 
 :php:const:`SOME_CONSTANT`
 
-:php:attr:`LibraryName\\LibraryClass::$property`
-
-:php:attr:`~LibraryName\\LibraryClass::$property` Should not be prefixed with classname.
-
 :php:const:`LibraryName\\LibraryClass::TEST_CONST`
 
 :php:const:`LibraryName\\NS_CONST`
@@ -414,6 +394,13 @@ Test Case - global access
 :php:interface:`DateTimeInterface`
 
 :php:func:`DateTimeInterface::setTime()`
+
+:php:attr:`LibraryName\\LibraryClass::$property`
+
+Should not be prefixed with classname.
+
+:php:attr:`~LibraryName\\LibraryClass::$property`
+
 
 Any Cross Ref
 =============
@@ -453,6 +440,8 @@ Test Case - Test subpackage links
 :php:class:`LibraryName\\SubPackage\\SubpackageInterface`
 
 :php:exc:`LibraryName\\SubPackage\\NestedNamespaceException`
+
+:php:func:`LibraryName\\namespaced_function`
 
 Return Types
 ============
