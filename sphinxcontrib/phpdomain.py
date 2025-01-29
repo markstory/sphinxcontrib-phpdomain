@@ -1,11 +1,12 @@
 """
-    Sphinx PHP domain.
-    
-    The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
+Sphinx PHP domain.
 
-    :copyright: Copyright 2016 by Mark Story
-    :license: BSD, see LICENSE for details.
+The PHP domain. Based off of the rubydomain by SHIBUKAWA Yoshiki
+
+:copyright: Copyright 2016 by Mark Story
+:license: BSD, see LICENSE for details.
 """
+
 import re
 import inspect
 
@@ -70,9 +71,9 @@ NS = "\\"
 
 separators = {
     "global": None,
-    "namespace": None,
-    "function": None,
-    "interface": None,
+    "namespace": NS,
+    "function": NS,
+    "interface": NS,
     "class": None,
     "trait": None,
     "enum": None,
@@ -229,17 +230,20 @@ class PhpObject(ObjectDescription):
         )
         separator = separators[self.objtype]
 
-        if "::" in name_prefix:
+        classname = self.env.temp_data.get("php:class")
+        # Method declared as Class::methodName
+        if not classname and "::" in name_prefix:
             classname = name_prefix.rstrip("::")
-        else:
-            classname = self.env.temp_data.get("php:class")
 
-        if self.objtype == "global":
+        if self.objtype == "global" or self.objtype == "function":
+            add_module = False
             namespace = None
             classname = None
             fullname = name
         else:
+            add_module = True
             if name_prefix:
+                classname = classname.rstrip("::")
                 fullname = name_prefix + name
 
             # Currently in a class, but not creating another class,
@@ -258,6 +262,14 @@ class PhpObject(ObjectDescription):
             else:
                 classname = ""
                 fullname = name
+
+            # A leading \ means the name is fully qualified
+            # and should not inherit the current namespace.
+            if fullname.startswith(NS) and namespace:
+                add_module = False
+                name = name[1:]
+                fullname = fullname[1:]
+                namespace = None
 
         signode["namespace"] = namespace
         signode["class"] = self.class_name = classname
@@ -279,15 +291,21 @@ class PhpObject(ObjectDescription):
                 name_prefix = namespace + NS + name_prefix
             signode += addnodes.desc_addname(name_prefix, name_prefix)
 
-        elif (
-            namespace
-            and not self.env.temp_data.get("php:in_class", False)
-            and self.env.config.add_module_names
-        ):
-            nodetext = namespace + NS
-            signode += addnodes.desc_addname(nodetext, nodetext)
+        elif add_module and self.env.config.add_module_names:
+            if self.objtype == "global":
+                nodetext = ""
+                signode += addnodes.desc_addname(nodetext, nodetext)
+            else:
+                namespace = self.options.get(
+                    "namespace", self.env.temp_data.get("php:namespace")
+                )
+
+                if namespace and not self.env.temp_data.get("php:in_class", False):
+                    nodetext = namespace + NS
+                    signode += addnodes.desc_addname(nodetext, nodetext)
 
         signode += addnodes.desc_name(name, name)
+
         if not arglist:
             if self.needs_arglist():
                 # for callables, add an empty parameter list
@@ -603,26 +621,18 @@ class PhpXRefRole(XRefRole):
 
     def process_link(self, env, refnode, has_explicit_title, title, target):
         if not has_explicit_title:
-            # If the first char is '~' don't display the leading namespace & class.
-            if target.startswith("~"):  # only has a meaning for the title
-                target = title[1:]
+            if title.startswith("::"):
+                title = title[2:]
+            target = target.lstrip("~")  # only has a meaning for the title
+
+            # If the first char is ~ don't display the leading namespace & class.
             if title.startswith("~"):
-                title = title[1:]
-                title = re.sub(r"^[\w\\]+::", "", title)
+                m = re.search(r"(?:.+[:]{2}|(?:.*?\\{1,2})+)?(.*)\Z", title)
+                if m:
+                    title = m.group(1)
 
-            if title.startswith(NS):
-                title = title[1:]
-
-        reftype = refnode.attributes["reftype"]
-        if reftype == "global":
-            namespace = None
-            classname = None
-        else:
-            namespace = env.temp_data.get("php:namespace")
-            classname = env.temp_data.get("php:class")
-
-        refnode["php:namespace"] = namespace
-        refnode["php:class"] = classname
+        refnode["php:namespace"] = env.temp_data.get("php:namespace")
+        refnode["php:class"] = env.temp_data.get("php:class")
 
         return title, target
 
@@ -814,13 +824,18 @@ class PhpDomain(Domain):
         else:
             namespace = node.get("php:namespace")
             clsname = node.get("php:class")
-            name, obj = self.find_obj(env, node, namespace, clsname, target, typ)
+            searchorder = node.hasattr("refspecific") and 1 or 0
+            name, obj = self.find_obj(
+                env, node, namespace, clsname, target, typ, searchorder
+            )
             if not obj:
                 return None
             else:
                 return make_refnode(builder, fromdocname, obj[0], name, contnode, name)
 
-    def find_obj(self, env, fromdocnode, namespace, classname, name, type):
+    def find_obj(
+        self, env, fromdocnode, namespace, classname, name, type, searchorder=0
+    ):
         """
         Find a PHP object for "name", using the given namespace and classname.
         """
@@ -828,62 +843,60 @@ class PhpDomain(Domain):
         if name[-2:] == "()":
             name = name[:-2]
 
+        if not name:
+            return None, None
+
         objects = self.data["objects"]
 
-        if name.startswith(NS):
-            absname = name[1:]
+        newname = None
+        if searchorder == 1:
+            if (
+                namespace
+                and classname
+                and namespace + NS + classname + "::" + name in objects
+            ):
+                newname = namespace + NS + classname + "::" + name
+            elif namespace and namespace + NS + name in objects:
+                newname = namespace + NS + name
+            elif namespace and namespace + NS + name in objects:
+                newname = namespace + NS + name
+            elif classname and classname + "::" + name in objects:
+                newname = classname + "." + name
+            elif classname and classname + "::$" + name in objects:
+                newname = classname + "::$" + name
+            elif name in objects:
+                newname = name
         else:
-            absname = (namespace + NS if namespace else "") + name
-
-            if absname not in objects and name in objects:
-                # constants/functions can be namespaced, but allow fallback to global namespace the same way as PHP does
-                name_type = objects[name][1]
-                if (
-                    (name_type == "function" or name_type == "const")
-                    and NS not in name
-                    and "::" not in name
-                ):
-                    absname = name
-                else:
-                    if namespace and name.startswith(namespace + NS):
-                        log_info(
-                            fromdocnode,
-                            f"Target {absname} not found - did you mean to write {name[len(namespace + NS):]}?",
-                        )
-                    else:
-                        log_info(
-                            fromdocnode,
-                            f"Target {absname} not found - did you mean to write {NS + name}?",
-                        )
-                    absname = name  # fallback for BC, might be removed in the next major release
-
-        if absname in objects:
-            return absname, objects[absname]
-
-        # PHP reserved keywords are never resolved using NS and ignore them when not defined
-        if name not in [
-            "array",
-            "bool",
-            "callable",
-            "false",
-            "float",
-            "int",
-            "iterable",
-            "mixed",
-            "never",
-            "null",
-            "object",
-            "parent",
-            "resource",
-            "self",
-            "static",
-            "string",
-            "true",
-            "void",
-        ]:
-            log_info(fromdocnode, f"Target {absname} not found")
-
-        return None, None
+            if name in objects:
+                newname = name
+            elif classname and classname + "::" + name in objects:
+                newname = classname + "::" + name
+            elif classname and classname + "::$" + name in objects:
+                newname = classname + "::$" + name
+            elif namespace and namespace + NS + name in objects:
+                newname = namespace + NS + name
+            elif (
+                namespace
+                and classname
+                and namespace + NS + classname + "::" + name in objects
+            ):
+                newname = namespace + NS + classname + "::" + name
+            elif (
+                namespace
+                and classname
+                and namespace + NS + classname + "::$" + name in objects
+            ):
+                newname = namespace + NS + classname + "::$" + name
+            # special case: object methods
+            elif (
+                type in ("func", "meth")
+                and "::" not in name
+                and "object::" + name in objects
+            ):
+                newname = "object::" + name
+        if newname is None:
+            return None, None
+        return newname, objects[newname]
 
     def get_objects(self):
         for ns, info in self.data["namespaces"].items():

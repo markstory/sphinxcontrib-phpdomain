@@ -10,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Builds are failing with py3.9+ because sphinx templates are different.
-        # python: ['3.7', '3.8', '3.9', '3.10', '3.11']
-        python: ['3.7', '3.8']
+        python: ['3.10', '3.11', '3.12']
       fail-fast: false
 
     permissions:
@@ -33,33 +31,21 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install -r test/requirements.txt
+        pip install -r requirements-test.txt
         pip install .
 
     - name: Build Unit Tests
       run: |
-        cd test
-        find . -name '*.html' -exec rm {} \;
-
-        sed -i 's~, "log\.md"~~' conf.py
-        make html SPHINXOPTS='' 2>&1 | tee log.txt
-        git restore conf.py
-
-        (cd _build/html && rm genindex.html index.html search.html php-modindex.html)
-        (cd _build/html && find . -name '*.html' -exec sh -c 'xmllint {} --xpath '"'"'//div[@role="main"]'"'"' | xmllint --format - > ../../{}' \;)
-        sed -i -r 's~.*/(test/)~\1~;t;d' log.txt
+        cd test/unit
+        make clean
+        make html SPHINXOPTS='-W'
+        make comparehtml
 
     - name: Apply Coding Style
       if: matrix.python == '3.11'
       run: |
         pip install black
-        python -m black .
-
-    - name: Diff Unit Tests Output and Coding Style
-      run: |
-        cd test
-        rm -r _build
-        git add . -N && git diff --exit-code
+        python -m black --diff --check .
 
     - name: Push Unit Tests Output
       if: failure() && github.repository_owner != 'markstory' && matrix.python == '3.11'
@@ -73,26 +59,22 @@ jobs:
         commit_user_email: bot@example.com
         commit_author: Bot <bot@example.com>
 
-    - name: Build Unit Tests with '-W' option
+    - name: Build myst integration tests
       run: |
-        cd test
+        cd test/myst
         make html SPHINXOPTS='-W'
-
-        sed -i 's~, "log\.md"~~' conf.py
-        ! make html SPHINXOPTS='-W' || (echo 'Unexpected zero exit code'; false)
-        git restore conf.py
 
     - name: Build Unit Tests with toc show_parents=hide
       run: |
-        cd test
+        cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=hide'
 
     - name: Build Unit Tests with toc show_parents=domain
       run: |
-        cd test
+        cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=domain'
 
     - name: Build Unit Tests with toc show_parents=all
       run: |
-        cd test
+        cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
