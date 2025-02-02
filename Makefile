@@ -3,7 +3,7 @@ clean:
 .PHONY: clean
 
 package:
-	python setup.py sdist bdist_wheel
+	python -m build
 .PHONY: package
 
 upload:
