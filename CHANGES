@@ -1,12 +1,26 @@
+0.13.1
+======
+
+* Fixed build issue with ``make --shuffle=reverse`
+
+0.13.0
+======
+
+* Restructure tests.
+* Fix regression in reference resolution.
+* Fix absolute class reference inside namespace scopes.
+
+0.12.0
+======
+
+* Added support for sphinx 8.
+* Added support for alternative parsers like MyST.
+
 0.11.2
 ======
 
-* Fixed build issue with `make --shuffle=reverse`
-
-0.11.1
-======
-
 * Fixed version constraint to be <8.0 to improve Sphinx 7 compatibility.
+* Align license definitions.
 
 0.11.0
 ======
