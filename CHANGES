@@ -15,6 +15,7 @@
 
 * Added support for sphinx 8.
 * Added support for alternative parsers like MyST.
+* Added sphinx domain classifiers.
 
 0.11.2
 ======
