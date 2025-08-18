@@ -41,7 +41,7 @@ $(BUILDDIR)/html/%.result: $(BUILDDIR)/html/%
 	# to keep fixtures easier to manage.
 	xmllint $(BUILDDIR)/html/$* --xpath '//div[@role="main"]' | xmllint --format - > $(BUILDDIR)/html/$*.result
 
-compareresult-%:
+compareresult-%: $(BUILDDIR)/html/%.result
 	# compare test_doc.html and test_doc.html.result
 	diff -u $* $(BUILDDIR)/html/$*.result
 
