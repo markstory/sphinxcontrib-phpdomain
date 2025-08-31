@@ -393,7 +393,7 @@ class PhpObject(ObjectDescription):
             objects = self.env.domaindata["php"]["objects"]
             if fullname in objects:
                 self.state_machine.reporter.warning(
-                    "duplicate object description of %s, " % fullname
+                    "duplicate object description of %s, " % str(fullname)
                     + "other instance in "
                     + self.env.doc2path(objects[fullname][0]),
                     line=self.lineno,
