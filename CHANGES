@@ -1,3 +1,9 @@
+0.13.2
+======
+
+* Updated github actions
+* Fix TypeError when fullname is _StrPath
+
 0.13.1
 ======
 
