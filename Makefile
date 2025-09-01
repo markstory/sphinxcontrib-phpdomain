@@ -1,5 +1,5 @@
 clean:
-	rm -r ./dist ./build
+	rm -rf ./dist ./build
 .PHONY: clean
 
 package:
