@@ -3,6 +3,8 @@ name: CI
 on:
   pull_request:
   push:
+    branches:
+      - 'master'
 
 jobs:
   build:
@@ -76,6 +78,5 @@ jobs:
 
     - name: Build Unit Tests with toc show_parents=all
       run: |
-        source .venv/bin/activate
         cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
