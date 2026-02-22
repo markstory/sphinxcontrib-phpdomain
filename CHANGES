@@ -1,3 +1,9 @@
+0.14.0
+======
+
+* Upgraded build and packaging tooling to use `pyproject.toml`
+* Updated CI config to use `uv`
+
 0.13.2
 ======
 

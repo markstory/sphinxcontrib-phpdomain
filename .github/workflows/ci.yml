@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ['3.10', '3.11', '3.12']
+        python: ['3.11', '3.14']
       fail-fast: false
 
     permissions:
@@ -19,20 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python }}
-
     - name: Install tools
       run: |
         sudo apt -y install libxml2-utils
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -r requirements-test.txt
-        pip install .
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install the latest version of uv
+      uses: astral-sh/setup-uv@v7
 
     - name: Build Unit Tests
       run: |
@@ -44,8 +40,8 @@ jobs:
     - name: Apply Coding Style
       if: matrix.python == '3.11'
       run: |
-        pip install black
-        python -m black --diff --check .
+        uv tool install black
+        uv run black --diff --check .
 
     - name: Push Unit Tests Output
       if: failure() && github.repository_owner != 'markstory' && matrix.python == '3.11'
