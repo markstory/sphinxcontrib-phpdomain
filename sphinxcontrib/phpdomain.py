@@ -394,8 +394,7 @@ class PhpObject(ObjectDescription):
             if fullname in objects:
                 self.state_machine.reporter.warning(
                     f"duplicate object description of {str(fullname)}, \
-                    other instance in "
-                    + str(self.env.doc2path(objects[fullname][0])),
+                    other instance in " + str(self.env.doc2path(objects[fullname][0])),
                     line=self.lineno,
                 )
             objects[fullname] = (self.env.docname, self.objtype)
