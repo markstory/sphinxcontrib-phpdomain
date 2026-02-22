@@ -32,6 +32,7 @@ jobs:
 
     - name: Build Unit Tests
       run: |
+        source .venv/bin/activate
         cd test/unit
         make clean
         make html SPHINXOPTS='-W'
@@ -57,20 +58,24 @@ jobs:
 
     - name: Build myst integration tests
       run: |
+        source .venv/bin/activate
         cd test/myst
         make html SPHINXOPTS='-W'
 
     - name: Build Unit Tests with toc show_parents=hide
       run: |
+        source .venv/bin/activate
         cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=hide'
 
     - name: Build Unit Tests with toc show_parents=domain
       run: |
+        source .venv/bin/activate
         cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=domain'
 
     - name: Build Unit Tests with toc show_parents=all
       run: |
+        source .venv/bin/activate
         cd test/unit
         make html SPHINXOPTS='-W -D toc_object_entries_show_parents=all'
