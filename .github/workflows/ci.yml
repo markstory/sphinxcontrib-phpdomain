@@ -46,7 +46,7 @@ jobs:
         make comparehtml
 
     - name: Apply Coding Style
-      if: matrix.python == '3.11'
+      if: matrix.python == '3.14'
       run: |
         uv tool install black
         uv run black --diff --check .
