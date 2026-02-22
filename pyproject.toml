@@ -1,0 +1,34 @@
+[project]
+name = "sphinxcontrib-phpdomain"
+version = "0.13.2"
+description="Sphinx extension to enable documenting PHP code"
+readme = "README.rst"
+license = {file = "LICENSE"}
+requires-python = ">=3.13.5"
+authors = [
+    {name = "Mark Story", email = "mark@mark-story.com"},
+    {name = "Michael Voříšek", email = "mvorisek@mvorisek.cz"},
+]
+dependencies = [
+    "sphinx>=1.3, <9.0",
+]
+classifiers = [
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Framework :: Sphinx :: Domain",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Topic :: Documentation",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/markstory/sphinxcontrib-phpdomain"
+Documentation = "https://markstory.github.io/sphinxcontrib-phpdomain/"
+
+[dependency-groups]
+dev = [
+    "myst-parser>=5.0.0",
+]
