@@ -10,7 +10,7 @@ authors = [
     {name = "Michael Voříšek", email = "mvorisek@mvorisek.cz"},
 ]
 dependencies = [
-    "sphinx>=1.3, <9.0",
+    "sphinx>=1.3,<10.0",
 ]
 classifiers = [
     "Environment :: Console",
