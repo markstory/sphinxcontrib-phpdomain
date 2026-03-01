@@ -1,3 +1,9 @@
+0.15.1
+======
+
+* Tagged the wrong branch for 0.15.0
+* Fixed missing build dep
+
 0.15.0
 ======
 
