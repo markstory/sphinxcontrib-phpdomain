@@ -30,5 +30,6 @@ Documentation = "https://markstory.github.io/sphinxcontrib-phpdomain/"
 
 [dependency-groups]
 dev = [
+    "build>=1.4.0",
     "myst-parser>=5.0.0",
 ]
