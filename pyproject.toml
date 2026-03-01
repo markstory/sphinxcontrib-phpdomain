@@ -1,6 +1,6 @@
 [project]
 name = "sphinxcontrib-phpdomain"
-version = "0.13.2"
+version = "0.15.0"
 description="Sphinx extension to enable documenting PHP code"
 readme = "README.rst"
 license = {file = "LICENSE"}
