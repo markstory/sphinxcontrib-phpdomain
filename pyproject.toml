@@ -28,6 +28,15 @@ classifiers = [
 Homepage = "https://github.com/markstory/sphinxcontrib-phpdomain"
 Documentation = "https://markstory.github.io/sphinxcontrib-phpdomain/"
 
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sphinxcontrib*"]
+exclude = ["test*"]
+
 [dependency-groups]
 dev = [
     "build>=1.4.0",

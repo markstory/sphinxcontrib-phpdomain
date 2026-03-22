@@ -396,8 +396,8 @@ wheels = [
 
 [[package]]
 name = "sphinxcontrib-phpdomain"
-version = "0.15.0"
-source = { virtual = "." }
+version = "0.15.1"
+source = { editable = "." }
 dependencies = [
     { name = "sphinx" },
 ]
