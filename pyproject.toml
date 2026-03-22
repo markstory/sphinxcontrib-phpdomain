@@ -3,7 +3,8 @@ name = "sphinxcontrib-phpdomain"
 version = "0.15.1"
 description="Sphinx extension to enable documenting PHP code"
 readme = "README.rst"
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.13.5"
 authors = [
     {name = "Mark Story", email = "mark@mark-story.com"},
@@ -17,7 +18,6 @@ classifiers = [
     "Environment :: Web Environment",
     "Framework :: Sphinx :: Domain",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Topic :: Documentation",
