@@ -26,10 +26,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Python dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install -e .
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v7
+
+    - name: Install dependencies
+      run: |
+        uv sync --dev
+        uv pip install .
 
       - name: Setup Pages
         id: pages
