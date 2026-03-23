@@ -3,7 +3,7 @@ name = "sphinxcontrib-phpdomain"
 version = "0.15.1"
 description="Sphinx extension to enable documenting PHP code"
 readme = "README.rst"
-license = "MIT"
+license = "BSD-2-Clause"
 license-files = ["LICENSE"]
 requires-python = ">=3.13.5"
 authors = [
