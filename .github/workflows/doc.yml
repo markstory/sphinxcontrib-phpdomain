@@ -40,7 +40,9 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build doc
-        run: make -C doc html
+        run: |
+          source .venv/bin/activate
+          make -C doc html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
