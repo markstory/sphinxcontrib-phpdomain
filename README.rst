@@ -14,17 +14,16 @@ PHP Domain supports following objects:
 * Global variable
 * Global function
 * Constant
-* Namespace
-
-  * Function
-  * Class
-
+* Namespaces
 * Class
 
   * Class constant
   * Instance methods
   * Static methods
   * Properties
+
+* Enum
+* Exceptions
 
 .. note::
 
