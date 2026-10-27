@@ -1,6 +1,11 @@
 0.15.2
 ======
 
+* Bump dependencies to address security vulnerabilities in dependencies.
+
+0.15.2
+======
+
 * Removed usage of `pkg_resources` and converted to an implicit namespace package.
 * Fixed build warnings related to license metadata.
 
